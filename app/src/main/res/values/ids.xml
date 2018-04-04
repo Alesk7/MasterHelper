@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="welcomeImages">
+        <item>@drawable/welcome1_image</item>
+        <item>@drawable/welcome2_image</item>
+    </integer-array>
+
+    <integer-array name="welcomePrimaryColors">
+        <item>@color/welcome1PrimaryColor</item>
+        <item>@color/welcome2PrimaryColor</item>
+    </integer-array>
+
+</resources>

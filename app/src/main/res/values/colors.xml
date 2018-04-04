@@ -4,10 +4,8 @@
     <color name="colorPrimaryDark">#005cb2</color>
     <color name="colorAccent">#ffc107</color>
 
-    <color name="colorWelcome1Primary">#1e88e5</color>
-    <color name="colorWelcome1PrimaryDark">#005cb2</color>
-    <color name="colorWelcome2Primary">#388e3c</color>
-    <color name="colorWelcome2PrimaryDark">#00600f</color>
+    <color name="welcome1PrimaryColor">#1e88e5</color>
+    <color name="welcome2PrimaryColor">#388e3c</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>
