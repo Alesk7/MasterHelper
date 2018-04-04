@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MasterHelper</string>
+
+    <string name="welcome_button">Далее</string>
+    <string name="welcome1_title">Автоматическое формирование документации</string>
+    <string name="welcome1_text">Данные, заполняемые в приложении используются при формировании документов</string>
+    <string name="welcome2_title">Вычисление размеров строительных объектов</string>
+    <string name="welcome2_text">Возможность расчета размеров и иных показателей строительных объектов</string>
+</resources>
