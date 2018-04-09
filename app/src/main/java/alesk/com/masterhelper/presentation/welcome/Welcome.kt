@@ -13,8 +13,14 @@ class Welcome : WelcomeView, AppCompatActivity() {
         welcomeViewPager.adapter = WelcomePagerAdapter(this)
     }
 
-    override fun getWindowWidth(): Double {
-        return windowManager.defaultDisplay.width.toDouble()
+    override fun setWelcomePage(page: Int) {
+        welcomeViewPager.currentItem = page
+    }
+
+    override fun onBackPressed() {
+        if(welcomeViewPager.currentItem == 0)
+            super.onBackPressed()
+        welcomeViewPager.currentItem -= 1
     }
 
 }
