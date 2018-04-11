@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.welcome.Welcome"
+            android:name=".presentation.welcome.WelcomeActivity"
             android:screenOrientation="portrait"/>
     </application>
 

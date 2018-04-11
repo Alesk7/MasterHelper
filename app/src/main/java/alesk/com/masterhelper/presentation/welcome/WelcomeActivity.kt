@@ -5,16 +5,16 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_welcome.*
 
-class Welcome : WelcomeView, AppCompatActivity() {
+class WelcomeActivity : WelcomeView, AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
-        welcomeViewPager.adapter = WelcomePagerAdapter(this)
+        welcomeViewPager.adapter = WelcomePagerAdapter(supportFragmentManager)
     }
 
-    override fun setWelcomePage(page: Int) {
-        welcomeViewPager.currentItem = page
+    override fun nextWelcomePage() {
+        welcomeViewPager.currentItem += 1
     }
 
     override fun onBackPressed() {

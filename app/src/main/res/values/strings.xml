@@ -1,6 +1,9 @@
 <resources>
 
     <string name="app_name">MasterHelper</string>
+    <string name="sharedPreferencesName">sPref</string>
+    <string name="isFirstStartKey">isFirstStart</string>
+
     <string name="masterDetails">Мои данные</string>
 
     <string name="welcomeTitle">Автозаполнение документов и договоров</string>
@@ -8,5 +11,23 @@
 
     <string name="begin">Начать</string>
     <string name="save">Сохранить</string>
+
+    <string name="individual">ИП</string>
+    <string name="organization">Организация</string>
+    <string name="initials">ФИО</string>
+    <string name="address">Адрес</string>
+    <string name="zipcode">Почтовый индекс</string>
+    <string name="phoneNumber">Номер телефона</string>
+    <string name="passport">Номер паспорта</string>
+    <string name="passportIssued">Орган, который выдал паспорт</string>
+    <string name="insuranceCertificate">Номер страхового свидетельства</string>
+    <string name="UNP">УНП</string>
+    <string name="bankAccount">Расчетный счет</string>
+    <string name="bankName">Банк, в котором заведен счет</string>
+    <string name="bankCode">Код</string>
+    <string name="bankAddress">Адрес банка</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
