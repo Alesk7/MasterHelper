@@ -281,6 +281,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/UNP"
+                            android:inputType="number"
                             android:singleLine="true" />
                     </android.support.design.widget.TextInputLayout>
 

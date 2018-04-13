@@ -6,6 +6,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.SplashScreen">
+        <item name="android:windowBackground">@color/colorPrimary</item>
+    </style>
+
     <style name="TextInputLayoutTheme" parent="Widget.Design.TextInputLayout">
         <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/colorPrimary</item>
         <item name="android:textColorHint">@android:color/darker_gray</item>

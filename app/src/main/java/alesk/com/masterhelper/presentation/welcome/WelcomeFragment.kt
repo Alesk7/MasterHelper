@@ -16,7 +16,7 @@ class WelcomeFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.welcome_fragment, container, false)
         welcomeView = activity as WelcomeActivity
-        view.buttonNext.setOnClickListener({ welcomeView.nextWelcomePage() })
+        view.buttonNext.setOnClickListener { welcomeView.nextWelcomePage() }
         return view
     }
 
