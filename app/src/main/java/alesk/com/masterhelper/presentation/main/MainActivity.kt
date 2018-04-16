@@ -8,6 +8,7 @@ import alesk.com.masterhelper.presentation.welcome.WelcomeActivity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import io.realm.Realm
 
 class MainActivity : AppCompatActivity(), MainRouter, MasterInfoRouter {
 
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity(), MainRouter, MasterInfoRouter {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Realm.init(this)
         sPrefHelper = applicationComponent.getSharedPreferencesHelper()
 
         if(isFirstStart()) {

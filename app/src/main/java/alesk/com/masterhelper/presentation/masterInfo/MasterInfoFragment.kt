@@ -1,37 +1,45 @@
 package alesk.com.masterhelper.presentation.masterInfo
 
 import alesk.com.masterhelper.R
+import alesk.com.masterhelper.databinding.MasterInfoFragmentBinding
 import alesk.com.masterhelper.presentation.common.BaseFragment
-import alesk.com.masterhelper.presentation.injection.DaggerMainComponent
+import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
+import alesk.com.masterhelper.presentation.injection.modules.InteractorModule
+import android.databinding.DataBindingUtil
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.master_info_fragment.*
-import kotlinx.android.synthetic.main.master_info_fragment.view.*
 import javax.inject.Inject
 
 class MasterInfoFragment : BaseFragment(), MasterInfoView {
 
     @Inject
     lateinit var presenter: MasterInfoPresenter
+    lateinit var binding: MasterInfoFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.master_info_fragment, container, false)
-        initViews(view)
-        return view
+        binding = DataBindingUtil.inflate(inflater,
+                R.layout.master_info_fragment, container, false)
+        return binding.root
     }
 
-    private fun initViews(view: View){
-        view.saveButton.setOnClickListener { presenter.onSaveMasterInfo() }
-        view.individualButton.setOnClickListener { presenter.setIndividual() }
-        view.organizationButton.setOnClickListener { presenter.setOrganization() }
+    override fun onStart() {
+        super.onStart()
+        presenter.onStart()
+        binding.presenter = presenter
+        binding.masterInfo = presenter.masterInfoModel
     }
 
     override fun inject() {
-        DaggerMainComponent.create().inject(this)
+        DaggerPresentationComponent
+                .builder()
+                .interactorModule(InteractorModule())
+                .build()
+                .inject(this)
     }
 
     override fun initPresenter() {
