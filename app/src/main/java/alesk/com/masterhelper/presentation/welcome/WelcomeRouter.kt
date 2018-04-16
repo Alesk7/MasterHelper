@@ -1,5 +1,5 @@
 package alesk.com.masterhelper.presentation.welcome
 
-interface WelcomeView {
+interface WelcomeRouter {
     fun nextWelcomePage()
 }

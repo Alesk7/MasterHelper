@@ -1,9 +1,8 @@
-package alesk.com.masterhelper.presentation.main.masterInfo
+package alesk.com.masterhelper.presentation.masterInfo
 
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerMainComponent
-import alesk.com.masterhelper.presentation.main.MainActivity
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -26,7 +25,7 @@ class MasterInfoFragment : BaseFragment(), MasterInfoView {
     }
 
     private fun initViews(view: View){
-        view.saveButton.setOnClickListener { presenter.saveMasterInfo() }
+        view.saveButton.setOnClickListener { presenter.onSaveMasterInfo() }
         view.individualButton.setOnClickListener { presenter.setIndividual() }
         view.organizationButton.setOnClickListener { presenter.setOrganization() }
     }
@@ -37,7 +36,7 @@ class MasterInfoFragment : BaseFragment(), MasterInfoView {
 
     override fun initPresenter() {
         presenter.view = this
-        presenter.router = if(activity is MainActivity) activity as MainActivity else null
+        presenter.router = activity as MasterInfoRouter
     }
 
     override fun setIndividualButtonActive() {

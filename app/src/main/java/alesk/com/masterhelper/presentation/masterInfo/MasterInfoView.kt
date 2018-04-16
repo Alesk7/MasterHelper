@@ -1,4 +1,4 @@
-package alesk.com.masterhelper.presentation.main.masterInfo
+package alesk.com.masterhelper.presentation.masterInfo
 
 interface MasterInfoView {
     fun setIndividualButtonActive()

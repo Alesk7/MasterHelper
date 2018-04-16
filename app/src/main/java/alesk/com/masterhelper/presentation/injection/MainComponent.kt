@@ -1,6 +1,6 @@
 package alesk.com.masterhelper.presentation.injection
 
-import alesk.com.masterhelper.presentation.main.masterInfo.MasterInfoFragment
+import alesk.com.masterhelper.presentation.masterInfo.MasterInfoFragment
 import dagger.Component
 import javax.inject.Singleton
 

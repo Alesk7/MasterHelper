@@ -1,13 +1,12 @@
-package alesk.com.masterhelper.presentation.main.masterInfo
+package alesk.com.masterhelper.presentation.masterInfo
 
 import alesk.com.masterhelper.presentation.common.BasePresenter
-import alesk.com.masterhelper.presentation.main.MainRouter
 import javax.inject.Inject
 
-class MasterInfoPresenter @Inject constructor(): BasePresenter<MasterInfoView, MainRouter>() {
+class MasterInfoPresenter @Inject constructor(): BasePresenter<MasterInfoView, MasterInfoRouter>() {
 
-    fun saveMasterInfo(){
-
+    fun onSaveMasterInfo(){
+        router?.hideMasterInfo()
     }
 
     fun setIndividual(){

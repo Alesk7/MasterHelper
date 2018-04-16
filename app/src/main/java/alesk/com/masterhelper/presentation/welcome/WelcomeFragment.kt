@@ -10,13 +10,13 @@ import kotlinx.android.synthetic.main.welcome_fragment.view.*
 
 class WelcomeFragment : Fragment() {
 
-    lateinit var welcomeView: WelcomeView
+    lateinit var welcomeRouter: WelcomeRouter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.welcome_fragment, container, false)
-        welcomeView = activity as WelcomeActivity
-        view.buttonNext.setOnClickListener { welcomeView.nextWelcomePage() }
+        welcomeRouter = activity as WelcomeActivity
+        view.buttonNext.setOnClickListener { welcomeRouter.nextWelcomePage() }
         return view
     }
 

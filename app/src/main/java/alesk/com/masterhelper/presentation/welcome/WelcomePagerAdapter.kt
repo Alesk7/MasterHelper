@@ -1,6 +1,6 @@
 package alesk.com.masterhelper.presentation.welcome
 
-import alesk.com.masterhelper.presentation.main.masterInfo.MasterInfoFragment
+import alesk.com.masterhelper.presentation.masterInfo.MasterInfoFragment
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
