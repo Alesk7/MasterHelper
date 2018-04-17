@@ -1,7 +1,7 @@
 package alesk.com.masterhelper.presentation.masterInfo
 
 import alesk.com.masterhelper.R
-import alesk.com.masterhelper.databinding.MasterInfoFragmentBinding
+import alesk.com.masterhelper.databinding.FragmentMasterInfoBinding
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
 import alesk.com.masterhelper.presentation.injection.modules.InteractorModule
@@ -11,19 +11,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.master_info_fragment.*
+import kotlinx.android.synthetic.main.fragment_master_info.*
 import javax.inject.Inject
 
 class MasterInfoFragment : BaseFragment(), MasterInfoView {
 
     @Inject
     lateinit var presenter: MasterInfoPresenter
-    lateinit var binding: MasterInfoFragmentBinding
+    lateinit var binding: FragmentMasterInfoBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,
-                R.layout.master_info_fragment, container, false)
+                R.layout.fragment_master_info, container, false)
         return binding.root
     }
 
