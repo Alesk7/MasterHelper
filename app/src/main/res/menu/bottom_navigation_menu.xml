@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/projects_item"
+        android:icon="@mipmap/ic_view_list"
+        android:title="@string/projects"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/calculator_item"
+        android:icon="@mipmap/ic_calculator"
+        android:title="@string/calculator"
+        app:showAsAction="always" />
+</menu>

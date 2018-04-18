@@ -7,6 +7,8 @@
     <string name="masterDetails">Мои данные</string>
     <string name="projects">Проекты</string>
     <string name="newProject">Новый проект</string>
+    <string name="calculator">Калькулятор</string>
+    <string name="ok">Готово</string>
 
     <string name="welcomeTitle">Автозаполнение документов и договоров</string>
     <string name="welcomeText">Заполните поля на следующей странице, чтобы мы могли автоматически формировать документацию на основе ваших данных</string>
