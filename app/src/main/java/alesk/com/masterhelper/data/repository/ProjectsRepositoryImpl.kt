@@ -11,4 +11,10 @@ class ProjectsRepositoryImpl @Inject constructor(val realm: Realm): ProjectsRepo
         return realm.where(Project::class.java).findAll()
     }
 
+    override fun createProject(project: Project) {
+        realm.beginTransaction()
+        realm.copyToRealm(project)
+        realm.commitTransaction()
+    }
+
 }

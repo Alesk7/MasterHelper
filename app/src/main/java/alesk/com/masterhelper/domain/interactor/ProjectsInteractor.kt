@@ -10,4 +10,8 @@ class ProjectsInteractor @Inject constructor(val projectsRepository: ProjectsRep
         return projectsRepository.getAllProjects()
     }
 
+    fun createNewProject(project: Project){
+        projectsRepository.createProject(project)
+    }
+
 }
