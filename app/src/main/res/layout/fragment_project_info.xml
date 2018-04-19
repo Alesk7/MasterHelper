@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:layout_editor_absoluteY="25dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/commonInfoCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/willBeUsedInAutofill"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextJobsDescription"
+                android:layout_width="0dp"
+                android:layout_height="68dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:gravity="bottom"
+                android:hint="@string/projectDescription"
+                android:inputType="text|textMultiLine"
+                android:text="@={project.jobsDescription}"
+                android:textAlignment="gravity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textInputProjectAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:theme="@style/TextInputLayoutTheme"
+                app:hintTextAppearance="@style/TextInputHintTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextJobsDescription">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/projectAddress"
+                    android:singleLine="true"
+                    android:text="@={project.address}" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/clientButton"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/colorPrimaryDark"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:text="Иванов Иван Иванович\n+375291234567"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toStartOf="@+id/clientCallButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputProjectAddress" />
+
+            <ImageButton
+                android:id="@+id/clientCallButton"
+                android:layout_width="wrap_content"
+                android:layout_height="54dp"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/holo_green_dark"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputProjectAddress"
+                app:srcCompat="@mipmap/ic_phone" />
+
+            <Button
+                android:id="@+id/contractButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="@string/contractDetails"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clientButton" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/estimate"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commonInfoCard" />
+
+    <Button
+        android:id="@+id/jobsButton"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/lightGrey"
+        android:drawablePadding="24dp"
+        android:drawableStart="@mipmap/ic_worker"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/jobs"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Button
+        android:id="@+id/materialsButton"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:background="@color/darkGrey"
+        android:drawablePadding="24dp"
+        android:drawableStart="@mipmap/ic_layers"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/materials"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jobsButton" />
+
+</android.support.constraint.ConstraintLayout>

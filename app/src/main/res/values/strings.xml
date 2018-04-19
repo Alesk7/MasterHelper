@@ -9,6 +9,10 @@
     <string name="newProject">Новый проект</string>
     <string name="calculator">Калькулятор</string>
     <string name="ok">Готово</string>
+    <string name="contractDetails">Детали договора</string>
+    <string name="estimate">Смета</string>
+    <string name="jobs">Работы</string>
+    <string name="materials">Материалы</string>
 
     <string name="welcomeTitle">Автозаполнение документов и договоров</string>
     <string name="welcomeText">Заполните поля на следующей странице, чтобы мы могли автоматически формировать документацию на основе ваших данных</string>
