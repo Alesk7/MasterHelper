@@ -28,13 +28,16 @@
     <string name="begin">Начать</string>
     <string name="save">Сохранить</string>
     <string name="call">Позвонить</string>
+    <string name="changeName">Изменить название</string>
+    <string name="deleteProject">Удалить проект</string>
+    <string name="finishProject">Завершить проект</string>
 
     <string name="projectName">Название проекта</string>
     <string name="projectDescription">Краткое описание работ</string>
     <string name="jobsDescription">Предмет договора, выполняемые работы</string>
     <string name="projectAddress">Адрес проведения работ</string>
 
-    <string name="individual">ИП</string>
+    <string name="individual">Физ. лицо</string>
     <string name="organization">Организация</string>
     <string name="initials">ФИО</string>
     <string name="address">Адрес</string>

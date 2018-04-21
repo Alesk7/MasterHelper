@@ -6,9 +6,10 @@ import android.support.v7.app.AppCompatActivity
 
 open class BaseActivity: AppCompatActivity() {
 
-    inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
+    inline fun FragmentManager.inTransaction(isAddToBackStack: Boolean, func: FragmentTransaction.() -> Unit) {
         val fragmentTransaction = beginTransaction()
         fragmentTransaction.func()
+        if(isAddToBackStack) fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 

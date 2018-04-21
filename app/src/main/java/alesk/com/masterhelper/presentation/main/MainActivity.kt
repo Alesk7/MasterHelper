@@ -54,14 +54,14 @@ class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
     }
 
     override fun showCreateNewProject() {
-        supportFragmentManager.inTransaction {
-            add(R.id.frameLayout, NewProjectFragment())
+        supportFragmentManager.inTransaction(true) {
+            replace(R.id.frameLayout, NewProjectFragment())
         }
     }
 
     override fun showProjectsList() {
-        supportFragmentManager.inTransaction {
-            add(R.id.frameLayout, ProjectsFragment())
+        supportFragmentManager.inTransaction(false) {
+            replace(R.id.frameLayout, ProjectsFragment())
         }
     }
 
