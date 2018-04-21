@@ -20,7 +20,9 @@ class NewProjectPresenter @Inject constructor(
     }
 
     fun onSaveNewProject(){
-        projectsInteractor.createNewProject(projectModelMapper.transform(projectModel, clientModel))
+        val project = projectModelMapper.transform(projectModel, clientModel)
+        projectsInteractor.createNewProject(project)
+        router?.showProjectInfo(project.PK)
     }
 
     fun setIndividual(){

@@ -12,32 +12,32 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/projectNameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="18dp"
-            android:text="Проект"
+            android:text="@string/project"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/clientLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Заказчик"
+            android:layout_marginTop="18dp"
+            android:text="@string/client"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/projectNameLabel" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/addressLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
-            android:text="Адрес"
+            android:text="@string/address"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/clientPhone" />
 
@@ -55,7 +55,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/client"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/projectNameLabel"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -65,11 +65,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="18dp"
             android:text="Имя Фамилия Отчество"
+            android:textColor="@android:color/black"
             android:textSize="16sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/clientPhone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView2" />
+            app:layout_constraintStart_toEndOf="@+id/clientLabel" />
 
         <TextView
             android:id="@+id/clientPhone"
@@ -79,10 +79,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="18dp"
             android:text="+123456789"
-            android:textStyle="bold"
+            android:textColor="@android:color/black"
             app:layout_constraintBottom_toTopOf="@+id/address"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView2" />
+            app:layout_constraintStart_toEndOf="@+id/clientLabel" />
 
         <TextView
             android:id="@+id/address"
@@ -92,22 +92,23 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="40dp"
             android:text="г. Минск, ул. Притыцкого 4, кв. 78"
+            android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/jobsDescription"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView3" />
+            app:layout_constraintStart_toEndOf="@+id/addressLabel" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/descriptionLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Описание"
+            android:text="@string/description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/addressLabel" />
 
         <TextView
             android:id="@+id/jobsDescription"
@@ -117,10 +118,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="16dp"
             android:text="Полный ремонт в квартире, включая покраску стен, замену окон, укладку паркета"
+            android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView9" />
+            app:layout_constraintStart_toEndOf="@+id/descriptionLabel" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

@@ -1,24 +1,25 @@
-package alesk.com.masterhelper.presentation.masterInfo
+package alesk.com.masterhelper.presentation.masterInfo.model.mappers
 
 import alesk.com.masterhelper.data.entities.MasterInfo
+import alesk.com.masterhelper.presentation.masterInfo.model.MasterInfoModel
 import javax.inject.Inject
 
 class MasterInfoModelMapper @Inject constructor() {
 
-    fun transform(masterInfo: MasterInfo): MasterInfoModel{
+    fun transform(masterInfo: MasterInfo): MasterInfoModel {
         return MasterInfoModel(
                 masterInfo.isOrganization,
                 masterInfo.name,
                 masterInfo.address,
-                if(masterInfo.zipcode != 0L) masterInfo.zipcode.toString() else "",
+                if (masterInfo.zipcode != 0L) masterInfo.zipcode.toString() else "",
                 masterInfo.phoneNumber,
                 masterInfo.passport,
                 masterInfo.passportIssued,
                 masterInfo.insuranceCertificate,
-                if(masterInfo.UNP != 0L) masterInfo.UNP.toString() else "",
+                if (masterInfo.UNP != 0L) masterInfo.UNP.toString() else "",
                 masterInfo.bankAccount,
                 masterInfo.bankName,
-                if(masterInfo.bankCode != 0) masterInfo.bankCode.toString() else "",
+                if (masterInfo.bankCode != 0) masterInfo.bankCode.toString() else "",
                 masterInfo.bankAddress
         )
     }

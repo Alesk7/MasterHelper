@@ -24,10 +24,9 @@ class ProjectsFragment : BaseFragment(), ProjectsView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_projects, container, false)
-        val view = binding.root
         setActionBarTitle(getString(R.string.projects))
-        adapter = ProjectsAdapter(context, { presenter.onProjectSelected() })
-        return view
+        adapter = ProjectsAdapter(context, { presenter.onProjectSelected(it) } )
+        return binding.root
     }
 
     override fun setProjectsList(projectsList: List<Project>) {

@@ -21,8 +21,8 @@ class ProjectsPresenter @Inject constructor(
         router?.showCreateNewProject()
     }
 
-    fun onProjectSelected(){
-
+    fun onProjectSelected(project: Project){
+        router?.showProjectInfo(project.PK)
     }
 
 }

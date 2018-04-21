@@ -17,4 +17,8 @@ class ProjectsRepositoryImpl @Inject constructor(val realm: Realm): ProjectsRepo
         realm.commitTransaction()
     }
 
+    override fun getProject(PK: String): Project? {
+        return realm.where(Project::class.java).equalTo("PK", PK).findFirst()
+    }
+
 }

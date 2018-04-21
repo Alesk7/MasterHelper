@@ -2,6 +2,8 @@ package alesk.com.masterhelper.presentation.masterInfo
 
 import alesk.com.masterhelper.domain.interactor.MasterInfoInteractor
 import alesk.com.masterhelper.presentation.common.BasePresenter
+import alesk.com.masterhelper.presentation.masterInfo.model.MasterInfoModel
+import alesk.com.masterhelper.presentation.masterInfo.model.mappers.MasterInfoModelMapper
 import javax.inject.Inject
 
 class MasterInfoPresenter @Inject constructor(

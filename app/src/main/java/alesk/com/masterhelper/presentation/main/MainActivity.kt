@@ -3,20 +3,19 @@ package alesk.com.masterhelper.presentation.main
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.application.SharedPreferencesHelper
 import alesk.com.masterhelper.application.applicationComponent
+import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.main.newProject.NewProjectFragment
 import alesk.com.masterhelper.presentation.main.projects.ProjectsFragment
 import alesk.com.masterhelper.presentation.masterInfo.MasterInfoRouter
+import alesk.com.masterhelper.presentation.project.ProjectActivity
 import alesk.com.masterhelper.presentation.welcome.WelcomeActivity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AppCompatActivity
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MainRouter, MasterInfoRouter {
+class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
 
     lateinit var sPrefHelper: SharedPreferencesHelper
 
@@ -66,17 +65,17 @@ class MainActivity : AppCompatActivity(), MainRouter, MasterInfoRouter {
         }
     }
 
+    override fun showProjectInfo(PK: String) {
+        val intent = Intent(this, ProjectActivity::class.java)
+        intent.putExtra(getString(R.string.keyIdProject), PK)
+        startActivity(intent)
+    }
+
     override fun hideMasterInfo() {
 
     }
 
     private fun isFirstStart() = sPrefHelper
             .getBoolean(getString(R.string.isFirstStartKey), true)
-
-    inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
-        val fragmentTransaction = beginTransaction()
-        fragmentTransaction.func()
-        fragmentTransaction.commit()
-    }
 
 }

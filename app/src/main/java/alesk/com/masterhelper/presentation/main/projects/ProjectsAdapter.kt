@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_project.view.*
 
-class ProjectsAdapter(val context: Context?, val listener: () -> Unit)
+class ProjectsAdapter(val context: Context?, val listener: (Project) -> Unit)
     : RecyclerView.Adapter<ProjectsAdapter.ViewHolder>() {
 
     lateinit var items: List<Project>
@@ -30,13 +30,13 @@ class ProjectsAdapter(val context: Context?, val listener: () -> Unit)
         val address = itemView.address
         val jobsDescription = itemView.jobsDescription
 
-        fun bind(item: Project, listener: () -> Unit) {
+        fun bind(item: Project, listener: (Project) -> Unit) {
             projectName.text = item.name
             client.text = item.client?.name
             clientPhone.text = item.client?.phoneNumber
             address.text = item.address
-            jobsDescription.text = item.jobDescription
-            itemView.setOnClickListener{ listener }
+            jobsDescription.text = item.jobsDescription
+            itemView.setOnClickListener{ listener(item) }
         }
     }
 

@@ -27,12 +27,12 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/commonDataLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
-                android:text="Общие данные"
+                android:text="@string/commonData"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4">
+                app:layout_constraintTop_toBottomOf="@+id/commonDataLabel">
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
@@ -88,16 +88,16 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                        app:layout_constraintTop_toBottomOf="@+id/jobsDescriptionLabel" />
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/jobsDescriptionLabel"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="12dp"
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="4dp"
-                        android:text="@string/willBeUsedInAutofill"
+                        android:text="@string/jobsDescription"
                         android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -129,12 +129,12 @@
             </android.support.v7.widget.CardView>
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/clientDetailsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
-                android:text="Данные о клиенте"
+                android:text="@string/clientDetails"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/projectCardView" />
@@ -148,7 +148,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView7">
+                app:layout_constraintTop_toBottomOf="@+id/clientDetailsLabel">
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"

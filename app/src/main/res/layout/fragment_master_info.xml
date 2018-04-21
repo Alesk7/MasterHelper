@@ -3,7 +3,7 @@
 
 <data>
     <variable name="presenter" type="alesk.com.masterhelper.presentation.masterInfo.MasterInfoPresenter"/>
-    <variable name="masterInfo" type="alesk.com.masterhelper.presentation.masterInfo.MasterInfoModel"/>
+    <variable name="masterInfo" type="alesk.com.masterhelper.presentation.masterInfo.model.MasterInfoModel"/>
 </data>
 
 <LinearLayout

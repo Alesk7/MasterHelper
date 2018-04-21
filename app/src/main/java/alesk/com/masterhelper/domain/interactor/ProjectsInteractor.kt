@@ -6,11 +6,15 @@ import javax.inject.Inject
 
 class ProjectsInteractor @Inject constructor(val projectsRepository: ProjectsRepository) {
 
-    fun getProjects(): List<Project>{
+    fun getProjects(): List<Project> {
         return projectsRepository.getAllProjects().asReversed()
     }
 
-    fun createNewProject(project: Project){
+    fun getProject(PK: String): Project {
+        return projectsRepository.getProject(PK) ?: Project()
+    }
+
+    fun createNewProject(project: Project) {
         projectsRepository.createProject(project)
     }
 

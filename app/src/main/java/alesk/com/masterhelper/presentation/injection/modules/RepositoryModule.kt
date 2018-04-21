@@ -14,6 +14,7 @@ class RepositoryModule {
         return MasterInfoRepositoryImpl(realm)
     }
 
+    @Provides
     fun provideProjectsRepository(realm: Realm): ProjectsRepositoryImpl{
         return ProjectsRepositoryImpl(realm)
     }

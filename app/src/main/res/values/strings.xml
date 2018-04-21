@@ -3,9 +3,14 @@
     <string name="app_name">MasterHelper</string>
     <string name="sharedPreferencesName">sPref</string>
     <string name="isFirstStartKey">isFirstStart</string>
+    <string name="keyIdProject">projectId</string>
 
+    <string name="commonData">Общие данные</string>
     <string name="masterDetails">Мои данные</string>
+    <string name="clientDetails">Данные о заказчике</string>
+    <string name="project">Проект</string>
     <string name="projects">Проекты</string>
+    <string name="description">Описание</string>
     <string name="newProject">Новый проект</string>
     <string name="calculator">Калькулятор</string>
     <string name="ok">Готово</string>
@@ -13,16 +18,20 @@
     <string name="estimate">Смета</string>
     <string name="jobs">Работы</string>
     <string name="materials">Материалы</string>
+    <string name="projectInfo">Информация</string>
+    <string name="projectObjects">Объекты</string>
+    <string name="client">Заказчик</string>
 
     <string name="welcomeTitle">Автозаполнение документов и договоров</string>
     <string name="welcomeText">Заполните поля на следующей странице, чтобы мы могли автоматически формировать документацию на основе ваших данных</string>
 
     <string name="begin">Начать</string>
     <string name="save">Сохранить</string>
+    <string name="call">Позвонить</string>
 
     <string name="projectName">Название проекта</string>
     <string name="projectDescription">Краткое описание работ</string>
-    <string name="willBeUsedInAutofill">Предмет договора, выполняемые работы</string>
+    <string name="jobsDescription">Предмет договора, выполняемые работы</string>
     <string name="projectAddress">Адрес проведения работ</string>
 
     <string name="individual">ИП</string>

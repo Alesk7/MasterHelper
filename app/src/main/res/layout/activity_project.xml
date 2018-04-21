@@ -18,33 +18,56 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
             app:titleTextColor="@android:color/white" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabTextAppearance="@style/TabTextAppearance"
+            app:tabTextColor="@android:color/white">
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/tabProjectInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/projectInfo" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/tabProjectObjects"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/projectObjects" />
+
+        </android.support.design.widget.TabLayout>
+
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="0dp"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" >
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/printButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:clickable="true"
-            app:backgroundTint="@color/colorPrimaryDark"
-            app:fabSize="normal"
-            app:srcCompat="@mipmap/ic_printer"
-            android:focusable="true" />
-    </FrameLayout>
+    </android.support.v4.view.ViewPager>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/printButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/ic_printer" />
 
 </android.support.constraint.ConstraintLayout>
