@@ -46,6 +46,10 @@ class NewProjectFragment : BaseFragment(), NewProjectView {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun hide() {
+        fragmentManager?.popBackStack()
+    }
+
     override fun inject() {
         DaggerPresentationComponent
                 .builder()

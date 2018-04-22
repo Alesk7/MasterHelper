@@ -5,4 +5,5 @@ interface NewProjectView {
     fun setOrganizationButtonActive()
     fun setIndividualCardVisible()
     fun setOrganizationCardVisible()
+    fun hide()
 }
