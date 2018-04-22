@@ -1,7 +1,7 @@
-package alesk.com.masterhelper.presentation.main.newProject.model.mappers
+package alesk.com.masterhelper.presentation.models.mappers
 
 import alesk.com.masterhelper.data.entities.Client
-import alesk.com.masterhelper.presentation.main.newProject.model.ClientModel
+import alesk.com.masterhelper.presentation.models.ClientModel
 import javax.inject.Inject
 
 class ClientModelMapper @Inject constructor() {
@@ -21,6 +21,24 @@ class ClientModelMapper @Inject constructor() {
                 clientModel.bankName,
                 if(clientModel.bankCode.isNotEmpty()) clientModel.bankCode.toInt() else 0,
                 clientModel.bankAddress
+        )
+    }
+
+    fun transform(client: Client): ClientModel {
+        return ClientModel(
+                client.isOrganization,
+                client.name,
+                client.address,
+                if (client.zipcode != 0L) client.zipcode.toString() else "",
+                client.phoneNumber,
+                client.passport,
+                client.passportIssued,
+                client.insuranceCertificate,
+                if (client.UNP != 0L) client.UNP.toString() else "",
+                client.bankAccount,
+                client.bankName,
+                if (client.bankCode != 0) client.bankCode.toString() else "",
+                client.bankAddress
         )
     }
 

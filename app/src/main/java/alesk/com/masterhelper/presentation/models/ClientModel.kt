@@ -1,4 +1,4 @@
-package alesk.com.masterhelper.presentation.main.newProject.model
+package alesk.com.masterhelper.presentation.models
 
 class ClientModel (
         var isOrganization: Boolean = false,

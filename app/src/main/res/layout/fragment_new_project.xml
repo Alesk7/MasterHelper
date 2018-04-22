@@ -5,8 +5,7 @@
 
 <data>
     <variable name="presenter" type="alesk.com.masterhelper.presentation.main.newProject.NewProjectPresenter"/>
-    <variable name="project" type="alesk.com.masterhelper.presentation.main.newProject.model.ProjectModel"/>
-    <variable name="client" type="alesk.com.masterhelper.presentation.main.newProject.model.ClientModel"/>
+    <variable name="project" type="alesk.com.masterhelper.presentation.models.ProjectModel"/>
 </data>
 
 <android.support.constraint.ConstraintLayout
@@ -172,7 +171,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/initials"
                             android:singleLine="true"
-                            android:text="@={client.name}" />
+                            android:text="@={project.client.name}" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -192,7 +191,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/address"
                             android:singleLine="true"
-                            android:text="@={client.address}" />
+                            android:text="@={project.client.address}" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -213,7 +212,7 @@
                             android:hint="@string/zipcode"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="@={client.zipcode}" />
+                            android:text="@={project.client.zipcode}" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -236,7 +235,7 @@
                             android:hint="@string/phoneNumber"
                             android:inputType="phone"
                             android:singleLine="true"
-                            android:text="@={client.phoneNumber}" />
+                            android:text="@={project.client.phoneNumber}" />
                     </android.support.design.widget.TextInputLayout>
 
                 </android.support.constraint.ConstraintLayout>
@@ -308,7 +307,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/passport"
                             android:singleLine="true"
-                            android:text="@={client.passport}" />
+                            android:text="@={project.client.passport}" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -328,7 +327,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/passportIssued"
                             android:singleLine="true"
-                            android:text="@={client.passportIssued}" />
+                            android:text="@={project.client.passportIssued}" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -350,7 +349,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/insuranceCertificate"
                             android:singleLine="true"
-                            android:text="@={client.insuranceCertificate}" />
+                            android:text="@={project.client.insuranceCertificate}" />
                     </android.support.design.widget.TextInputLayout>
 
                 </android.support.constraint.ConstraintLayout>
@@ -390,7 +389,7 @@
                             android:hint="@string/UNP"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="@={client.UNP}" />
+                            android:text="@={project.client.UNP}" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -411,7 +410,7 @@
                             android:hint="@string/bankAccount"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="@={client.bankAccount}" />
+                            android:text="@={project.client.bankAccount}" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -431,7 +430,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/bankName"
                             android:singleLine="true"
-                            android:text="@={client.bankName}" />
+                            android:text="@={project.client.bankName}" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -452,7 +451,7 @@
                             android:hint="@string/bankCode"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:text="@={client.bankCode}" />
+                            android:text="@={project.client.bankCode}" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -474,7 +473,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/bankAddress"
                             android:singleLine="true"
-                            android:text="@={client.bankAddress}" />
+                            android:text="@={project.client.bankAddress}" />
                     </android.support.design.widget.TextInputLayout>
 
                 </android.support.constraint.ConstraintLayout>

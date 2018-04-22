@@ -1,7 +1,7 @@
-package alesk.com.masterhelper.presentation.masterInfo.model.mappers
+package alesk.com.masterhelper.presentation.models.mappers
 
 import alesk.com.masterhelper.data.entities.MasterInfo
-import alesk.com.masterhelper.presentation.masterInfo.model.MasterInfoModel
+import alesk.com.masterhelper.presentation.models.MasterInfoModel
 import javax.inject.Inject
 
 class MasterInfoModelMapper @Inject constructor() {

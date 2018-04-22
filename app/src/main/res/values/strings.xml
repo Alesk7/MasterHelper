@@ -25,11 +25,15 @@
     <string name="welcomeTitle">Автозаполнение документов и договоров</string>
     <string name="welcomeText">Заполните поля на следующей странице, чтобы мы могли автоматически формировать документацию на основе ваших данных</string>
 
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="cancel">Отмена</string>
     <string name="begin">Начать</string>
     <string name="save">Сохранить</string>
     <string name="call">Позвонить</string>
     <string name="changeName">Изменить название</string>
     <string name="deleteProject">Удалить проект</string>
+    <string name="sureForDeletingProject">Удалить проект?</string>
     <string name="finishProject">Завершить проект</string>
 
     <string name="projectName">Название проекта</string>

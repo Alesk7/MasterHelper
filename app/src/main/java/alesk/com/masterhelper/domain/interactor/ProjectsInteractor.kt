@@ -18,4 +18,12 @@ class ProjectsInteractor @Inject constructor(val projectsRepository: ProjectsRep
         projectsRepository.createProject(project)
     }
 
+    fun updateProject(project: Project){
+        projectsRepository.updateProject(project)
+    }
+
+    fun deleteProject(PK: String){
+        projectsRepository.deleteProject(PK)
+    }
+
 }

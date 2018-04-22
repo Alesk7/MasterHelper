@@ -3,9 +3,8 @@ package alesk.com.masterhelper.presentation.main.newProject
 import alesk.com.masterhelper.domain.interactor.ProjectsInteractor
 import alesk.com.masterhelper.presentation.common.BasePresenter
 import alesk.com.masterhelper.presentation.main.MainRouter
-import alesk.com.masterhelper.presentation.main.newProject.model.ClientModel
-import alesk.com.masterhelper.presentation.main.newProject.model.ProjectModel
-import alesk.com.masterhelper.presentation.main.newProject.model.mappers.ProjectModelMapper
+import alesk.com.masterhelper.presentation.models.ProjectModel
+import alesk.com.masterhelper.presentation.models.mappers.ProjectModelMapper
 import javax.inject.Inject
 
 class NewProjectPresenter @Inject constructor(
@@ -14,13 +13,12 @@ class NewProjectPresenter @Inject constructor(
 ) : BasePresenter<NewProjectView, MainRouter>() {
 
     val projectModel = ProjectModel()
-    val clientModel = ClientModel()
 
     override fun onStart() {
     }
 
     fun onSaveNewProject(){
-        val project = projectModelMapper.transform(projectModel, clientModel)
+        val project = projectModelMapper.transform(projectModel)
         projectsInteractor.createNewProject(project)
         router?.showProjectInfo(project.PK)
     }
@@ -28,13 +26,13 @@ class NewProjectPresenter @Inject constructor(
     fun setIndividual(){
         view?.setIndividualButtonActive()
         view?.setIndividualCardVisible()
-        clientModel.isOrganization = false
+        projectModel.client.isOrganization = false
     }
 
     fun setOrganization(){
         view?.setOrganizationButtonActive()
         view?.setOrganizationCardVisible()
-        clientModel.isOrganization = true
+        projectModel.client.isOrganization = true
     }
 
 }

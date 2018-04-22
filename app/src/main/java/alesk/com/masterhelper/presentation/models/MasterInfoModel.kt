@@ -1,4 +1,4 @@
-package alesk.com.masterhelper.presentation.masterInfo.model
+package alesk.com.masterhelper.presentation.models
 
 class MasterInfoModel(
     var isOrganization: Boolean = false,

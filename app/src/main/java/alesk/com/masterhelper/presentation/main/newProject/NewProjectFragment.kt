@@ -32,7 +32,6 @@ class NewProjectFragment : BaseFragment(), NewProjectView {
         presenter.onStart()
         binding.presenter = presenter
         binding.project = presenter.projectModel
-        binding.client = presenter.clientModel
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
