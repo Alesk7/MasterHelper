@@ -15,8 +15,8 @@ class ProjectInfoPresenter @Inject constructor(
     lateinit var projectModel: ProjectModel
 
     override fun onStart() {
-        val project = projectsInteractor.getProject(view!!.getProjectPK())
-        projectModel = projectModelMapper.transform(project)
+        projectModel = projectModelMapper.transform(
+                projectsInteractor.getProject(view!!.getProjectId()))
         view?.setProjectName(projectModel.name)
     }
 
@@ -45,8 +45,12 @@ class ProjectInfoPresenter @Inject constructor(
     }
 
     fun onDeleteProject(){
-        projectsInteractor.deleteProject(projectModel.PK)
-        view?.close()
+        projectsInteractor.deleteProject(projectModel.id)
+        router?.close()
+    }
+
+    fun onEditClientInfo(){
+        router?.showClientInfo(projectModel)
     }
 
 }

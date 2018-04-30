@@ -4,6 +4,7 @@
     <string name="sharedPreferencesName">sPref</string>
     <string name="isFirstStartKey">isFirstStart</string>
     <string name="keyIdProject">projectId</string>
+    <string name="keyProjectModel">projectModel</string>
 
     <string name="commonData">Общие данные</string>
     <string name="masterDetails">Мои данные</string>

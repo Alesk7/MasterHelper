@@ -12,18 +12,18 @@ class ProjectModelMapper @Inject constructor(val clientModelMapper: ClientModelM
                 projectModel.address,
                 projectModel.jobsDescription
         )
-        project.PK = projectModel.PK
+        project.id = projectModel.id
         project.client = clientModelMapper.transform(projectModel.client)
         return project
     }
 
     fun transform(project: Project): ProjectModel {
         return ProjectModel(
-                project.PK,
+                project.id,
                 project.name,
                 project.address,
                 project.jobsDescription,
-                clientModelMapper.transform(project.client!!)
+                clientModelMapper.transform(project.client)
         )
     }
 

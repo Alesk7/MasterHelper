@@ -22,7 +22,8 @@
         <activity
             android:name=".presentation.welcome.WelcomeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".presentation.project.ProjectActivity"></activity>
+        <activity android:name=".presentation.project.ProjectActivity" />
+        <activity android:name=".presentation.project.clientInfo.ClientInfoActivity"></activity>
     </application>
 
 </manifest>

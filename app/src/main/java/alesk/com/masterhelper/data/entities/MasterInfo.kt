@@ -1,11 +1,10 @@
 package alesk.com.masterhelper.data.entities
 
-import io.realm.RealmModel
-import io.realm.annotations.PrimaryKey
-import io.realm.annotations.RealmClass
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 
-@RealmClass
-open class MasterInfo(
+@Entity
+data class MasterInfo(
         var isOrganization: Boolean = false,
         var name: String = "",
         var address: String = "",
@@ -19,7 +18,7 @@ open class MasterInfo(
         var bankName: String = "",
         var bankCode: Int = 0,
         var bankAddress: String = ""
-): RealmModel {
+) {
     @PrimaryKey
-    var id: Int = 1
+    var id: Int = 0
 }

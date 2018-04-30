@@ -11,8 +11,6 @@ import alesk.com.masterhelper.presentation.project.ProjectActivity
 import alesk.com.masterhelper.presentation.welcome.WelcomeActivity
 import android.content.Intent
 import android.os.Bundle
-import io.realm.Realm
-import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
@@ -25,7 +23,6 @@ class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         initBottomNavigation()
-        initRealm()
         showProjectsList()
         sPrefHelper = applicationComponent.getSharedPreferencesHelper()
 
@@ -44,15 +41,6 @@ class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
         }
     }
 
-    private fun initRealm(){
-        Realm.init(this)
-        val configuration = RealmConfiguration.Builder()
-                .schemaVersion(1)
-                .deleteRealmIfMigrationNeeded()
-                .build()
-        Realm.setDefaultConfiguration(configuration)
-    }
-
     override fun showCreateNewProject() {
         supportFragmentManager.inTransaction(true) {
             replace(R.id.frameLayout, NewProjectFragment())
@@ -65,9 +53,9 @@ class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
         }
     }
 
-    override fun showProjectInfo(PK: String) {
+    override fun showProjectInfo(id: Int) {
         val intent = Intent(this, ProjectActivity::class.java)
-        intent.putExtra(getString(R.string.keyIdProject), PK)
+        intent.putExtra(getString(R.string.keyIdProject), id)
         startActivity(intent)
     }
 

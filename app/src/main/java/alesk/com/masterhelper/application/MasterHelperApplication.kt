@@ -2,7 +2,7 @@ package alesk.com.masterhelper.application
 
 import alesk.com.masterhelper.application.injection.ApplicationComponent
 import alesk.com.masterhelper.application.injection.DaggerApplicationComponent
-import alesk.com.masterhelper.application.injection.SharedPreferencesModule
+import alesk.com.masterhelper.application.injection.modules.ApplicationModule
 import android.app.Application
 
 lateinit var applicationComponent: ApplicationComponent
@@ -13,7 +13,7 @@ class MasterHelperApplication: Application() {
         super.onCreate()
         applicationComponent = DaggerApplicationComponent
                 .builder()
-                .sharedPreferencesModule(SharedPreferencesModule(applicationContext))
+                .applicationModule(ApplicationModule(this))
                 .build()
     }
 

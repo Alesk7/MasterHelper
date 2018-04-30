@@ -1,10 +1,10 @@
 package alesk.com.masterhelper.data.entities
 
-import io.realm.RealmModel
-import io.realm.annotations.RealmClass
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 
-@RealmClass
-open class Client(
+@Entity
+data class Client(
         var isOrganization: Boolean = false,
         var name: String = "",
         var address: String = "",
@@ -18,4 +18,7 @@ open class Client(
         var bankName: String = "",
         var bankCode: Int = 0,
         var bankAddress: String = ""
-): RealmModel
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+}

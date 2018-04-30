@@ -2,6 +2,9 @@ package alesk.com.masterhelper.presentation.project
 
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.presentation.common.BaseActivity
+import alesk.com.masterhelper.presentation.models.ProjectModel
+import alesk.com.masterhelper.presentation.project.clientInfo.ClientInfoActivity
+import android.content.Intent
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_project.*
 
@@ -16,6 +19,16 @@ class ProjectActivity : BaseActivity(), ProjectRouter {
 
         tabLayout.getTabAt(0)?.text = getString(R.string.projectInfo)
         tabLayout.getTabAt(1)?.text = getString(R.string.projectObjects)
+    }
+
+    override fun close() {
+        finish()
+    }
+
+    override fun showClientInfo(projectModel: ProjectModel) {
+        val intent = Intent(this, ClientInfoActivity::class.java)
+        intent.putExtra(getString(R.string.keyProjectModel), projectModel)
+        startActivity(intent)
     }
 
 }

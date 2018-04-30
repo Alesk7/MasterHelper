@@ -32,8 +32,8 @@ class ProjectsAdapter(val context: Context?, val listener: (Project) -> Unit)
 
         fun bind(item: Project, listener: (Project) -> Unit) {
             projectName.text = item.name
-            client.text = item.client?.name
-            clientPhone.text = item.client?.phoneNumber
+            client.text = item.client.name
+            clientPhone.text = item.client.phoneNumber
             address.text = item.address
             jobsDescription.text = item.jobsDescription
             itemView.setOnClickListener{ listener(item) }

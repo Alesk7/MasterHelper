@@ -1,45 +1,52 @@
-package alesk.com.masterhelper.presentation.masterInfo
+package alesk.com.masterhelper.presentation.project.clientInfo
 
 import alesk.com.masterhelper.R
-import alesk.com.masterhelper.databinding.FragmentMasterInfoBinding
-import alesk.com.masterhelper.presentation.common.BaseFragment
+import alesk.com.masterhelper.databinding.ActivityClientInfoBinding
+import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
+import alesk.com.masterhelper.presentation.models.ProjectModel
 import android.databinding.DataBindingUtil
 import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_master_info.*
+import kotlinx.android.synthetic.main.activity_client_info.*
 import javax.inject.Inject
 
-class MasterInfoFragment : BaseFragment(), MasterInfoView {
+class ClientInfoActivity : BaseActivity(), ClientInfoView, ClientInfoRouter {
 
     @Inject
-    lateinit var presenter: MasterInfoPresenter
-    lateinit var binding: FragmentMasterInfoBinding
+    lateinit var presenter: ClientInfoPresenter
+    lateinit var binding: ActivityClientInfoBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater,
-                R.layout.fragment_master_info, container, false)
-        return binding.root
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_client_info)
+        inject()
+        initPresenter()
     }
 
     override fun onStart() {
         super.onStart()
         presenter.onStart()
         binding.presenter = presenter
-        binding.masterInfo = presenter.masterInfoModel
+        binding.client = presenter.projectModel.client
     }
 
-    override fun inject() {
+    private fun inject(){
         DaggerPresentationComponent.create().inject(this)
     }
 
-    override fun initPresenter() {
+    private fun initPresenter(){
         presenter.view = this
-        presenter.router = activity as MasterInfoRouter
+        presenter.router = this
+    }
+
+    override fun hideClientInfo() {
+        finish()
+    }
+
+    override fun getProjectModel(): ProjectModel {
+        return intent.getSerializableExtra(getString(R.string.keyProjectModel)) as ProjectModel
     }
 
     override fun setIndividualButtonActive() {

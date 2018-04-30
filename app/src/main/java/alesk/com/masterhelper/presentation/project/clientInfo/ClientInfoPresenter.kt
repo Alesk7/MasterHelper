@@ -1,25 +1,25 @@
-package alesk.com.masterhelper.presentation.main.newProject
+package alesk.com.masterhelper.presentation.project.clientInfo
 
 import alesk.com.masterhelper.domain.interactor.ProjectsInteractor
 import alesk.com.masterhelper.presentation.common.BasePresenter
-import alesk.com.masterhelper.presentation.main.MainRouter
 import alesk.com.masterhelper.presentation.models.ProjectModel
 import alesk.com.masterhelper.presentation.models.mappers.ProjectModelMapper
 import javax.inject.Inject
 
-class NewProjectPresenter @Inject constructor(
+class ClientInfoPresenter @Inject constructor(
         val projectsInteractor: ProjectsInteractor,
         val projectModelMapper: ProjectModelMapper
-) : BasePresenter<NewProjectView, MainRouter>() {
+): BasePresenter<ClientInfoView, ClientInfoRouter>() {
 
-    val projectModel = ProjectModel()
+    lateinit var projectModel: ProjectModel
 
     override fun onStart() {
+        projectModel = view!!.getProjectModel()
     }
 
-    fun onSaveNewProject(){
-        projectsInteractor.createNewProject(projectModelMapper.transform(projectModel))
-        view?.hide()
+    fun onSaveClientInfo(){
+        projectsInteractor.updateProject(projectModelMapper.transform(projectModel))
+        router?.hideClientInfo()
     }
 
     fun setIndividual(){

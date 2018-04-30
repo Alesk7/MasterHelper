@@ -4,7 +4,6 @@ import alesk.com.masterhelper.R
 import alesk.com.masterhelper.databinding.FragmentNewProjectBinding
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
-import alesk.com.masterhelper.presentation.injection.modules.InteractorModule
 import alesk.com.masterhelper.presentation.main.MainRouter
 import android.databinding.DataBindingUtil
 import android.graphics.Color
@@ -51,11 +50,7 @@ class NewProjectFragment : BaseFragment(), NewProjectView {
     }
 
     override fun inject() {
-        DaggerPresentationComponent
-                .builder()
-                .interactorModule(InteractorModule())
-                .build()
-                .inject(this)
+        DaggerPresentationComponent.create().inject(this)
     }
 
     override fun initPresenter() {

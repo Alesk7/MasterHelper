@@ -4,7 +4,6 @@ import alesk.com.masterhelper.R
 import alesk.com.masterhelper.databinding.FragmentProjectInfoBinding
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
-import alesk.com.masterhelper.presentation.injection.modules.InteractorModule
 import alesk.com.masterhelper.presentation.project.ProjectRouter
 import android.app.AlertDialog
 import android.databinding.DataBindingUtil
@@ -72,11 +71,7 @@ class ProjectInfoFragment: BaseFragment(), ProjectInfoView {
     }
 
     override fun inject() {
-        DaggerPresentationComponent
-                .builder()
-                .interactorModule(InteractorModule())
-                .build()
-                .inject(this)
+        DaggerPresentationComponent.create().inject(this)
     }
 
     override fun initPresenter() {
@@ -84,8 +79,8 @@ class ProjectInfoFragment: BaseFragment(), ProjectInfoView {
         presenter.router = activity as ProjectRouter
     }
 
-    override fun getProjectPK(): String {
-        return activity!!.intent!!.getStringExtra(getString(R.string.keyIdProject))
+    override fun getProjectId(): Int {
+        return activity!!.intent!!.getIntExtra(getString(R.string.keyIdProject), 0)
     }
 
     override fun getProjectNameString() = getString(R.string.projectName)
@@ -95,7 +90,5 @@ class ProjectInfoFragment: BaseFragment(), ProjectInfoView {
     override fun getProjectAddressString() = getString(R.string.projectAddress)
 
     override fun updateViewBindings() = binding.invalidateAll()
-
-    override fun close() = activity!!.finish()
 
 }

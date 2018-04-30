@@ -1,7 +1,7 @@
 package alesk.com.masterhelper.presentation.project.projectInfo
 
 interface ProjectInfoView {
-    fun getProjectPK(): String
+    fun getProjectId(): Int
     fun getProjectNameString(): String
     fun getProjectDescriptionString(): String
     fun getProjectAddressString(): String
@@ -9,5 +9,4 @@ interface ProjectInfoView {
     fun showEditDialog(title: String, body: String, onSave: (String) -> Unit)
     fun updateViewBindings()
     fun askForDeleting()
-    fun close()
 }

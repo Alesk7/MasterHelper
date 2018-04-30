@@ -1,6 +1,9 @@
 package alesk.com.masterhelper.presentation.models
 
+import java.io.Serializable
+
 class ClientModel (
+        var id: Int = 0,
         var isOrganization: Boolean = false,
         var name: String = "",
         var address: String = "",
@@ -14,4 +17,4 @@ class ClientModel (
         var bankName: String = "",
         var bankCode: String = "",
         var bankAddress: String = ""
-)
+): Serializable

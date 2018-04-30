@@ -7,7 +7,7 @@ import javax.inject.Inject
 class ClientModelMapper @Inject constructor() {
 
     fun transform(clientModel: ClientModel): Client {
-        return Client(
+        val client = Client(
                 clientModel.isOrganization,
                 clientModel.name,
                 clientModel.address,
@@ -22,10 +22,13 @@ class ClientModelMapper @Inject constructor() {
                 if(clientModel.bankCode.isNotEmpty()) clientModel.bankCode.toInt() else 0,
                 clientModel.bankAddress
         )
+        client.id = clientModel.id
+        return client
     }
 
     fun transform(client: Client): ClientModel {
         return ClientModel(
+                client.id,
                 client.isOrganization,
                 client.name,
                 client.address,

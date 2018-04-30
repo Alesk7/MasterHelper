@@ -1,17 +1,17 @@
 package alesk.com.masterhelper.data.entities
 
-import io.realm.RealmModel
-import io.realm.annotations.PrimaryKey
-import io.realm.annotations.RealmClass
-import java.util.*
+import android.arch.persistence.room.Embedded
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 
-@RealmClass
-open class Project(
+@Entity
+data class Project(
         var name: String = "",
         var address: String = "",
         var jobsDescription: String = "",
-        var client: Client? = Client()
-): RealmModel {
-    @PrimaryKey
-    var PK: String = UUID.randomUUID().toString()
+        @Embedded(prefix = "client_")
+        var client: Client = Client()
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
 }

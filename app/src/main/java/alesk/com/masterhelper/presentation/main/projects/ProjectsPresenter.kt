@@ -22,7 +22,7 @@ class ProjectsPresenter @Inject constructor(
     }
 
     fun onProjectSelected(project: Project){
-        router?.showProjectInfo(project.PK)
+        router?.showProjectInfo(project.id)
     }
 
 }

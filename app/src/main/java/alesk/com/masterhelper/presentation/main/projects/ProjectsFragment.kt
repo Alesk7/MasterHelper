@@ -5,7 +5,6 @@ import alesk.com.masterhelper.data.entities.Project
 import alesk.com.masterhelper.databinding.FragmentProjectsBinding
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
-import alesk.com.masterhelper.presentation.injection.modules.InteractorModule
 import alesk.com.masterhelper.presentation.main.MainRouter
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -41,11 +40,7 @@ class ProjectsFragment : BaseFragment(), ProjectsView {
     }
 
     override fun inject() {
-        DaggerPresentationComponent
-                .builder()
-                .interactorModule(InteractorModule())
-                .build()
-                .inject(this)
+        DaggerPresentationComponent.create().inject(this)
     }
 
     override fun initPresenter() {
