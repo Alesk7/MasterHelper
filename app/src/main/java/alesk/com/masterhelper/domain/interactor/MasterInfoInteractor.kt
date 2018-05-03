@@ -11,7 +11,11 @@ class MasterInfoInteractor @Inject constructor(val masterInfoRepository: MasterI
     }
 
     fun saveMasterInfo(masterInfo: MasterInfo) {
-        masterInfoRepository.saveMasterInfo(masterInfo)
+        if(masterInfoRepository.getMasterInfo() == null){
+            masterInfoRepository.saveMasterInfo(masterInfo)
+        } else {
+            masterInfoRepository.updateMasterInfo(masterInfo)
+        }
     }
 
 }

@@ -25,4 +25,8 @@ class ProjectsPresenter @Inject constructor(
         router?.showProjectInfo(project.id)
     }
 
+    fun onShowMasterInfo(){
+        router?.showMasterInfo()
+    }
+
 }

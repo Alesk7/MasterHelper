@@ -6,6 +6,7 @@ import alesk.com.masterhelper.application.applicationComponent
 import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.main.newProject.NewProjectFragment
 import alesk.com.masterhelper.presentation.main.projects.ProjectsFragment
+import alesk.com.masterhelper.presentation.masterInfo.MasterInfoFragment
 import alesk.com.masterhelper.presentation.masterInfo.MasterInfoRouter
 import alesk.com.masterhelper.presentation.project.ProjectActivity
 import alesk.com.masterhelper.presentation.welcome.WelcomeActivity
@@ -21,7 +22,6 @@ class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
         initBottomNavigation()
         showProjectsList()
         sPrefHelper = applicationComponent.getSharedPreferencesHelper()
@@ -59,8 +59,14 @@ class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
         startActivity(intent)
     }
 
-    override fun hideMasterInfo() {
+    override fun showMasterInfo() {
+        supportFragmentManager.inTransaction(true) {
+            replace(R.id.frameLayout, MasterInfoFragment())
+        }
+    }
 
+    override fun hideMasterInfo() {
+        supportFragmentManager.popBackStack()
     }
 
     private fun isFirstStart() = sPrefHelper

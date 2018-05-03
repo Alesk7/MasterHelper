@@ -7,7 +7,7 @@
     <string name="keyProjectModel">projectModel</string>
 
     <string name="commonData">Общие данные</string>
-    <string name="masterDetails">Мои данные</string>
+    <string name="masterDetails">Данные об исполнителе</string>
     <string name="clientDetails">Данные о заказчике</string>
     <string name="project">Проект</string>
     <string name="projects">Проекты</string>
@@ -22,9 +22,9 @@
     <string name="projectInfo">Информация</string>
     <string name="projectObjects">Объекты</string>
     <string name="client">Заказчик</string>
+    <string name="archived">Завершенные проекты</string>
 
-    <string name="welcomeTitle">Автозаполнение документов и договоров</string>
-    <string name="welcomeText">Заполните поля на следующей странице, чтобы мы могли автоматически формировать документацию на основе ваших данных</string>
+    <string name="DataAutofill">Представленные данные будут использованы при автозаполнении для экономии вашего времени.</string>
 
     <string name="yes">Да</string>
     <string name="no">Нет</string>

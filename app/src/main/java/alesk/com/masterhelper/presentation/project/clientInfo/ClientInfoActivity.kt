@@ -21,6 +21,7 @@ class ClientInfoActivity : BaseActivity(), ClientInfoView, ClientInfoRouter {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_client_info)
+        supportActionBar?.title = getString(R.string.clientDetails)
         inject()
         initPresenter()
     }

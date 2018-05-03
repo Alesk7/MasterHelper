@@ -13,6 +13,10 @@ class MasterInfoRepositoryImpl @Inject constructor(
         masterInfoDAO.saveMasterInfo(masterInfo)
     }
 
+    override fun updateMasterInfo(masterInfo: MasterInfo) {
+        masterInfoDAO.updateMasterInfo(masterInfo)
+    }
+
     override fun getMasterInfo(): MasterInfo? {
         return masterInfoDAO.getMasterInfo()
     }

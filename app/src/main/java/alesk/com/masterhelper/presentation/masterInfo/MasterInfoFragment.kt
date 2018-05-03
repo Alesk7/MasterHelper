@@ -23,6 +23,7 @@ class MasterInfoFragment : BaseFragment(), MasterInfoView {
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_master_info, container, false)
+        setActionBarTitle(getString(R.string.masterDetails))
         return binding.root
     }
 
