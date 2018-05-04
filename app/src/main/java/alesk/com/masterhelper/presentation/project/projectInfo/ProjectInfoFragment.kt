@@ -79,8 +79,8 @@ class ProjectInfoFragment: BaseFragment(), ProjectInfoView {
         presenter.router = activity as ProjectRouter
     }
 
-    override fun getProjectId(): Int {
-        return activity!!.intent!!.getIntExtra(getString(R.string.keyIdProject), 0)
+    override fun getProjectId(): Long {
+        return activity!!.intent!!.getLongExtra(getString(R.string.keyIdProject), 0)
     }
 
     override fun getProjectNameString() = getString(R.string.projectName)

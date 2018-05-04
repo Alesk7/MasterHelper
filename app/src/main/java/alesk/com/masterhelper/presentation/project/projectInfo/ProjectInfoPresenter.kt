@@ -53,4 +53,8 @@ class ProjectInfoPresenter @Inject constructor(
         router?.showClientInfo(projectModel)
     }
 
+    fun onContractDetailsClicked(){
+        router?.showContractDetails()
+    }
+
 }

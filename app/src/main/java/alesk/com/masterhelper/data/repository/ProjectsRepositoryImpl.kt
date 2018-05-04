@@ -17,7 +17,7 @@ class ProjectsRepositoryImpl @Inject constructor(
         projectDAO.createProject(project)
     }
 
-    override fun getProject(id: Int): Project? {
+    override fun getProject(id: Long): Project? {
         return projectDAO.getProject(id)
     }
 
@@ -25,7 +25,7 @@ class ProjectsRepositoryImpl @Inject constructor(
         projectDAO.updateProject(project)
     }
 
-    override fun deleteProject(id: Int) {
+    override fun deleteProject(id: Long) {
         projectDAO.deleteProject(id)
     }
 

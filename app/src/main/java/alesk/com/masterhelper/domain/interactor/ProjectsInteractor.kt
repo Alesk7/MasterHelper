@@ -10,7 +10,7 @@ class ProjectsInteractor @Inject constructor(val projectsRepository: ProjectsRep
         return projectsRepository.getAllProjects().asReversed()
     }
 
-    fun getProject(id: Int): Project {
+    fun getProject(id: Long): Project {
         return projectsRepository.getProject(id) ?: Project()
     }
 
@@ -22,7 +22,7 @@ class ProjectsInteractor @Inject constructor(val projectsRepository: ProjectsRep
         projectsRepository.updateProject(project)
     }
 
-    fun deleteProject(id: Int){
+    fun deleteProject(id: Long){
         projectsRepository.deleteProject(id)
     }
 

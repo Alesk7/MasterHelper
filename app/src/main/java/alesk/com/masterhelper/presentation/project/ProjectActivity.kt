@@ -4,6 +4,7 @@ import alesk.com.masterhelper.R
 import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.models.ProjectModel
 import alesk.com.masterhelper.presentation.project.clientInfo.ClientInfoActivity
+import alesk.com.masterhelper.presentation.project.contractDetails.ContractActivity
 import android.content.Intent
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_project.*
@@ -29,6 +30,10 @@ class ProjectActivity : BaseActivity(), ProjectRouter {
         val intent = Intent(this, ClientInfoActivity::class.java)
         intent.putExtra(getString(R.string.keyProjectModel), projectModel)
         startActivity(intent)
+    }
+
+    override fun showContractDetails() {
+        startActivity(Intent(this, ContractActivity::class.java))
     }
 
 }

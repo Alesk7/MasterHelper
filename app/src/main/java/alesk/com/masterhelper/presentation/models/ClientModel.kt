@@ -3,7 +3,7 @@ package alesk.com.masterhelper.presentation.models
 import java.io.Serializable
 
 class ClientModel (
-        var id: Int = 0,
+        var id: Long = 0,
         var isOrganization: Boolean = false,
         var name: String = "",
         var address: String = "",

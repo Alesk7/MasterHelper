@@ -1,7 +1,7 @@
 package alesk.com.masterhelper.presentation.project.projectInfo
 
 interface ProjectInfoView {
-    fun getProjectId(): Int
+    fun getProjectId(): Long
     fun getProjectNameString(): String
     fun getProjectDescriptionString(): String
     fun getProjectAddressString(): String

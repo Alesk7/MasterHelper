@@ -20,5 +20,5 @@ data class Client(
         var bankAddress: String = ""
 ) {
     @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
+    var id: Long = 0
 }

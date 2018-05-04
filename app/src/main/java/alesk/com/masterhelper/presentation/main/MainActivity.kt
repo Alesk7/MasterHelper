@@ -53,7 +53,7 @@ class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
         }
     }
 
-    override fun showProjectInfo(id: Int) {
+    override fun showProjectInfo(id: Long) {
         val intent = Intent(this, ProjectActivity::class.java)
         intent.putExtra(getString(R.string.keyIdProject), id)
         startActivity(intent)

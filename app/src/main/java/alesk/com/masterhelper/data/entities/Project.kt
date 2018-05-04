@@ -13,5 +13,5 @@ data class Project(
         var client: Client = Client()
 ) {
     @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
+    var id: Long = 0
 }

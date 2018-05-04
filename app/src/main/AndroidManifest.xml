@@ -10,7 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".presentation.main.MainActivity"
             android:theme="@style/AppTheme.SplashScreen">
@@ -20,15 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".presentation.welcome.WelcomeActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".presentation.project.ProjectActivity"
-                  android:theme="@style/AppThemeNoActionBar" />
-
-        <activity android:name=".presentation.project.clientInfo.ClientInfoActivity"/>
+        <activity
+            android:name=".presentation.project.ProjectActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".presentation.project.clientInfo.ClientInfoActivity" />
+        <activity android:name=".presentation.project.contractDetails.ContractActivity"></activity>
     </application>
 
 </manifest>

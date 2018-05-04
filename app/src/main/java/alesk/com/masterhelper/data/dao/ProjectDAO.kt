@@ -16,12 +16,12 @@ interface ProjectDAO {
     fun updateProject(project: Project)
 
     @Query("SELECT * FROM Project WHERE id = :id")
-    fun getProject(id: Int): Project
+    fun getProject(id: Long): Project
 
     @Query("SELECT * FROM Project")
     fun getAllProjects(): List<Project>
 
     @Query("DELETE FROM Project WHERE id = :id")
-    fun deleteProject(id: Int)
+    fun deleteProject(id: Long)
 
 }

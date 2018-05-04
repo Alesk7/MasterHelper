@@ -22,6 +22,7 @@
     <string name="projectInfo">Информация</string>
     <string name="projectObjects">Объекты</string>
     <string name="client">Заказчик</string>
+    <string name="master">Исполнитель</string>
     <string name="archived">Завершенные проекты</string>
 
     <string name="DataAutofill">Представленные данные будут использованы при автозаполнении для экономии вашего времени.</string>
@@ -56,5 +57,13 @@
     <string name="bankName">Банк, в котором заведен счет</string>
     <string name="bankCode">Код</string>
     <string name="bankAddress">Адрес банка</string>
+
+    <string name="contractNumber">Номер договора</string>
+    <string name="contractDate">Дата заключения договора</string>
+    <string name="workStartDate">Дата начала работ</string>
+    <string name="workEndDate">Дата окончания работ</string>
+    <string name="workLength">Длительность работ (дней)</string>
+    <string name="materialsSupplier">Поставщик материалов</string>
+    <string name="prepayment">Аванс</string>
 
 </resources>
