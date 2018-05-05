@@ -1,33 +1,38 @@
 package alesk.com.masterhelper.presentation.models.mappers
 
-class ContractModelMapper {
+import alesk.com.masterhelper.data.entities.Contract
+import alesk.com.masterhelper.presentation.models.ContractModel
+import java.util.*
+import javax.inject.Inject
 
-//    fun transform(contractModel: ContractModel): Contract {
-//        val contract = Contract(
-//                if(contractModel.number.isNotEmpty()) contractModel.number.toLong() else 1,
-//                if(contractModel.contractDate.isNotEmpty()) contractModel.contractDate.toLong() else 0,
-//                contractModel.workStartDate,
-//                contractModel.workEndDate,
-//                contractModel.workLength,
-//                contractModel.prepayment,
-//                contractModel.materialsSupplier
-//        )
-//        contract.id = contractModel.id
-//        return contract
-//    }
-//
-//    fun transform(contract: Contract): ContractModel {
-//        val contractModel = ContractModel(
-//                contract.number,
-//                contract.contractDate,
-//                contract.workStartDate,
-//                contract.workEndDate,
-//                contract.workLength,
-//                contract.prepayment,
-//                contract.materialsSupplier
-//        )
-//        contract.id = contract.id
-//        return contractModel
-//    }
+class ContractModelMapper @Inject constructor() {
+
+    fun transform(contractModel: ContractModel): Contract {
+        val contract = Contract(
+                contractModel.contractDate.time,
+                contractModel.workStartDate.time,
+                contractModel.workEndDate.time,
+                if(contractModel.workLength.isNotEmpty()) contractModel.workLength.toInt() else 7,
+                if(contractModel.prepayment.isNotEmpty()) contractModel.prepayment.toDouble() else 0.0,
+                contractModel.isMasterMaterialsSupplier
+        )
+        contract.id = contractModel.id
+        contract.number = if(contractModel.number.isNotEmpty()) contractModel.number.toLong() else 0
+        return contract
+    }
+
+    fun transform(contract: Contract): ContractModel {
+        val contractModel = ContractModel(
+                contract.number.toString(),
+                contract.workLength.toString(),
+                contract.prepayment.toString(),
+                contract.isMasterMaterialsSupplier
+        )
+        contractModel.contractDate = Date(contract.contractDate)
+        contractModel.workStartDate = Date(contract.workStartDate)
+        contractModel.workEndDate = Date(contract.workEndDate)
+        contractModel.id = contract.id
+        return contractModel
+    }
 
 }

@@ -1,4 +1,4 @@
-package alesk.com.masterhelper.application
+package alesk.com.masterhelper.application.utils
 
 import android.content.SharedPreferences
 import javax.inject.Inject

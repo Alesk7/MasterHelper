@@ -7,5 +7,6 @@ class ProjectModel (
         var name: String = "",
         var address: String = "",
         var jobsDescription: String = "",
-        var client: ClientModel = ClientModel()
+        var client: ClientModel = ClientModel(),
+        var contract: ContractModel = ContractModel()
 ): Serializable

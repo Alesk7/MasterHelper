@@ -4,7 +4,10 @@ import alesk.com.masterhelper.data.entities.Project
 import alesk.com.masterhelper.presentation.models.ProjectModel
 import javax.inject.Inject
 
-class ProjectModelMapper @Inject constructor(val clientModelMapper: ClientModelMapper) {
+class ProjectModelMapper @Inject constructor(
+        val clientModelMapper: ClientModelMapper,
+        val contractModelMapper: ContractModelMapper
+) {
 
     fun transform(projectModel: ProjectModel): Project {
         val project = Project(
@@ -14,6 +17,7 @@ class ProjectModelMapper @Inject constructor(val clientModelMapper: ClientModelM
         )
         project.id = projectModel.id
         project.client = clientModelMapper.transform(projectModel.client)
+        project.contract = contractModelMapper.transform(projectModel.contract)
         return project
     }
 
@@ -23,7 +27,8 @@ class ProjectModelMapper @Inject constructor(val clientModelMapper: ClientModelM
                 project.name,
                 project.address,
                 project.jobsDescription,
-                clientModelMapper.transform(project.client)
+                clientModelMapper.transform(project.client),
+                contractModelMapper.transform(project.contract)
         )
     }
 

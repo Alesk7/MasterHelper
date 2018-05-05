@@ -32,8 +32,10 @@ class ProjectActivity : BaseActivity(), ProjectRouter {
         startActivity(intent)
     }
 
-    override fun showContractDetails() {
-        startActivity(Intent(this, ContractActivity::class.java))
+    override fun showContractDetails(projectModel: ProjectModel) {
+        val intent = Intent(this, ContractActivity::class.java)
+        intent.putExtra(getString(R.string.keyProjectModel), projectModel)
+        startActivity(intent)
     }
 
 }

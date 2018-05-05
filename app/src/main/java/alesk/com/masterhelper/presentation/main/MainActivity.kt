@@ -1,7 +1,7 @@
 package alesk.com.masterhelper.presentation.main
 
 import alesk.com.masterhelper.R
-import alesk.com.masterhelper.application.SharedPreferencesHelper
+import alesk.com.masterhelper.application.utils.SharedPreferencesHelper
 import alesk.com.masterhelper.application.applicationComponent
 import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.main.newProject.NewProjectFragment

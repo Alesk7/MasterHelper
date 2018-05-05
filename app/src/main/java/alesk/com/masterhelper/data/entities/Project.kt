@@ -10,7 +10,9 @@ data class Project(
         var address: String = "",
         var jobsDescription: String = "",
         @Embedded(prefix = "client_")
-        var client: Client = Client()
+        var client: Client = Client(),
+        @Embedded(prefix = "contract_")
+        var contract: Contract = Contract()
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
