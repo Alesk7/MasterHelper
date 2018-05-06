@@ -5,9 +5,15 @@ import alesk.com.masterhelper.databinding.FragmentProjectInfoBinding
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
 import alesk.com.masterhelper.presentation.project.ProjectRouter
+import android.Manifest
 import android.app.AlertDialog
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.databinding.DataBindingUtil
+import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v7.app.AppCompatActivity
 import android.view.*
 import android.widget.EditText
 import javax.inject.Inject
@@ -77,6 +83,25 @@ class ProjectInfoFragment: BaseFragment(), ProjectInfoView {
     override fun initPresenter() {
         presenter.view = this
         presenter.router = activity as ProjectRouter
+    }
+
+    private fun isCallPermissionGranted(): Boolean {
+        val permission = ActivityCompat.checkSelfPermission(
+                activity as AppCompatActivity, Manifest.permission.CALL_PHONE)
+        return permission == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestCallPermission() = ActivityCompat.requestPermissions(activity as AppCompatActivity,
+            arrayOf(Manifest.permission.CALL_PHONE), 0)
+
+    override fun tryMakeCall(number: String) {
+        if(isCallPermissionGranted()) makeCall(number) else requestCallPermission()
+    }
+
+    private fun makeCall(number: String){
+        val intent = Intent(Intent.ACTION_CALL)
+        intent.data = Uri.parse("tel:$number")
+        startActivity(intent)
     }
 
     override fun getProjectId(): Long {

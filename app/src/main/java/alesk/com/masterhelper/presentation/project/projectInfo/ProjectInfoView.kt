@@ -9,4 +9,5 @@ interface ProjectInfoView {
     fun showEditDialog(title: String, body: String, onSave: (String) -> Unit)
     fun updateViewBindings()
     fun askForDeleting()
+    fun tryMakeCall(number: String)
 }

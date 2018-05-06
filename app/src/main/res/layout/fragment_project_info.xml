@@ -149,7 +149,8 @@
                     android:text="@string/call"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/clientLabel" />
+                    app:layout_constraintTop_toBottomOf="@+id/clientLabel"
+                    android:onClick="@{(view) -> presenter.onClientCall()}"/>
 
                 <Button
                     android:id="@+id/contractButton"

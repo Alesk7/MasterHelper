@@ -53,6 +53,10 @@ class ProjectInfoPresenter @Inject constructor(
         router?.showClientInfo(projectModel)
     }
 
+    fun onClientCall(){
+        view?.tryMakeCall(projectModel.client.phoneNumber)
+    }
+
     fun onContractDetailsClicked(){
         router?.showContractDetails(projectModel)
     }

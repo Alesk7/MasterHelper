@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="alesk.com.masterhelper">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:name=".application.MasterHelperApplication"
         android:allowBackup="true"
