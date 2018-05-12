@@ -17,15 +17,6 @@ class ProjectInfoPresenter @Inject constructor(
     override fun onStart() {
         projectModel = projectModelMapper.transform(
                 projectsInteractor.getProject(view!!.getProjectId()))
-        view?.setProjectName(projectModel.name)
-    }
-
-    fun onEditProjectName(){
-        view?.showEditDialog(view!!.getProjectNameString(), projectModel.name, {
-            projectModel.name = it
-            view?.setProjectName(projectModel.name)
-            projectsInteractor.updateProject(projectModelMapper.transform(projectModel))
-        } )
     }
 
     fun onEditProjectDescription(){
@@ -42,11 +33,6 @@ class ProjectInfoPresenter @Inject constructor(
             view?.updateViewBindings()
             projectsInteractor.updateProject(projectModelMapper.transform(projectModel))
         } )
-    }
-
-    fun onDeleteProject(){
-        projectsInteractor.deleteProject(projectModel.id)
-        router?.close()
     }
 
     fun onEditClientInfo(){

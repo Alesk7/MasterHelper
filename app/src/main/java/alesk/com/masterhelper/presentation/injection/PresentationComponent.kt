@@ -4,6 +4,7 @@ import alesk.com.masterhelper.presentation.injection.modules.InteractorModule
 import alesk.com.masterhelper.presentation.main.newProject.NewProjectFragment
 import alesk.com.masterhelper.presentation.main.projects.ProjectsFragment
 import alesk.com.masterhelper.presentation.masterInfo.MasterInfoFragment
+import alesk.com.masterhelper.presentation.project.ProjectActivity
 import alesk.com.masterhelper.presentation.project.clientInfo.ClientInfoActivity
 import alesk.com.masterhelper.presentation.project.contractDetails.ContractActivity
 import alesk.com.masterhelper.presentation.project.projectInfo.ProjectInfoFragment
@@ -19,4 +20,5 @@ interface PresentationComponent {
     fun inject(fragment: ProjectInfoFragment)
     fun inject(activity: ClientInfoActivity)
     fun inject(activity: ContractActivity)
+    fun inject(activity: ProjectActivity)
 }

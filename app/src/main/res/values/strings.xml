@@ -29,6 +29,8 @@
 
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="print">Печать</string>
+    <string name="delete">Удалить</string>
     <string name="cancel">Отмена</string>
     <string name="begin">Начать</string>
     <string name="save">Сохранить</string>

@@ -3,10 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/print_item"
+        android:icon="@mipmap/ic_printer"
+        android:title="@string/print"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/finish_item"
         android:icon="@mipmap/ic_clipboard_check"
-        android:title="@string/finishProject"
-        app:showAsAction="ifRoom" />
+        android:title="@string/finishProject" />
     <item
         android:id="@+id/edit_item"
         android:title="@string/changeName" />
