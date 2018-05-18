@@ -208,7 +208,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/estimateLabel" />
+                    app:layout_constraintTop_toBottomOf="@+id/estimateLabel"
+                    android:onClick="@{(view) -> presenter.onJobsClicked()}"/>
 
                 <Button
                     android:id="@+id/materialsButton"

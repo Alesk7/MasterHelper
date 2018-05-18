@@ -7,6 +7,7 @@ import alesk.com.masterhelper.presentation.masterInfo.MasterInfoFragment
 import alesk.com.masterhelper.presentation.project.ProjectActivity
 import alesk.com.masterhelper.presentation.project.clientInfo.ClientInfoActivity
 import alesk.com.masterhelper.presentation.project.contractDetails.ContractActivity
+import alesk.com.masterhelper.presentation.project.jobs.JobsActivity
 import alesk.com.masterhelper.presentation.project.projectInfo.ProjectInfoFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -21,4 +22,5 @@ interface PresentationComponent {
     fun inject(activity: ClientInfoActivity)
     fun inject(activity: ContractActivity)
     fun inject(activity: ProjectActivity)
+    fun inject(activity: JobsActivity)
 }

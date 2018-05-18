@@ -14,7 +14,6 @@
     <string name="description">Описание</string>
     <string name="newProject">Новый проект</string>
     <string name="calculator">Калькулятор</string>
-    <string name="ok">Готово</string>
     <string name="contractDetails">Детали договора</string>
     <string name="estimate">Смета</string>
     <string name="jobs">Работы</string>
@@ -29,11 +28,14 @@
 
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="ok">Ок</string>
+    <string name="done">Готово</string>
     <string name="print">Печать</string>
     <string name="delete">Удалить</string>
     <string name="cancel">Отмена</string>
     <string name="begin">Начать</string>
     <string name="save">Сохранить</string>
+    <string name="add">Добавить</string>
     <string name="call">Позвонить</string>
     <string name="changeName">Изменить название</string>
     <string name="deleteProject">Удалить проект</string>
@@ -44,6 +46,14 @@
     <string name="projectDescription">Краткое описание работ</string>
     <string name="jobsDescription">Предмет договора, выполняемые работы</string>
     <string name="projectAddress">Адрес проведения работ</string>
+
+    <string name="notComplete">Не выполнено</string>
+    <string name="complete">Выполнено</string>
+
+    <string name="addJob">Добавить работу</string>
+    <string name="editJob">Редактировать работу</string>
+    <string name="jobName">Наименование работы</string>
+    <string name="quantity">Количество</string>
 
     <string name="individual">Физ. лицо</string>
     <string name="organization">Организация</string>
@@ -68,5 +78,28 @@
     <string name="materialsSupplier">Поставщик материалов</string>
     <string name="prepayment">Аванс</string>
     <string name="ruble">(Рублей)</string>
+
+    <string-array name="units">
+        <item>шт</item>
+        <item>мм</item>
+        <item>см</item>
+        <item>м</item>
+        <item>км</item>
+        <item>мм²</item>
+        <item>см²</item>
+        <item>м²</item>
+        <item>км²</item>
+        <item>мм³</item>
+        <item>см³</item>
+        <item>м³</item>
+        <item>км³</item>
+        <item>мл</item>
+        <item>л</item>
+        <item>сек</item>
+        <item>мин</item>
+        <item>ч</item>
+        <item>дн</item>
+        <item>мес</item>
+    </string-array>
 
 </resources>

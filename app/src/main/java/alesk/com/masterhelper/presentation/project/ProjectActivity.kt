@@ -8,6 +8,7 @@ import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
 import alesk.com.masterhelper.presentation.models.ProjectModel
 import alesk.com.masterhelper.presentation.project.clientInfo.ClientInfoActivity
 import alesk.com.masterhelper.presentation.project.contractDetails.ContractActivity
+import alesk.com.masterhelper.presentation.project.jobs.JobsActivity
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -67,6 +68,12 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
     override fun showClientInfo(projectModel: ProjectModel) {
         val intent = Intent(this, ClientInfoActivity::class.java)
         intent.putExtra(getString(R.string.keyProjectModel), projectModel)
+        startActivity(intent)
+    }
+
+    override fun showJobs(projectId: Long) {
+        val intent = Intent(this, JobsActivity::class.java)
+        intent.putExtra(getString(R.string.keyIdProject), projectId)
         startActivity(intent)
     }
 

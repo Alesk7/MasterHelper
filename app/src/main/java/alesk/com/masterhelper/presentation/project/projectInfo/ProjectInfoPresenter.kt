@@ -47,4 +47,8 @@ class ProjectInfoPresenter @Inject constructor(
         router?.showContractDetails(projectModel)
     }
 
+    fun onJobsClicked(){
+        router?.showJobs(projectModel.id)
+    }
+
 }

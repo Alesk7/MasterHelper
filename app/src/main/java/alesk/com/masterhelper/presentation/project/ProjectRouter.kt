@@ -6,4 +6,5 @@ interface ProjectRouter {
     fun close()
     fun showClientInfo(projectModel: ProjectModel)
     fun showContractDetails(projectModel: ProjectModel)
+    fun showJobs(projectId: Long)
 }

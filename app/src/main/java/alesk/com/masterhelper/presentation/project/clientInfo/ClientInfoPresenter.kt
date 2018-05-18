@@ -15,6 +15,8 @@ class ClientInfoPresenter @Inject constructor(
 
     override fun onStart() {
         projectModel = view!!.getProjectModel()
+        if(projectModel.client.isOrganization)
+            setOrganization()
     }
 
     fun onSaveClientInfo(){
