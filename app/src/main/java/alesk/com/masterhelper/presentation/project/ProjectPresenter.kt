@@ -21,6 +21,7 @@ class ProjectPresenter @Inject constructor(
 
     fun onEditProjectName(){
         view?.showEditDialog(view!!.getProjectNameString(), projectModel.name, {
+            if(it.isBlank()) return@showEditDialog
             projectModel.name = it
             view?.setProjectName(projectModel.name)
             projectsInteractor.updateProject(projectModelMapper.transform(projectModel))

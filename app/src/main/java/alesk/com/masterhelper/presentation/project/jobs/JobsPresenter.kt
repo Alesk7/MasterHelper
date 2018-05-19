@@ -9,20 +9,20 @@ class JobsPresenter @Inject constructor(
         val jobsInteractor: JobsInteractor
 ): BasePresenter<JobsView, JobsRouter>() {
 
-    lateinit var jobsList: List<Job>
+    lateinit var jobsList: MutableList<Job>
 
     override fun onStart() {
-        jobsList = jobsInteractor.getJobsByProjectId(view!!.getProjectId())
+        jobsList = jobsInteractor.getJobsByProjectId(view!!.getProjectId()).toMutableList()
         view?.setJobsList(jobsList)
     }
 
     fun onAddJob(){
         view?.showAddJobDialog({ name, quantity, unit ->
+            if(name.isEmpty()) return@showAddJobDialog
             val job = Job(name, quantity ?: 1.0, 0.0, unit, 0.0, false)
             job.projectId = view!!.getProjectId()
             jobsInteractor.addJob(job)
-            jobsList = jobsInteractor.getJobsByProjectId(view!!.getProjectId())
-            view?.setJobsList(jobsList)
+            jobsList.add(0, job)
             view?.updateViewBindings()
         })
     }

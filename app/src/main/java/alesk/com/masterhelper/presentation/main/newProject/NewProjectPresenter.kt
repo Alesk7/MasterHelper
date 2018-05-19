@@ -18,6 +18,10 @@ class NewProjectPresenter @Inject constructor(
     }
 
     fun onSaveNewProject(){
+        if(projectModel.name.isBlank()) {
+            view?.showEmptyNameMessage()
+            return
+        }
         projectsInteractor.createNewProject(projectModelMapper.transform(projectModel))
         view?.hide()
     }

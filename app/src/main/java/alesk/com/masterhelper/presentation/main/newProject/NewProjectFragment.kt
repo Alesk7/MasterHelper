@@ -1,6 +1,7 @@
 package alesk.com.masterhelper.presentation.main.newProject
 
 import alesk.com.masterhelper.R
+import alesk.com.masterhelper.application.utils.showShortCustomToast
 import alesk.com.masterhelper.databinding.FragmentNewProjectBinding
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
@@ -10,6 +11,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import kotlinx.android.synthetic.main.fragment_new_project.*
+import kotlinx.android.synthetic.main.toast_custom.*
 import javax.inject.Inject
 
 class NewProjectFragment : BaseFragment(), NewProjectView {
@@ -82,4 +84,9 @@ class NewProjectFragment : BaseFragment(), NewProjectView {
         individualInfoCard.visibility = View.GONE
     }
 
+    override fun showEmptyNameMessage() {
+        showShortCustomToast(context,
+                layoutInflater.inflate(R.layout.toast_custom, root),
+                getString(R.string.nameEmptyMessage))
+    }
 }

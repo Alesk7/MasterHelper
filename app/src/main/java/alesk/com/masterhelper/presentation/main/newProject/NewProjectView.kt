@@ -6,4 +6,5 @@ interface NewProjectView {
     fun setIndividualCardVisible()
     fun setOrganizationCardVisible()
     fun hide()
+    fun showEmptyNameMessage()
 }

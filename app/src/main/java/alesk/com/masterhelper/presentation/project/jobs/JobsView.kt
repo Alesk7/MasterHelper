@@ -10,4 +10,5 @@ interface JobsView {
                           onOk: (String, Double?, String) -> Unit)
     fun updateViewBindings()
     fun notifyItemChanged(pos: Int)
+    fun showEmptyNameMessage()
 }

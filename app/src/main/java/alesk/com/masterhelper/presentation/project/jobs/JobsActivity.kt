@@ -3,6 +3,7 @@ package alesk.com.masterhelper.presentation.project.jobs
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.application.utils.UNIT_DROPDOWN_WIDTH
 import alesk.com.masterhelper.application.utils.showCustomViewDialog
+import alesk.com.masterhelper.application.utils.showShortCustomToast
 import alesk.com.masterhelper.data.entities.Job
 import alesk.com.masterhelper.databinding.ActivityJobsBinding
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.dialog_job.view.*
+import kotlinx.android.synthetic.main.toast_custom.*
 import javax.inject.Inject
 
 class JobsActivity : AppCompatActivity(), JobsView, JobsRouter {
@@ -81,6 +83,12 @@ class JobsActivity : AppCompatActivity(), JobsView, JobsRouter {
 
     override fun setJobsList(jobs: List<Job>) {
         adapter.items = jobs
+    }
+
+    override fun showEmptyNameMessage() {
+        showShortCustomToast(this,
+                layoutInflater.inflate(R.layout.toast_custom, root),
+                getString(R.string.nameEmptyMessage))
     }
 
     override fun getProjectId(): Long {
