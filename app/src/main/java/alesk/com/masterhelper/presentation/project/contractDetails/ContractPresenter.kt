@@ -17,7 +17,7 @@ class ContractPresenter @Inject constructor(
 
     lateinit var projectModel: ProjectModel
     @SuppressLint("SimpleDateFormat")
-    val dateFormat = SimpleDateFormat("dd/MM/YYYY")
+    val dateFormat = SimpleDateFormat("dd/MM/yyyy")
 
     override fun onStart() {
         projectModel = view!!.getProjectModel()

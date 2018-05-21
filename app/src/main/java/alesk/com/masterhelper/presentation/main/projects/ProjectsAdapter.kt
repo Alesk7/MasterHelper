@@ -2,7 +2,6 @@ package alesk.com.masterhelper.presentation.main.projects
 
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.data.entities.Project
-import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -31,7 +30,6 @@ class ProjectsAdapter(val context: Context?, val listener: (Project) -> Unit)
         val address = itemView.address
         val jobsDescription = itemView.jobsDescription
 
-        @SuppressLint("NewApi", "PrivateResource")
         fun bind(item: Project, listener: (Project) -> Unit) {
             projectName.text = item.name
             client.text = item.client.name
@@ -39,12 +37,12 @@ class ProjectsAdapter(val context: Context?, val listener: (Project) -> Unit)
             address.text = item.address
             if(item.address.isBlank()){
                 address.text = context?.getString(R.string.emptyAddress)
-                address.setTextColor(context!!.getColor(R.color.abc_secondary_text_material_light))
+                address.setTextColor(context!!.resources.getColor(R.color.textSecondary))
             }
             jobsDescription.text = item.jobsDescription
             if(item.jobsDescription.isBlank()){
                 jobsDescription.text = context?.getString(R.string.emptyDescription)
-                jobsDescription.setTextColor(context!!.getColor(R.color.abc_secondary_text_material_light))
+                jobsDescription.setTextColor(context!!.resources.getColor(R.color.textSecondary))
             }
             itemView.setOnClickListener{ listener(item) }
         }
