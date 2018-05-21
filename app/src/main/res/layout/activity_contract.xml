@@ -312,14 +312,14 @@
         android:id="@+id/saveButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#558b2f"
+        android:background="@color/colorAccent"
         android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{(view) -> presenter.onSaveContract()}"
         android:text="@string/save"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:onClick="@{(view) -> presenter.onSaveContract()}"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
 </layout>

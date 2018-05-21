@@ -154,10 +154,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/colorAccentSecondary"
+                    android:onClick="@{(view) -> presenter.setIndividual()}"
                     android:text="@string/individual"
-                    android:textColor="@android:color/white"
-                    android:onClick="@{(view) -> presenter.setIndividual()}"/>
+                    android:textColor="@android:color/white" />
 
                 <Button
                     android:id="@+id/organizationButton"
@@ -383,13 +383,13 @@
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#558b2f"
+        android:background="@color/colorAccent"
         android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{(view) -> presenter.onSaveMasterInfo()}"
         android:text="@string/save"
         android:textColor="@android:color/white"
         tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="312dp"
-        android:onClick="@{(view) -> presenter.onSaveMasterInfo()}"/>
+        tools:layout_editor_absoluteY="312dp" />
 
 </LinearLayout>
 

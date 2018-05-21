@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:singleLine="true"
             android:text="Ремонт на Пушкинской"
@@ -56,7 +56,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/client"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/projectNameLabel"
+            app:layout_constraintStart_toEndOf="@+id/descriptionLabel"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -64,14 +64,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="16dp"
             android:singleLine="true"
             android:text="Имя Фамилия Отчество"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/clientPhone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/clientLabel" />
+            app:layout_constraintStart_toEndOf="@+id/descriptionLabel" />
 
         <TextView
             android:id="@+id/clientPhone"
@@ -79,13 +79,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="16dp"
             android:singleLine="true"
             android:text="+123456789"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toTopOf="@+id/address"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/clientLabel" />
+            app:layout_constraintStart_toEndOf="@+id/descriptionLabel" />
 
         <TextView
             android:id="@+id/address"
@@ -93,14 +93,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="16dp"
             android:singleLine="true"
             android:text="г. Минск, ул. Притыцкого 4, кв. 78"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/jobsDescription"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/addressLabel" />
+            app:layout_constraintStart_toEndOf="@+id/descriptionLabel" />
 
         <TextView
             android:id="@+id/descriptionLabel"
@@ -123,6 +123,7 @@
             android:layout_marginStart="16dp"
             android:text="Полный ремонт в квартире, включая покраску стен, замену окон, укладку паркета"
             android:textColor="@android:color/black"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

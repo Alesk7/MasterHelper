@@ -156,7 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/colorAccentSecondary"
                         android:onClick="@{(view) -> presenter.setIndividual()}"
                         android:text="@string/individual"
                         android:textColor="@android:color/white" />
@@ -385,7 +385,7 @@
             android:id="@+id/saveButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#558b2f"
+            android:background="@color/colorAccent"
             android:foreground="?attr/selectableItemBackground"
             android:onClick="@{(view) -> presenter.onSaveClientInfo()}"
             android:text="@string/save"

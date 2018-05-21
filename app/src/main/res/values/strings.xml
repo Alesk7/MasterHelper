@@ -17,6 +17,8 @@
     <string name="contractDetails">Детали договора</string>
     <string name="estimate">Смета</string>
     <string name="jobs">Работы</string>
+    <string name="prices">Цены</string>
+    <string name="cart">Список покупок</string>
     <string name="materials">Материалы</string>
     <string name="projectInfo">Информация</string>
     <string name="projectObjects">Объекты</string>

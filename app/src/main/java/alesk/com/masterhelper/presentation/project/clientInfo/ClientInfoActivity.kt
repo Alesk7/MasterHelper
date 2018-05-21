@@ -51,14 +51,14 @@ class ClientInfoActivity : BaseActivity(), ClientInfoView, ClientInfoRouter {
     }
 
     override fun setIndividualButtonActive() {
-        individualButton.setBackgroundColor(resources.getColor(R.color.colorPrimaryDark))
+        individualButton.setBackgroundColor(resources.getColor(R.color.colorAccentSecondary))
         individualButton.setTextColor(Color.WHITE)
         organizationButton.setBackgroundColor(Color.TRANSPARENT)
         organizationButton.setTextColor(Color.BLACK)
     }
 
     override fun setOrganizationButtonActive() {
-        organizationButton.setBackgroundColor(resources.getColor(R.color.colorAccent))
+        organizationButton.setBackgroundColor(resources.getColor(R.color.colorAccentSecondary))
         organizationButton.setTextColor(Color.WHITE)
         individualButton.setBackgroundColor(Color.TRANSPARENT)
         individualButton.setTextColor(Color.BLACK)
