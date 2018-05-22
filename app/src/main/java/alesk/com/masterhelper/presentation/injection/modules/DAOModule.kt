@@ -4,6 +4,7 @@ import alesk.com.masterhelper.data.Database
 import alesk.com.masterhelper.data.dao.JobDAO
 import alesk.com.masterhelper.data.dao.MasterInfoDAO
 import alesk.com.masterhelper.data.dao.ProjectDAO
+import alesk.com.masterhelper.data.dao.ProjectObjectDAO
 import dagger.Module
 import dagger.Provides
 
@@ -23,6 +24,11 @@ class DAOModule {
     @Provides
     fun provideJobDAO(database: Database): JobDAO {
         return database.jobDAO()
+    }
+
+    @Provides
+    fun provideProjectObjectDAO(database: Database): ProjectObjectDAO {
+        return database.projectObjectDAO()
     }
 
 }

@@ -27,7 +27,6 @@ class ProjectInfoFragment: BaseFragment(), ProjectInfoView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_project_info, container, false)
-        setHasOptionsMenu(true)
         return binding.root
     }
 

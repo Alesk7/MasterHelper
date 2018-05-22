@@ -66,7 +66,7 @@ class JobsActivity : AppCompatActivity(), JobsView, JobsRouter {
         view.quantity.setText(quantity.toString())
         view.unit.setSelection((view.unit.adapter as ArrayAdapter<String>).getPosition(unit))
         showCustomViewDialog(this, view, getString(R.string.editJob), { d, i ->
-            onOk(view.name.text.toString(),
+             onOk(view.name.text.toString(),
                     view.quantity.text.toString().toDoubleOrNull(),
                     view.unit.selectedItem.toString())
         }).show()

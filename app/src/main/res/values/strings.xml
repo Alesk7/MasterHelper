@@ -61,6 +61,10 @@
     <string name="jobName">Наименование работы</string>
     <string name="quantity">Количество</string>
 
+    <string name="objectName">Наименование объекта</string>
+    <string name="parentObjectIs">Родительский объект</string>
+    <string name="addObject">Добавить объект</string>
+
     <string name="individual">Физ. лицо</string>
     <string name="organization">Организация</string>
     <string name="initials">ФИО</string>

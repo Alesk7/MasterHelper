@@ -18,7 +18,7 @@ class JobsPresenter @Inject constructor(
 
     fun onAddJob(){
         view?.showAddJobDialog({ name, quantity, unit ->
-            if(name.isEmpty()) return@showAddJobDialog
+            if(name.isBlank()) return@showAddJobDialog
             val job = Job(name, quantity ?: 1.0, 0.0, unit, 0.0, false)
             job.projectId = view!!.getProjectId()
             jobsInteractor.addJob(job)
