@@ -53,6 +53,8 @@
 
     <string name="notComplete">Не выполнено</string>
     <string name="complete">Выполнено</string>
+    <string name="notPurchased">Не приобретено</string>
+    <string name="purchased">Приобретено</string>
     <string name="emptyDescription">Нет описания</string>
     <string name="emptyAddress">Адрес не указан</string>
 
@@ -60,6 +62,10 @@
     <string name="editJob">Редактировать работу</string>
     <string name="jobName">Наименование работы</string>
     <string name="quantity">Количество</string>
+
+    <string name="addMaterial">Добавить материал</string>
+    <string name="editMaterial">Редактировать материал</string>
+    <string name="materialName">Наименование материала</string>
 
     <string name="objectName">Наименование объекта</string>
     <string name="parentObjectIs">Родительский объект</string>
@@ -89,7 +95,7 @@
     <string name="prepayment">Аванс</string>
     <string name="ruble">(Рублей)</string>
 
-    <string-array name="units">
+    <string-array name="jobUnits">
         <item>шт</item>
         <item>мм</item>
         <item>см</item>
@@ -105,11 +111,35 @@
         <item>км³</item>
         <item>мл</item>
         <item>л</item>
+        <item>грамм</item>
+        <item>кг</item>
+        <item>тонн</item>
         <item>сек</item>
         <item>мин</item>
         <item>ч</item>
         <item>дн</item>
         <item>мес</item>
+    </string-array>
+
+    <string-array name="materialUnits">
+        <item>шт</item>
+        <item>мм</item>
+        <item>см</item>
+        <item>м</item>
+        <item>км</item>
+        <item>мм²</item>
+        <item>см²</item>
+        <item>м²</item>
+        <item>км²</item>
+        <item>мм³</item>
+        <item>см³</item>
+        <item>м³</item>
+        <item>км³</item>
+        <item>мл</item>
+        <item>л</item>
+        <item>грамм</item>
+        <item>кг</item>
+        <item>тонн</item>
     </string-array>
 
 </resources>

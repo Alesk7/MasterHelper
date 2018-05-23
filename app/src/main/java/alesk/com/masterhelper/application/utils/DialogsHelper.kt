@@ -7,8 +7,6 @@ import android.content.DialogInterface
 import android.view.View
 import android.widget.EditText
 
-const val UNIT_DROPDOWN_WIDTH = 233
-
 fun showEditDialog(context: Context, title: String, body: String, onSave: (String) -> Unit) {
     val builder = AlertDialog.Builder(context)
     builder.setTitle(title)

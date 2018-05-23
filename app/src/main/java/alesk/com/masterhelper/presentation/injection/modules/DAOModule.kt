@@ -1,10 +1,7 @@
 package alesk.com.masterhelper.presentation.injection.modules
 
 import alesk.com.masterhelper.data.Database
-import alesk.com.masterhelper.data.dao.JobDAO
-import alesk.com.masterhelper.data.dao.MasterInfoDAO
-import alesk.com.masterhelper.data.dao.ProjectDAO
-import alesk.com.masterhelper.data.dao.ProjectObjectDAO
+import alesk.com.masterhelper.data.dao.*
 import dagger.Module
 import dagger.Provides
 
@@ -24,6 +21,11 @@ class DAOModule {
     @Provides
     fun provideJobDAO(database: Database): JobDAO {
         return database.jobDAO()
+    }
+
+    @Provides
+    fun provideMaterialDAO(database: Database): MaterialDAO {
+        return database.materialDAO()
     }
 
     @Provides

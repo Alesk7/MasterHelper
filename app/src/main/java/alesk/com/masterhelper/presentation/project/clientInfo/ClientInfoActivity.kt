@@ -33,11 +33,11 @@ class ClientInfoActivity : BaseActivity(), ClientInfoView, ClientInfoRouter {
         binding.client = presenter.projectModel.client
     }
 
-    private fun inject(){
+    override fun inject(){
         DaggerPresentationComponent.create().inject(this)
     }
 
-    private fun initPresenter(){
+    override fun initPresenter(){
         presenter.view = this
         presenter.router = this
     }

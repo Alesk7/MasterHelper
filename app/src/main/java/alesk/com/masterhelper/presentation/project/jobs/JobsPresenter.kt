@@ -42,7 +42,7 @@ class JobsPresenter @Inject constructor(
     }
 
     private fun updateViewJobsList() {
-        jobsList = jobsInteractor.getJobsByProjectId(view!!.getProjectId()).toMutableList()
+        jobsList = jobsInteractor.getJobsByProjectId(view!!.getProjectId())
         view?.setJobsList(jobsList)
     }
 

@@ -1,13 +1,7 @@
 package alesk.com.masterhelper.presentation.injection.modules
 
-import alesk.com.masterhelper.data.repository.JobRepositoryImpl
-import alesk.com.masterhelper.data.repository.MasterInfoRepositoryImpl
-import alesk.com.masterhelper.data.repository.ProjectObjectRepositoryImpl
-import alesk.com.masterhelper.data.repository.ProjectsRepositoryImpl
-import alesk.com.masterhelper.domain.interactor.JobsInteractor
-import alesk.com.masterhelper.domain.interactor.MasterInfoInteractor
-import alesk.com.masterhelper.domain.interactor.ProjectObjectsInteractor
-import alesk.com.masterhelper.domain.interactor.ProjectsInteractor
+import alesk.com.masterhelper.data.repository.*
+import alesk.com.masterhelper.domain.interactor.*
 import dagger.Module
 import dagger.Provides
 
@@ -27,6 +21,11 @@ class InteractorModule {
     @Provides
     fun provideJobsInteractor(jobRepository: JobRepositoryImpl): JobsInteractor {
         return JobsInteractor(jobRepository)
+    }
+
+    @Provides
+    fun provideMaterialsInteractor(materialRepository: MaterialRepositoryImpl): MaterialsInteractor {
+        return MaterialsInteractor(materialRepository)
     }
 
     @Provides

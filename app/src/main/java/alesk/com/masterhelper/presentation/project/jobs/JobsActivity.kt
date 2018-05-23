@@ -1,23 +1,20 @@
 package alesk.com.masterhelper.presentation.project.jobs
 
 import alesk.com.masterhelper.R
-import alesk.com.masterhelper.application.utils.UNIT_DROPDOWN_WIDTH
 import alesk.com.masterhelper.application.utils.showCustomViewDialog
-import alesk.com.masterhelper.application.utils.showShortCustomToast
 import alesk.com.masterhelper.data.entities.Job
 import alesk.com.masterhelper.databinding.ActivityJobsBinding
+import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
 import android.annotation.SuppressLint
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.dialog_job.view.*
-import kotlinx.android.synthetic.main.toast_custom.*
 import javax.inject.Inject
 
-class JobsActivity : AppCompatActivity(), JobsView, JobsRouter {
+class JobsActivity : BaseActivity(), JobsView, JobsRouter {
 
     @Inject
     lateinit var presenter: JobsPresenter
@@ -41,11 +38,11 @@ class JobsActivity : AppCompatActivity(), JobsView, JobsRouter {
         presenter.onStart()
     }
 
-    fun inject(){
+    override fun inject(){
         DaggerPresentationComponent.create().inject(this)
     }
 
-    fun initPresenter(){
+    override fun initPresenter(){
         presenter.view = this
         presenter.router = this
     }
@@ -76,19 +73,12 @@ class JobsActivity : AppCompatActivity(), JobsView, JobsRouter {
     private fun initJobDialogView(): View {
         val view = layoutInflater.inflate(R.layout.dialog_job, null)
         view.unit.adapter = ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,
-                resources.getStringArray(R.array.units))
-        view.unit.dropDownWidth = UNIT_DROPDOWN_WIDTH
+                resources.getStringArray(R.array.jobUnits))
         return view
     }
 
     override fun setJobsList(jobs: List<Job>) {
         adapter.items = jobs
-    }
-
-    override fun showEmptyNameMessage() {
-        showShortCustomToast(this,
-                layoutInflater.inflate(R.layout.toast_custom, root),
-                getString(R.string.nameEmptyMessage))
     }
 
     override fun getProjectId(): Long {

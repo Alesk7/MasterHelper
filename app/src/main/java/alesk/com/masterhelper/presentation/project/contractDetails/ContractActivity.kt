@@ -2,15 +2,15 @@ package alesk.com.masterhelper.presentation.project.contractDetails
 
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.databinding.ActivityContractBinding
+import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
 import alesk.com.masterhelper.presentation.models.ProjectModel
 import android.app.DatePickerDialog
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import javax.inject.Inject
 
-class ContractActivity : AppCompatActivity(), ContractView, ContractRouter {
+class ContractActivity : BaseActivity(), ContractView, ContractRouter {
 
     @Inject
     lateinit var presenter: ContractPresenter
@@ -32,11 +32,11 @@ class ContractActivity : AppCompatActivity(), ContractView, ContractRouter {
         binding.dateFormat = presenter.dateFormat
     }
 
-    fun inject(){
+    override fun inject(){
         DaggerPresentationComponent.create().inject(this)
     }
 
-    fun initPresenter(){
+    override fun initPresenter(){
         presenter.router = this
         presenter.view = this
     }

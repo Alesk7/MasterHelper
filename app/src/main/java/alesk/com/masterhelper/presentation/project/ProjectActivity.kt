@@ -10,13 +10,16 @@ import alesk.com.masterhelper.presentation.models.ProjectModel
 import alesk.com.masterhelper.presentation.project.clientInfo.ClientInfoActivity
 import alesk.com.masterhelper.presentation.project.contractDetails.ContractActivity
 import alesk.com.masterhelper.presentation.project.jobs.JobsActivity
+import alesk.com.masterhelper.presentation.project.materials.MaterialsActivity
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_project.*
+import java.io.Serializable
 import javax.inject.Inject
+import kotlin.reflect.KClass
 
 class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
 
@@ -43,11 +46,11 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
         binding.presenter = presenter
     }
 
-    private fun inject(){
+    override fun inject(){
         DaggerPresentationComponent.create().inject(this)
     }
 
-    private fun initPresenter(){
+    override fun initPresenter(){
         presenter.view = this
         presenter.router = this
     }
@@ -70,20 +73,30 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
     }
 
     override fun showClientInfo(projectModel: ProjectModel) {
-        val intent = Intent(this, ClientInfoActivity::class.java)
-        intent.putExtra(getString(R.string.keyProjectModel), projectModel)
-        startActivity(intent)
+        startNewActivity(ClientInfoActivity::class, getString(R.string.keyProjectModel), projectModel)
     }
 
     override fun showJobs(projectId: Long) {
-        val intent = Intent(this, JobsActivity::class.java)
-        intent.putExtra(getString(R.string.keyIdProject), projectId)
-        startActivity(intent)
+        startNewActivity(JobsActivity::class, getString(R.string.keyIdProject), projectId)
+    }
+
+    override fun showMaterials(projectId: Long) {
+        startNewActivity(MaterialsActivity::class, getString(R.string.keyIdProject), projectId)
     }
 
     override fun showContractDetails(projectModel: ProjectModel) {
-        val intent = Intent(this, ContractActivity::class.java)
-        intent.putExtra(getString(R.string.keyProjectModel), projectModel)
+        startNewActivity(ContractActivity::class, getString(R.string.keyProjectModel), projectModel)
+    }
+
+    private fun startNewActivity(activity: KClass<*>, extraKey: String, extraValue: Long){
+        val intent = Intent(this, activity.java)
+        intent.putExtra(extraKey, extraValue)
+        startActivity(intent)
+    }
+
+    private fun startNewActivity(activity: KClass<*>, extraKey: String, extraValue: Serializable){
+        val intent = Intent(this, activity.java)
+        intent.putExtra(extraKey, extraValue)
         startActivity(intent)
     }
 

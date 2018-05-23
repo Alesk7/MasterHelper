@@ -16,4 +16,7 @@ open class BaseActivity: AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
+    open fun inject(){}
+    open fun initPresenter(){}
+
 }
