@@ -24,13 +24,12 @@ class ObjectsAdapter(val context: Context): RecyclerView.Adapter<ObjectsAdapter.
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name = itemView.name
-        val parentLayout = itemView.parentObjectLayout
         val parentName = itemView.parentObjectName
 
         fun bind(item: ObjectModel) {
             name.text = item.name
             if(item.parentObjectName.isNullOrEmpty()){
-                parentLayout.visibility = View.GONE
+                parentName.visibility = View.GONE
                 return@bind
             }
             parentName.text = item.parentObjectName

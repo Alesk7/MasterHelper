@@ -3,6 +3,7 @@ package alesk.com.masterhelper.presentation.project
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.application.utils.showAskingDialog
 import alesk.com.masterhelper.application.utils.showEditDialog
+import alesk.com.masterhelper.databinding.ActivityProjectBinding
 import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
 import alesk.com.masterhelper.presentation.models.ProjectModel
@@ -10,6 +11,7 @@ import alesk.com.masterhelper.presentation.project.clientInfo.ClientInfoActivity
 import alesk.com.masterhelper.presentation.project.contractDetails.ContractActivity
 import alesk.com.masterhelper.presentation.project.jobs.JobsActivity
 import android.content.Intent
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -20,10 +22,11 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
 
     @Inject
     lateinit var presenter: ProjectPresenter
+    lateinit var binding: ActivityProjectBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_project)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_project)
         setSupportActionBar(toolbar)
         inject()
         initPresenter()
@@ -37,6 +40,7 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
     override fun onStart() {
         super.onStart()
         presenter.onStart()
+        binding.presenter = presenter
     }
 
     private fun inject(){

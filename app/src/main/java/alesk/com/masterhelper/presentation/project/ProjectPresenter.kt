@@ -19,6 +19,10 @@ class ProjectPresenter @Inject constructor(
         view?.setProjectName(projectModel.name)
     }
 
+    fun onJobsClicked(){
+        router?.showJobs(projectModel.id)
+    }
+
     fun onEditProjectName(){
         view?.showEditDialog(view!!.getProjectNameString(), projectModel.name, {
             if(it.isBlank()) return@showEditDialog

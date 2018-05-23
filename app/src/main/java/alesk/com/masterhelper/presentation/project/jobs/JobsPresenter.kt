@@ -9,11 +9,10 @@ class JobsPresenter @Inject constructor(
         val jobsInteractor: JobsInteractor
 ): BasePresenter<JobsView, JobsRouter>() {
 
-    lateinit var jobsList: MutableList<Job>
+    lateinit var jobsList: List<Job>
 
     override fun onStart() {
-        jobsList = jobsInteractor.getJobsByProjectId(view!!.getProjectId()).toMutableList()
-        view?.setJobsList(jobsList)
+        updateViewJobsList()
     }
 
     fun onAddJob(){
@@ -22,7 +21,7 @@ class JobsPresenter @Inject constructor(
             val job = Job(name, quantity ?: 1.0, 0.0, unit, 0.0, false)
             job.projectId = view!!.getProjectId()
             jobsInteractor.addJob(job)
-            jobsList.add(0, job)
+            updateViewJobsList()
             view?.updateViewBindings()
         })
     }
@@ -40,6 +39,11 @@ class JobsPresenter @Inject constructor(
     fun onJobStatusChanged(isChecked: Boolean, job: Job){
         job.isComplete = isChecked
         jobsInteractor.editJob(job)
+    }
+
+    private fun updateViewJobsList() {
+        jobsList = jobsInteractor.getJobsByProjectId(view!!.getProjectId()).toMutableList()
+        view?.setJobsList(jobsList)
     }
 
 }

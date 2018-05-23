@@ -12,17 +12,10 @@ class ObjectsPresenter @Inject constructor(
         val objectModelMapper: ObjectModelMapper
 ): BasePresenter<ObjectsView, ProjectRouter>() {
 
-    lateinit var objectsList: MutableList<ObjectModel>
+    lateinit var objectsList: List<ObjectModel>
 
     override fun onStart() {
-        objectsList = projectObjectsInteractor.getProjectObjectsByProjectId(view!!.getProjectId()).map {
-            val obj = ObjectModel(it.id, it.projectId, it.name, it.parentObjectId)
-            if(it.parentObjectId != null) {
-                obj.parentObjectName = projectObjectsInteractor.getProjectObject(it.parentObjectId!!).name
-            }
-            return@map obj
-        }.toMutableList()
-        view?.setObjectsList(objectsList)
+        updateViewObjectsList()
     }
 
     fun onAddObject(){
@@ -34,9 +27,24 @@ class ObjectsPresenter @Inject constructor(
                 obj.parentObjectName = parent.name
             }
             projectObjectsInteractor.addProjectObject(objectModelMapper.transform(obj))
-            objectsList.add(0, obj)
+            updateViewObjectsList()
             view?.updateViewBindings()
         })
+    }
+
+    private fun updateViewObjectsList() {
+        objectsList = obtainObjectsList()
+        view?.setObjectsList(objectsList)
+    }
+
+    private fun obtainObjectsList(): List<ObjectModel> {
+        return projectObjectsInteractor.getProjectObjectsByProjectId(view!!.getProjectId()).map {
+            val obj = ObjectModel(it.id, it.projectId, it.name, it.parentObjectId)
+            if(it.parentObjectId != null) {
+                obj.parentObjectName = projectObjectsInteractor.getProjectObject(it.parentObjectId!!).name
+            }
+            return@map obj
+        }
     }
 
     private fun getSpinnerParentObjectsList(): List<ObjectModel> {
