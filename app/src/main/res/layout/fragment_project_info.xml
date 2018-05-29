@@ -201,6 +201,7 @@
                     android:paddingLeft="16dp"
                     android:text="@string/prices"
                     android:textAlignment="textStart"
+                    android:onClick="@{(view) -> presenter.onPricesClicked()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/commonInfoCard" />

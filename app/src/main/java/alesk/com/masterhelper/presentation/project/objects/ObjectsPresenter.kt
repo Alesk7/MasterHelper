@@ -32,6 +32,10 @@ class ObjectsPresenter @Inject constructor(
         })
     }
 
+    fun onObjectClicked(objectModel: ObjectModel){
+        router?.showObject(objectModel)
+    }
+
     private fun updateViewObjectsList() {
         objectsList = obtainObjectsList()
         view?.setObjectsList(objectsList)

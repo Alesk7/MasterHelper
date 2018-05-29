@@ -26,7 +26,7 @@ class ObjectsFragment : BaseFragment(), ObjectsView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_objects, container, false)
-        adapter = ObjectsAdapter(context!!)
+        adapter = ObjectsAdapter(context!!, { presenter.onObjectClicked(it) })
         return binding.root
     }
 

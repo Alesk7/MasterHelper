@@ -6,11 +6,14 @@ import alesk.com.masterhelper.application.utils.showEditDialog
 import alesk.com.masterhelper.databinding.ActivityProjectBinding
 import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
+import alesk.com.masterhelper.presentation.models.ObjectModel
 import alesk.com.masterhelper.presentation.models.ProjectModel
 import alesk.com.masterhelper.presentation.project.clientInfo.ClientInfoActivity
 import alesk.com.masterhelper.presentation.project.contractDetails.ContractActivity
 import alesk.com.masterhelper.presentation.project.jobs.JobsActivity
 import alesk.com.masterhelper.presentation.project.materials.MaterialsActivity
+import alesk.com.masterhelper.presentation.project.objects.projectObject.ObjectActivity
+import alesk.com.masterhelper.presentation.project.prices.PricesActivity
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -86,6 +89,14 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
 
     override fun showContractDetails(projectModel: ProjectModel) {
         startNewActivity(ContractActivity::class, getString(R.string.keyProjectModel), projectModel)
+    }
+
+    override fun showPrices(projectId: Long) {
+        startNewActivity(PricesActivity::class, getString(R.string.keyIdProject), projectId)
+    }
+
+    override fun showObject(objectModel: ObjectModel) {
+        startNewActivity(ObjectActivity::class, getString(R.string.keyObjectModel), objectModel)
     }
 
     private fun startNewActivity(activity: KClass<*>, extraKey: String, extraValue: Long){

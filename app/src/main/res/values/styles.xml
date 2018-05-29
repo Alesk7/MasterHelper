@@ -24,7 +24,8 @@
     </style>
 
     <style name="TextInputLayoutTheme" parent="Widget.Design.TextInputLayout">
-        <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/colorPrimary</item>
+        <item name="android:colorControlActivated" tools:targetApi="lollipop">@color/colorPrimary
+        </item>
         <item name="android:textColorHint">@android:color/darker_gray</item>
     </style>
 
@@ -40,8 +41,19 @@
     </style>
 
     <style name="CheckBoxTheme" parent="Widget.AppCompat.CompoundButton.CheckBox">
-        <item name="android:colorControlActivated" tools:targetApi="lollipop">@android:color/holo_green_dark</item>
+        <item name="android:colorControlActivated" tools:targetApi="lollipop">
+            @android:color/holo_green_dark
+        </item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

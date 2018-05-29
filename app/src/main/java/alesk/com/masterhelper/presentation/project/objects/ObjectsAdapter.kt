@@ -9,7 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_object.view.*
 
-class ObjectsAdapter(val context: Context): RecyclerView.Adapter<ObjectsAdapter.ViewHolder>() {
+class ObjectsAdapter(
+        val context: Context,
+        val listener: (ObjectModel) -> Unit
+): RecyclerView.Adapter<ObjectsAdapter.ViewHolder>() {
 
     lateinit var items: List<ObjectModel>
 
@@ -20,14 +23,15 @@ class ObjectsAdapter(val context: Context): RecyclerView.Adapter<ObjectsAdapter.
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-            holder.bind(items[position])
+            holder.bind(items[position], listener)
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name = itemView.name
         val parentName = itemView.parentObjectName
 
-        fun bind(item: ObjectModel) {
+        fun bind(item: ObjectModel, listener: (ObjectModel) -> Unit) {
             name.text = item.name
+            itemView.setOnClickListener { listener(item) }
             if(item.parentObjectName.isNullOrEmpty()){
                 parentName.visibility = View.GONE
                 return@bind

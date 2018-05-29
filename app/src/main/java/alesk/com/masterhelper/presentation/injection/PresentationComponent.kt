@@ -10,6 +10,8 @@ import alesk.com.masterhelper.presentation.project.contractDetails.ContractActiv
 import alesk.com.masterhelper.presentation.project.jobs.JobsActivity
 import alesk.com.masterhelper.presentation.project.materials.MaterialsActivity
 import alesk.com.masterhelper.presentation.project.objects.ObjectsFragment
+import alesk.com.masterhelper.presentation.project.prices.jobPrices.JobPricesFragment
+import alesk.com.masterhelper.presentation.project.prices.materialPrices.MaterialPricesFragment
 import alesk.com.masterhelper.presentation.project.projectInfo.ProjectInfoFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -27,4 +29,6 @@ interface PresentationComponent {
     fun inject(activity: JobsActivity)
     fun inject(fragment: ObjectsFragment)
     fun inject(activity: MaterialsActivity)
+    fun inject(fragment: JobPricesFragment)
+    fun inject(fragment: MaterialPricesFragment)
 }
