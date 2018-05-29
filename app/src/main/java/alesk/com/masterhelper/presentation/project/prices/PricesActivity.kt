@@ -12,7 +12,7 @@ class PricesActivity : BaseActivity(), PricesRouter {
         setContentView(R.layout.activity_prices)
         supportActionBar?.title = getString(R.string.prices)
         viewPager.adapter = PricesPagerAdapter(supportFragmentManager)
-        viewPager.pageMargin = 16
+        viewPager.pageMargin = resources.getDimension(R.dimen.viewPagerMargin).toInt()
         tabLayout.setupWithViewPager(viewPager)
 
         tabLayout.getTabAt(0)?.text = getString(R.string.jobs)
