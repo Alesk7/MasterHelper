@@ -11,12 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_master_info.*
-import javax.inject.Inject
 
-class MasterInfoFragment : BaseFragment(), MasterInfoView {
+class MasterInfoFragment : BaseFragment<MasterInfoPresenter, MasterInfoView, MasterInfoRouter>(), MasterInfoView {
 
-    @Inject
-    lateinit var presenter: MasterInfoPresenter
     lateinit var binding: FragmentMasterInfoBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -36,11 +33,6 @@ class MasterInfoFragment : BaseFragment(), MasterInfoView {
 
     override fun inject() {
         DaggerPresentationComponent.create().inject(this)
-    }
-
-    override fun initPresenter() {
-        presenter.view = this
-        presenter.router = activity as MasterInfoRouter
     }
 
     override fun setIndividualButtonActive() {

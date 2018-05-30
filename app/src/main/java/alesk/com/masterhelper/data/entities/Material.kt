@@ -20,4 +20,6 @@ data class Material(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
     var projectId: Long = 0
+    var jobId: Long? = null
+    var objectId: Long? = null
 }

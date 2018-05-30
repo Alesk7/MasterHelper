@@ -20,4 +20,5 @@ data class Job(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
     var projectId: Long = 0
+    var objectId: Long? = null
 }

@@ -11,12 +11,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import javax.inject.Inject
 
-class MaterialPricesFragment: BaseFragment(), MaterialPricesView {
+class MaterialPricesFragment: BaseFragment<MaterialPricesPresenter, MaterialPricesView, PricesRouter>(),
+        MaterialPricesView {
 
-    @Inject
-    lateinit var presenter: MaterialPricesPresenter
     lateinit var binding: FragmentMaterialPricesBinding
     lateinit var adapter: MaterialPricesAdapter
 
@@ -34,11 +32,6 @@ class MaterialPricesFragment: BaseFragment(), MaterialPricesView {
 
     override fun inject() {
         DaggerPresentationComponent.create().inject(this)
-    }
-
-    override fun initPresenter() {
-        presenter.view = this
-        presenter.router = activity as PricesRouter
     }
 
     override fun setMaterialsList(items: List<MaterialModel>) {

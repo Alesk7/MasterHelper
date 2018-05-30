@@ -14,12 +14,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.dialog_add_object.view.*
-import javax.inject.Inject
 
-class ObjectsFragment : BaseFragment(), ObjectsView {
+class ObjectsFragment : BaseFragment<ObjectsPresenter, ObjectsView, ProjectRouter>(), ObjectsView {
 
-    @Inject
-    lateinit var presenter: ObjectsPresenter
     lateinit var binding: FragmentObjectsBinding
     lateinit var adapter: ObjectsAdapter
 
@@ -39,11 +36,6 @@ class ObjectsFragment : BaseFragment(), ObjectsView {
 
     override fun inject() {
         DaggerPresentationComponent.create().inject(this)
-    }
-
-    override fun initPresenter() {
-        presenter.view = this
-        presenter.router = activity as ProjectRouter
     }
 
     override fun showAddObjectDialog(objectsList: List<ObjectModel>, onOk: (String, ObjectModel) -> Unit) {

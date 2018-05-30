@@ -17,6 +17,7 @@ open class BaseActivity: AppCompatActivity() {
     }
 
     open fun inject(){}
+
     open fun initPresenter(){}
 
 }

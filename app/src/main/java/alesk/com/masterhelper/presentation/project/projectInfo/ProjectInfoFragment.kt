@@ -17,12 +17,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import javax.inject.Inject
 
-class ProjectInfoFragment: BaseFragment(), ProjectInfoView {
+class ProjectInfoFragment: BaseFragment<ProjectInfoPresenter, ProjectInfoView, ProjectRouter>(), ProjectInfoView {
 
-    @Inject
-    lateinit var presenter: ProjectInfoPresenter
     lateinit var binding: FragmentProjectInfoBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -43,11 +40,6 @@ class ProjectInfoFragment: BaseFragment(), ProjectInfoView {
 
     override fun inject() {
         DaggerPresentationComponent.create().inject(this)
-    }
-
-    override fun initPresenter() {
-        presenter.view = this
-        presenter.router = activity as ProjectRouter
     }
 
     private fun isCallPermissionGranted(): Boolean {

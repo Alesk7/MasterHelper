@@ -12,12 +12,9 @@ import android.os.Bundle
 import android.view.*
 import kotlinx.android.synthetic.main.fragment_new_project.*
 import kotlinx.android.synthetic.main.toast_custom.*
-import javax.inject.Inject
 
-class NewProjectFragment : BaseFragment(), NewProjectView {
+class NewProjectFragment : BaseFragment<NewProjectPresenter, NewProjectView, MainRouter>(), NewProjectView {
 
-    @Inject
-    lateinit var presenter: NewProjectPresenter
     lateinit var binding: FragmentNewProjectBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -53,11 +50,6 @@ class NewProjectFragment : BaseFragment(), NewProjectView {
 
     override fun inject() {
         DaggerPresentationComponent.create().inject(this)
-    }
-
-    override fun initPresenter() {
-        presenter.view = this
-        presenter.router = activity as MainRouter
     }
 
     override fun setIndividualButtonActive() {

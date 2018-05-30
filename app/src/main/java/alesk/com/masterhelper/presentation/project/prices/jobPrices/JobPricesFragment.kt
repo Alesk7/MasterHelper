@@ -11,12 +11,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import javax.inject.Inject
 
-class JobPricesFragment: BaseFragment(), JobPricesView {
+class JobPricesFragment: BaseFragment<JobPricesPresenter, JobPricesView, PricesRouter>(), JobPricesView {
 
-    @Inject
-    lateinit var presenter: JobPricesPresenter
     lateinit var binding: FragmentJobPricesBinding
     lateinit var adapter: JobPricesAdapter
 
@@ -34,11 +31,6 @@ class JobPricesFragment: BaseFragment(), JobPricesView {
 
     override fun inject() {
         DaggerPresentationComponent.create().inject(this)
-    }
-
-    override fun initPresenter() {
-        presenter.view = this
-        presenter.router = activity as PricesRouter
     }
 
     override fun setJobsList(items: List<JobModel>) {

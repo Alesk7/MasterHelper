@@ -37,6 +37,7 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
         inject()
         initPresenter()
         viewPager.adapter = ProjectPagerAdapter(supportFragmentManager)
+        viewPager.pageMargin = resources.getDimension(R.dimen.viewPagerMargin).toInt()
         tabLayout.setupWithViewPager(viewPager)
 
         tabLayout.getTabAt(0)?.text = getString(R.string.projectInfo)

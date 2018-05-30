@@ -9,12 +9,9 @@ import alesk.com.masterhelper.presentation.main.MainRouter
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.*
-import javax.inject.Inject
 
-class ProjectsFragment : BaseFragment(), ProjectsView {
+class ProjectsFragment : BaseFragment<ProjectsPresenter, ProjectsView, MainRouter>(), ProjectsView {
 
-    @Inject
-    lateinit var presenter: ProjectsPresenter
     lateinit var binding: FragmentProjectsBinding
     lateinit var adapter: ProjectsAdapter
 
@@ -53,11 +50,6 @@ class ProjectsFragment : BaseFragment(), ProjectsView {
 
     override fun inject() {
         DaggerPresentationComponent.create().inject(this)
-    }
-
-    override fun initPresenter() {
-        presenter.view = this
-        presenter.router = activity as MainRouter
     }
 
 }
