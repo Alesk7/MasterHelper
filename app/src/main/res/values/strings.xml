@@ -59,6 +59,8 @@
     <string name="emptyDescription">Нет описания</string>
     <string name="emptyAddress">Адрес не указан</string>
 
+    <string name="createJob">Создать работу</string>
+    <string name="createMaterial">Создать материал</string>
     <string name="addJob">Добавить работу</string>
     <string name="editJob">Редактировать работу</string>
     <string name="jobName">Наименование работы</string>

@@ -21,4 +21,10 @@ interface MaterialDAO {
     @Query("SELECT * FROM Material WHERE projectId = :projectId")
     fun getMaterialsByProjectId(projectId: Long): List<Material>
 
+    @Query("SELECT * FROM Material WHERE objectId = :objectId")
+    fun getMaterialsByObjectId(objectId: Long): List<Material>
+
+    @Query("SELECT * FROM Material WHERE jobId = :jobId")
+    fun getMaterialsByJobId(jobId: Long): List<Material>
+
 }

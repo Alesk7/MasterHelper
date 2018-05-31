@@ -18,4 +18,12 @@ class MaterialsInteractor @Inject constructor(val materialRepository: MaterialRe
         materialRepository.editMaterial(material)
     }
 
+    fun getMaterialsByObjectId(objectId: Long): List<Material> {
+        return materialRepository.getMaterialsByObjectId(objectId).asReversed()
+    }
+
+    fun getMaterialsByJobId(jobId: Long): List<Material> {
+        return materialRepository.getMaterialsByJobId(jobId).asReversed()
+    }
+
 }

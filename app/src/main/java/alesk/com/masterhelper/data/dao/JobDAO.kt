@@ -21,4 +21,7 @@ interface JobDAO {
     @Query("SELECT * FROM Job WHERE projectId = :projectId")
     fun getJobsByProjectId(projectId: Long): List<Job>
 
+    @Query("SELECT * FROM Job WHERE objectId = :objectId")
+    fun getJobsByObjectId(objectId: Long): List<Job>
+
 }

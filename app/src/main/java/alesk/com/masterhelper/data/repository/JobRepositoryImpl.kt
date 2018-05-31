@@ -17,6 +17,10 @@ class JobRepositoryImpl @Inject constructor(
         return jobDAO.getJobsByProjectId(projectId)
     }
 
+    override fun getJobsByObjectId(objectId: Long): List<Job> {
+        return jobDAO.getJobsByObjectId(objectId)
+    }
+
     override fun addJob(job: Job) {
         jobDAO.addJob(job)
     }

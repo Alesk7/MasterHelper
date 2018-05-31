@@ -42,3 +42,10 @@ fun showCustomViewDialog(context: Context, view: View, title: String,
     })
     return builder
 }
+
+fun showCustomViewDialogWithoutButtons(context: Context, view: View, title: String): AlertDialog.Builder {
+    val builder = AlertDialog.Builder(context)
+    builder.setTitle(title)
+    builder.setView(view)
+    return builder
+}

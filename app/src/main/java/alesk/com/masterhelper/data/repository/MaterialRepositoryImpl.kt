@@ -25,4 +25,12 @@ class MaterialRepositoryImpl @Inject constructor(
         materialDAO.editMaterial(material)
     }
 
+    override fun getMaterialsByObjectId(objectId: Long): List<Material> {
+        return materialDAO.getMaterialsByObjectId(objectId)
+    }
+
+    override fun getMaterialsByJobId(jobId: Long): List<Material> {
+        return materialDAO.getMaterialsByJobId(jobId)
+    }
+
 }

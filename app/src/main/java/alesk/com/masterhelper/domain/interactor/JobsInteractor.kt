@@ -10,6 +10,10 @@ class JobsInteractor @Inject constructor(val jobRepository: JobRepository) {
         return jobRepository.getJobsByProjectId(projectId).asReversed()
     }
 
+    fun getJobsByObjectId(objectId: Long): List<Job> {
+        return jobRepository.getJobsByObjectId(objectId).asReversed()
+    }
+
     fun addJob(job: Job){
         jobRepository.addJob(job)
     }
