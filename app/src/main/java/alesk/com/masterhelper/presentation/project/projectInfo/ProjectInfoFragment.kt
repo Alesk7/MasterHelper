@@ -1,7 +1,7 @@
 package alesk.com.masterhelper.presentation.project.projectInfo
 
 import alesk.com.masterhelper.R
-import alesk.com.masterhelper.application.utils.showEditDialog
+import alesk.com.masterhelper.application.utils.showTextFieldDialog
 import alesk.com.masterhelper.databinding.FragmentProjectInfoBinding
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
@@ -28,7 +28,7 @@ class ProjectInfoFragment: BaseFragment<ProjectInfoPresenter, ProjectInfoView, P
     }
 
     override fun showEditDialog(title: String, body: String, onSave: (String) -> Unit) {
-        showEditDialog(context!!, title, body, onSave)
+        showTextFieldDialog(context!!, title, body, onSave)
     }
 
     override fun onStart() {

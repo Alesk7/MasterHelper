@@ -18,6 +18,7 @@ class JobPricesAdapter(
 ): RecyclerView.Adapter<JobPricesAdapter.ViewHolder>() {
 
     lateinit var items: List<JobModel>
+    var isPreventUpdate = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.list_item_price, parent, false))
@@ -26,46 +27,46 @@ class JobPricesAdapter(
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-            holder.bind(items[position], onPriceChanged)
+            holder.bind(items[holder.adapterPosition], holder.adapterPosition)
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        var itemPosition = 0
         val name = itemView.name
         val quantity = itemView.quantity
         val parentObjectName = itemView.parentObjectName
         val unitPrice = itemView.unitPrice
         val sum = itemView.sum
 
-        fun bind(item: JobModel, onPriceChanged: (JobModel) -> Unit) {
-            var isSumCalculating = false
-            var isUnitPriceCalculating = false
-            name.text = item.name
-            quantity.text = String.format("%.1f %s", item.quantity, item.unit)
-
-            unitPrice.setText(item.unitPrice.toString())
+        init {
             unitPrice.onChange {
-                item.unitPrice = it.toDoubleOrNull() ?: 0.0
-                isSumCalculating = true
-                if(!isUnitPriceCalculating) {
-                    item.priceSum = item.unitPrice * item.quantity
-                    sum.setText(String.format("%.2f", item.priceSum))
-                    onPriceChanged(item)
-                }
-                isSumCalculating = false
+                if(isPreventUpdate) return@onChange
+                isPreventUpdate = true
+
+                items[itemPosition].unitPrice = it.toDoubleOrNull() ?: 0.0
+                items[itemPosition].priceSum = items[itemPosition].unitPrice * items[itemPosition].quantity
+                onPriceChanged(items[itemPosition])
+                sum.setText(String.format("%.2f", items[itemPosition].priceSum))
+                isPreventUpdate = false
             }
 
-            sum.setText(item.priceSum.toString())
             sum.onChange {
-                item.priceSum = it.toDoubleOrNull() ?: 0.0
-                isUnitPriceCalculating = true
-                if(!isSumCalculating) {
-                    item.unitPrice = item.priceSum / item.quantity
-                    unitPrice.setText(String.format("%.2f", item.unitPrice))
-                    onPriceChanged(item)
-                }
-                isUnitPriceCalculating = false
-            }
+                if(isPreventUpdate) return@onChange
+                isPreventUpdate = true
 
-            //parentObjectName.text = item.unit
+                items[itemPosition].priceSum = it.toDoubleOrNull() ?: 0.0
+                items[itemPosition].unitPrice = items[itemPosition].priceSum / items[itemPosition].quantity
+                onPriceChanged(items[itemPosition])
+                unitPrice.setText(String.format("%.2f", items[itemPosition].unitPrice))
+                isPreventUpdate = false
+            }
+        }
+
+        fun bind(item: JobModel, position: Int) {
+            itemPosition = position
+            name.text = item.name
+            quantity.text = String.format("%.2f %s", item.quantity, item.unit)
+            unitPrice.setText(item.unitPrice.toString())
+            sum.setText(item.priceSum.toString())
         }
     }
 

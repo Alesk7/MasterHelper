@@ -2,7 +2,7 @@ package alesk.com.masterhelper.presentation.project
 
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.application.utils.showAskingDialog
-import alesk.com.masterhelper.application.utils.showEditDialog
+import alesk.com.masterhelper.application.utils.showTextFieldDialog
 import alesk.com.masterhelper.databinding.ActivityProjectBinding
 import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
@@ -121,7 +121,7 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
     }
 
     override fun showEditDialog(title: String, body: String, onSave: (String) -> Unit) {
-        showEditDialog(this, title, body, onSave)
+        showTextFieldDialog(this, title, body, onSave)
     }
 
     override fun askForDeleting() {

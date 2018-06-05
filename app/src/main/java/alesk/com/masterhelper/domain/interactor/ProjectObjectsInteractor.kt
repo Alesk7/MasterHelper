@@ -19,8 +19,16 @@ class ProjectObjectsInteractor
         return projectObjectsRepository.getProjectObjectsByProjectId(projectId).asReversed()
     }
 
+    fun getProjectObjectsByParentId(parentId: Long): List<ProjectObject> {
+        return projectObjectsRepository.getProjectObjectsByParentId(parentId).asReversed()
+    }
+
     fun getProjectObject(id: Long): ProjectObject {
         return projectObjectsRepository.getProjectObject(id) ?: ProjectObject()
+    }
+
+    fun deleteProjectObject(id: Long){
+        projectObjectsRepository.deleteProjectObject(id)
     }
 
 }

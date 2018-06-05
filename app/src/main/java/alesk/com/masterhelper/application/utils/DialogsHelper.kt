@@ -7,13 +7,13 @@ import android.content.DialogInterface
 import android.view.View
 import android.widget.EditText
 
-fun showEditDialog(context: Context, title: String, body: String, onSave: (String) -> Unit) {
+fun showTextFieldDialog(context: Context, title: String, body: String, onSave: (String) -> Unit) {
     val builder = AlertDialog.Builder(context)
     builder.setTitle(title)
     val editText = EditText(context)
     editText.setText(body)
     builder.setView(editText)
-    builder.setPositiveButton(context.getString(R.string.save), {
+    builder.setPositiveButton(context.getString(R.string.ok), {
         dialog, i -> onSave(editText.text.toString())
     })
     builder.setNegativeButton(context.getString(R.string.cancel), {

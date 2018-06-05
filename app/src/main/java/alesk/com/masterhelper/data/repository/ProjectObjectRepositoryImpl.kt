@@ -17,6 +17,10 @@ class ProjectObjectRepositoryImpl @Inject constructor(
         return projectObjectDAO.getProjectObjectsByProjectId(projectId)
     }
 
+    override fun getProjectObjectsByParentId(parentId: Long): List<ProjectObject> {
+        return projectObjectDAO.getProjectObjectsByParentId(parentId)
+    }
+
     override fun editProjectObject(obj: ProjectObject) {
         projectObjectDAO.editProjectObject(obj)
     }
@@ -25,4 +29,7 @@ class ProjectObjectRepositoryImpl @Inject constructor(
         projectObjectDAO.addProjectObject(obj)
     }
 
+    override fun deleteProjectObject(id: Long) {
+        projectObjectDAO.deleteProjectObject(id)
+    }
 }
