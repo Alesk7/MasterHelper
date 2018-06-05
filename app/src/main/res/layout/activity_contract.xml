@@ -1,325 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.project.contractDetails.ContractActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.project.contract.ContractActivity">
 
-<data>
-    <variable name="presenter" type="alesk.com.masterhelper.presentation.project.contractDetails.ContractPresenter" />
-    <variable name="contract" type="alesk.com.masterhelper.presentation.models.ContractModel" />
-    <variable name="dateFormat" type="java.text.SimpleDateFormat" />
-</data>
+    <data>
+        <variable
+            name="presenter"
+            type="alesk.com.masterhelper.presentation.project.contract.ContractPresenter" />
+    </data>
 
-<android.support.constraint.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackground">
-
-    <ScrollView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/saveButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground">
 
-        <android.support.constraint.ConstraintLayout
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardView1"
-                android:layout_width="0dp"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/AppToolbar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:titleTextColor="@android:color/white" />
 
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:tabIndicatorColor="@android:color/white"
+                app:tabSelectedTextColor="@android:color/white"
+                app:tabTextColor="@color/tabTextInactive">
 
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/contractNumber"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:theme="@style/TextInputLayoutTheme"
-                        app:hintTextAppearance="@style/TextInputHintTheme"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                <android.support.design.widget.TabItem
+                    android:id="@+id/tabProjectInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contractDetails" />
 
-                        <android.support.design.widget.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/contractNumber"
-                            android:inputType="number"
-                            android:singleLine="true"
-                            android:text="@={contract.number}" />
-                    </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TabItem
+                    android:id="@+id/tabProjectObjects"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/terms" />
 
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/workLength"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:theme="@style/TextInputLayoutTheme"
-                        app:hintTextAppearance="@style/TextInputHintTheme"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/contractNumber">
+            </android.support.design.widget.TabLayout>
 
-                        <android.support.design.widget.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/workLength"
-                            android:inputType="number"
-                            android:singleLine="true"
-                            android:text="@={contract.workLength}" />
-                    </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.AppBarLayout>
 
-                </android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:foreground="?attr/selectableItemBackground"
+            android:onClick="@{(view) -> presenter.onSaveContract()}"
+            android:text="@string/save"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            </android.support.v7.widget.CardView>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/saveButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardView3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView1">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:id="@+id/contractDateLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/background_bottom_border"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:duplicateParentState="true"
-                        android:onClick="@{(view) -> presenter.onContractDateClicked()}">
-
-                        <TextView
-                            android:id="@+id/contractDateLabel"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/contractDate"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/contractDate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="@{dateFormat.format(contract.contractDate)}"
-                            android:textColor="@android:color/black"
-                            android:textSize="18sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/workStartDateLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/background_bottom_border"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/contractDateLayout"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:duplicateParentState="true"
-                        android:onClick="@{(view) -> presenter.onWorkStartDateClicked()}">
-
-                        <TextView
-                            android:id="@+id/workStartDateLabel"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/workStartDate"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/workStartDate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="@{dateFormat.format(contract.workStartDate)}"
-                            android:textColor="@android:color/black"
-                            android:textSize="18sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/workEndDateLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/background_bottom_border"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/workStartDateLayout"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:duplicateParentState="true"
-                        android:onClick="@{(view) -> presenter.onWorkEndDateClicked()}">
-
-                        <TextView
-                            android:id="@+id/workEndDateLabel"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/workEndDate"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/workEndDate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="@{dateFormat.format(contract.workEndDate)}"
-                            android:textColor="@android:color/black"
-                            android:textSize="18sp" />
-                    </LinearLayout>
-
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardView2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView3">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:id="@+id/materialsSupplierLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/background_bottom_border"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <TextView
-                            android:id="@+id/materialsSupplierLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/materialsSupplier"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <RadioGroup
-                            android:id="@+id/materialsSupplierGroup"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:orientation="vertical"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/materialsSupplierLabel">
-
-                            <RadioButton
-                                android:id="@+id/masterSupplier"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/master"
-                                android:checked="@{contract.isMasterMaterialsSupplier}"
-                                android:onCheckedChanged="@{(button, isChecked) -> presenter.onMasterSupplier(isChecked)}"/>
-
-                            <RadioButton
-                                android:id="@+id/clientSupplier"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/client"
-                                android:checked="@{!contract.isMasterMaterialsSupplier}"/>
-                        </RadioGroup>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/prepaymentLayout"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/background_bottom_border"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/materialsSupplierLayout">
-
-                        <TextView
-                            android:id="@+id/prepaymentLabel"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/prepayment"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/prepayment"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:hint="@string/ruble"
-                            android:inputType="number"
-                            android:text="@={contract.prepayment}"
-                            android:theme="@style/TextInputLayoutTheme" />
-                    </LinearLayout>
-
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
-
-        </android.support.constraint.ConstraintLayout>
-    </ScrollView>
-
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:foreground="?attr/selectableItemBackground"
-        android:onClick="@{(view) -> presenter.onSaveContract()}"
-        android:text="@string/save"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
 </layout>

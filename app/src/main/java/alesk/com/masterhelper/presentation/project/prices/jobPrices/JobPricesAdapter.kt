@@ -64,7 +64,7 @@ class JobPricesAdapter(
         fun bind(item: JobModel, position: Int) {
             itemPosition = position
             name.text = item.name
-            quantity.text = String.format("%.2f %s", item.quantity, item.unit)
+            quantity.text = String.format("%.1f %s", item.quantity, item.unit)
             unitPrice.setText(item.unitPrice.toString())
             sum.setText(item.priceSum.toString())
         }

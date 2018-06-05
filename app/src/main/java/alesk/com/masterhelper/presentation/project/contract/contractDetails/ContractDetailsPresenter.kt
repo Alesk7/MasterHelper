@@ -1,19 +1,14 @@
-package alesk.com.masterhelper.presentation.project.contractDetails
+package alesk.com.masterhelper.presentation.project.contract.contractDetails
 
 import alesk.com.masterhelper.application.utils.YEAR_DIFF
-import alesk.com.masterhelper.domain.interactor.ProjectsInteractor
 import alesk.com.masterhelper.presentation.common.BasePresenter
 import alesk.com.masterhelper.presentation.models.ProjectModel
-import alesk.com.masterhelper.presentation.models.mappers.ProjectModelMapper
+import alesk.com.masterhelper.presentation.project.contract.ContractRouter
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 
-@Suppress("DEPRECATION")
-class ContractPresenter @Inject constructor(
-        val projectsInteractor: ProjectsInteractor,
-        val projectModelMapper: ProjectModelMapper
-) : BasePresenter<ContractView, ContractRouter>() {
+class ContractDetailsPresenter @Inject constructor(): BasePresenter<ContractDetailsView, ContractRouter>() {
 
     lateinit var projectModel: ProjectModel
     @SuppressLint("SimpleDateFormat")
@@ -23,13 +18,12 @@ class ContractPresenter @Inject constructor(
         projectModel = view!!.getProjectModel()
     }
 
-    fun onSaveContract(){
-        projectsInteractor.updateProject(projectModelMapper.transform(projectModel))
-        router?.hideContractDetails()
-    }
-
     fun onMasterSupplier(isChecked: Boolean) {
         projectModel.contract.isMasterMaterialsSupplier = isChecked
+    }
+
+    fun onSubcontractorsAllowedChecked(isChecked: Boolean) {
+        projectModel.contract.isSubcontractorsAllowed = isChecked
     }
 
     fun onContractDateClicked(){
@@ -39,8 +33,8 @@ class ContractPresenter @Inject constructor(
             projectModel.contract.contractDate.date = day
             view?.updateViewBindings()
         }, YEAR_DIFF + projectModel.contract.contractDate.year,
-           projectModel.contract.contractDate.month,
-           projectModel.contract.contractDate.date)
+                projectModel.contract.contractDate.month,
+                projectModel.contract.contractDate.date)
     }
 
     fun onWorkStartDateClicked(){

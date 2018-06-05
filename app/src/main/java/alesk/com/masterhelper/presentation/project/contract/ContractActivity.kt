@@ -1,13 +1,13 @@
-package alesk.com.masterhelper.presentation.project.contractDetails
+package alesk.com.masterhelper.presentation.project.contract
 
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.databinding.ActivityContractBinding
 import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
 import alesk.com.masterhelper.presentation.models.ProjectModel
-import android.app.DatePickerDialog
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_contract.*
 import javax.inject.Inject
 
 class ContractActivity : BaseActivity(), ContractView, ContractRouter {
@@ -19,17 +19,22 @@ class ContractActivity : BaseActivity(), ContractView, ContractRouter {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_contract)
-        supportActionBar?.title = getString(R.string.contractDetails)
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = getString(R.string.contract)
         inject()
         initPresenter()
+        viewPager.adapter = ContractPagerAdapter(supportFragmentManager)
+        viewPager.pageMargin = resources.getDimension(R.dimen.viewPagerMargin).toInt()
+        tabLayout.setupWithViewPager(viewPager)
+
+        tabLayout.getTabAt(0)?.text = getString(R.string.contractDetails)
+        tabLayout.getTabAt(1)?.text = getString(R.string.terms)
     }
 
     override fun onStart() {
         super.onStart()
         presenter.onStart()
         binding.presenter = presenter
-        binding.contract = presenter.projectModel.contract
-        binding.dateFormat = presenter.dateFormat
     }
 
     override fun inject(){
@@ -39,13 +44,6 @@ class ContractActivity : BaseActivity(), ContractView, ContractRouter {
     override fun initPresenter(){
         presenter.router = this
         presenter.view = this
-    }
-
-    override fun showDatePicker(dateSet: (year: Int, month: Int, day: Int) -> Unit,
-                                startYear: Int, startMonth: Int, startDay: Int) {
-        DatePickerDialog(this, { view, year, month, day ->
-            dateSet(year, month, day)
-        }, startYear, startMonth, startDay).show()
     }
 
     override fun getProjectModel(): ProjectModel {

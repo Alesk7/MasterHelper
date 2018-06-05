@@ -6,7 +6,9 @@ import alesk.com.masterhelper.presentation.main.projects.ProjectsFragment
 import alesk.com.masterhelper.presentation.masterInfo.MasterInfoFragment
 import alesk.com.masterhelper.presentation.project.ProjectActivity
 import alesk.com.masterhelper.presentation.project.clientInfo.ClientInfoActivity
-import alesk.com.masterhelper.presentation.project.contractDetails.ContractActivity
+import alesk.com.masterhelper.presentation.project.contract.ContractActivity
+import alesk.com.masterhelper.presentation.project.contract.contractDetails.ContractDetailsFragment
+import alesk.com.masterhelper.presentation.project.contract.terms.ContractTermsFragment
 import alesk.com.masterhelper.presentation.project.jobs.JobsActivity
 import alesk.com.masterhelper.presentation.project.materials.MaterialsActivity
 import alesk.com.masterhelper.presentation.project.objects.ObjectsFragment
@@ -39,4 +41,6 @@ interface PresentationComponent {
     fun inject(activity: ObjectActivity)
     fun inject(fragment: ObjectMaterialsFragment)
     fun inject(fragment: BindedObjectsFragment)
+    fun inject(fragment: ContractDetailsFragment)
+    fun inject(fragment: ContractTermsFragment)
 }

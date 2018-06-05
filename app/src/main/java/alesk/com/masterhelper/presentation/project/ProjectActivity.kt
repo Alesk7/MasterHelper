@@ -9,7 +9,7 @@ import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
 import alesk.com.masterhelper.presentation.models.ObjectModel
 import alesk.com.masterhelper.presentation.models.ProjectModel
 import alesk.com.masterhelper.presentation.project.clientInfo.ClientInfoActivity
-import alesk.com.masterhelper.presentation.project.contractDetails.ContractActivity
+import alesk.com.masterhelper.presentation.project.contract.ContractActivity
 import alesk.com.masterhelper.presentation.project.jobs.JobsActivity
 import alesk.com.masterhelper.presentation.project.materials.MaterialsActivity
 import alesk.com.masterhelper.presentation.project.objects.projectObject.ObjectActivity

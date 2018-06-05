@@ -15,7 +15,7 @@
     <string name="description">Описание</string>
     <string name="newProject">Новый проект</string>
     <string name="calculator">Калькулятор</string>
-    <string name="contractDetails">Детали договора</string>
+    <string name="contract">Договор</string>
     <string name="estimate">Смета</string>
     <string name="jobs">Работы</string>
     <string name="prices">Цены</string>
@@ -95,14 +95,29 @@
     <string name="bankCode">Код</string>
     <string name="bankAddress">Адрес банка</string>
 
+    <string name="terms">Сроки</string>
+    <string name="contractDetails">Детали договора</string>
     <string name="contractNumber">Номер договора</string>
     <string name="contractDate">Дата заключения договора</string>
     <string name="workStartDate">Дата начала работ</string>
     <string name="workEndDate">Дата окончания работ</string>
     <string name="workLength">Длительность работ (дней)</string>
     <string name="materialsSupplier">Поставщик материалов</string>
+    <string name="subcontractor">Субподрядчик</string>
+    <string name="allowed">Допускается</string>
     <string name="prepayment">Аванс</string>
     <string name="ruble">(Рублей)</string>
+
+    <string name="guaranteeTerm">Срок гарантии</string>
+    <string name="workAcceptanceTerm">Срок приемки работ</string>
+    <string name="paymentTerm">Срок оплаты с момента сдачи работ</string>
+    <string name="todoWhenPausedTerm">Срок принятия решения о дальнейших действиях с момента приостановки работ по причине неблагоприятных обстоятельств</string>
+    <string name="removeToolsTerm">Срок вывоза инструментов и оборудования и последующая уборка и вынос мусора</string>
+    <string name="claimForAcceptanceTerm">Срок заявления претензии при приемке работ</string>
+    <string name="noticeOfDefectsTerm">Срок извещения об обнаружении скрытых недостатков после приемки работ</string>
+    <string name="defectsEliminationTerm">Срок устранения недостатков после экспертизы</string>
+    <string name="forceMajeureTerm">Срок оповещения о непреодолимых силах</string>
+    <string name="requisitesChangedTerm">Срок оповещения о смене реквизитов</string>
 
     <string name="unitPrice">Цена за единицу</string>
     <string name="sum">Сумма</string>
