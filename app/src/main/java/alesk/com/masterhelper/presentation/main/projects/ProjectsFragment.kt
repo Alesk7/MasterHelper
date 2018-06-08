@@ -33,6 +33,7 @@ class ProjectsFragment : BaseFragment<ProjectsPresenter, ProjectsView, MainRoute
         when(item?.itemId){
             R.id.masterDetails_item -> { presenter.onShowMasterInfo() }
             R.id.archived_item -> {}
+            R.id.help_item -> { presenter.onShowHelp() }
         }
         return false
     }

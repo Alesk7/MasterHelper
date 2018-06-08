@@ -6,4 +6,7 @@ interface ProjectView {
     fun setProjectName(name: String)
     fun getProjectNameString(): String
     fun showEditDialog(title: String, body: String, onSave: (String) -> Unit)
+    fun showProgressBar()
+    fun hideProgressBar()
+    fun showDocumentGeneratedDialog(generatedFilePath: String)
 }

@@ -65,8 +65,8 @@ class JobPricesAdapter(
             itemPosition = position
             name.text = item.name
             quantity.text = String.format("%.1f %s", item.quantity, item.unit)
-            unitPrice.setText(item.unitPrice.toString())
-            sum.setText(item.priceSum.toString())
+            unitPrice.setText(String.format("%.2f", item.unitPrice))
+            sum.setText(String.format("%.2f", item.priceSum))
         }
     }
 

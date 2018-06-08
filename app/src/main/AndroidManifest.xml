@@ -3,7 +3,7 @@
     package="alesk.com.masterhelper">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".application.MasterHelperApplication"
@@ -38,8 +38,10 @@
         <activity
             android:name=".presentation.project.objects.projectObject.ObjectActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".presentation.project.prices.PricesActivity"
-                  android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".presentation.project.prices.PricesActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".presentation.main.help.HelpActivity"/>
     </application>
 
 </manifest>

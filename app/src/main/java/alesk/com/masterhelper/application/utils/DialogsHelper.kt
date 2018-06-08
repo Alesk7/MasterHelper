@@ -13,12 +13,8 @@ fun showTextFieldDialog(context: Context, title: String, body: String, onSave: (
     val editText = EditText(context)
     editText.setText(body)
     builder.setView(editText)
-    builder.setPositiveButton(context.getString(R.string.ok), {
-        dialog, i -> onSave(editText.text.toString())
-    })
-    builder.setNegativeButton(context.getString(R.string.cancel), {
-        dialog, i -> dialog.cancel()
-    })
+    builder.setPositiveButton(context.getString(R.string.ok), { _, _ -> onSave(editText.text.toString()) })
+    builder.setNegativeButton(context.getString(R.string.cancel), { dialog, _ -> dialog.cancel() })
     builder.show()
 }
 
@@ -26,8 +22,19 @@ fun showAskingDialog(context: Context, title: String, positiveButton: String, on
     val builder = AlertDialog.Builder(context)
     builder
             .setTitle(title)
-            .setNegativeButton(context.getString(R.string.no), { dialog, i -> dialog.cancel() })
-            .setPositiveButton(positiveButton, { dialog, i -> onOk() })
+            .setNegativeButton(context.getString(R.string.no), { dialog, _ -> dialog.cancel() })
+            .setPositiveButton(positiveButton, { _, _ -> onOk() })
+            .show()
+}
+
+fun showMessageDialog(context: Context, title: String, message: String, negativeButton: String,
+                      positiveButton: String, onOk: () -> Unit) {
+    val builder = AlertDialog.Builder(context)
+    builder
+            .setTitle(title)
+            .setMessage(message)
+            .setNegativeButton(negativeButton, { dialog, _ -> dialog.cancel() })
+            .setPositiveButton(positiveButton, { _, _ -> onOk() })
             .show()
 }
 
@@ -37,9 +44,7 @@ fun showCustomViewDialog(context: Context, view: View, title: String,
     builder.setTitle(title)
     builder.setView(view)
     builder.setPositiveButton(context.getString(R.string.ok), onOk)
-    builder.setNegativeButton(context.getString(R.string.cancel), {
-        dialog, i -> dialog.cancel()
-    })
+    builder.setNegativeButton(context.getString(R.string.cancel), { dialog, _ -> dialog.cancel() })
     return builder
 }
 

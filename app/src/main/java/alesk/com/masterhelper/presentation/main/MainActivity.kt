@@ -1,9 +1,10 @@
 package alesk.com.masterhelper.presentation.main
 
 import alesk.com.masterhelper.R
-import alesk.com.masterhelper.application.utils.SharedPreferencesHelper
 import alesk.com.masterhelper.application.applicationComponent
+import alesk.com.masterhelper.application.utils.SharedPreferencesHelper
 import alesk.com.masterhelper.presentation.common.BaseActivity
+import alesk.com.masterhelper.presentation.main.help.HelpActivity
 import alesk.com.masterhelper.presentation.main.newProject.NewProjectFragment
 import alesk.com.masterhelper.presentation.main.projects.ProjectsFragment
 import alesk.com.masterhelper.presentation.masterInfo.MasterInfoFragment
@@ -63,6 +64,10 @@ class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
         supportFragmentManager.inTransaction(true) {
             replace(R.id.frameLayout, MasterInfoFragment())
         }
+    }
+
+    override fun showHelp() {
+        startActivity(Intent(this, HelpActivity::class.java))
     }
 
     override fun hideMasterInfo() {

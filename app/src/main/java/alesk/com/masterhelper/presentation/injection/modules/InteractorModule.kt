@@ -34,4 +34,12 @@ class InteractorModule {
         return ProjectObjectsInteractor(projectObjectRepository)
     }
 
+    @Provides
+    fun provideDocumentsInteractor(projectsRepository: ProjectsRepositoryImpl,
+                                   jobRepository: JobRepositoryImpl,
+                                   materialRepository: MaterialRepositoryImpl,
+                                   masterInfoRepository: MasterInfoRepositoryImpl): DocumentsInteractor {
+        return DocumentsInteractor(jobRepository, materialRepository, projectsRepository, masterInfoRepository)
+    }
+
 }

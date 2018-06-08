@@ -5,4 +5,5 @@ interface MainRouter {
     fun showCreateNewProject()
     fun showProjectInfo(id: Long)
     fun showMasterInfo()
+    fun showHelp()
 }

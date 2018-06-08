@@ -4,15 +4,12 @@ import alesk.com.masterhelper.application.utils.YEAR_DIFF
 import alesk.com.masterhelper.presentation.common.BasePresenter
 import alesk.com.masterhelper.presentation.models.ProjectModel
 import alesk.com.masterhelper.presentation.project.contract.ContractRouter
-import android.annotation.SuppressLint
-import java.text.SimpleDateFormat
 import javax.inject.Inject
 
+@Suppress("DEPRECATION")
 class ContractDetailsPresenter @Inject constructor(): BasePresenter<ContractDetailsView, ContractRouter>() {
 
     lateinit var projectModel: ProjectModel
-    @SuppressLint("SimpleDateFormat")
-    val dateFormat = SimpleDateFormat("dd/MM/yyyy")
 
     override fun onStart() {
         projectModel = view!!.getProjectModel()

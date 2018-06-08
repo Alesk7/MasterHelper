@@ -29,4 +29,8 @@ class ProjectsPresenter @Inject constructor(
         router?.showMasterInfo()
     }
 
+    fun onShowHelp() {
+        router?.showHelp()
+    }
+
 }

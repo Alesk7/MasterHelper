@@ -1,5 +1,6 @@
 package alesk.com.masterhelper.presentation.project
 
+import alesk.com.masterhelper.domain.interactor.DocumentsInteractor
 import alesk.com.masterhelper.domain.interactor.ProjectsInteractor
 import alesk.com.masterhelper.presentation.common.BasePresenter
 import alesk.com.masterhelper.presentation.models.ProjectModel
@@ -8,6 +9,7 @@ import javax.inject.Inject
 
 class ProjectPresenter @Inject constructor(
         val projectsInteractor: ProjectsInteractor,
+        val documentsInteractor: DocumentsInteractor,
         val projectModelMapper: ProjectModelMapper
 ) : BasePresenter<ProjectView, ProjectRouter>() {
 
@@ -39,6 +41,13 @@ class ProjectPresenter @Inject constructor(
     fun onDeleteProject(){
         projectsInteractor.deleteProject(projectModel.id)
         router?.close()
+    }
+
+    fun printPrices(){
+        //view?.showProgressBar()
+        val generatedDocPath = documentsInteractor.printPrices(projectModel.id)
+        //view?.hideProgressBar()
+        view?.showDocumentGeneratedDialog(generatedDocPath)
     }
 
 }

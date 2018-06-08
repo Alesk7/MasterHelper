@@ -1,6 +1,7 @@
 package alesk.com.masterhelper.presentation.project.contract.contractDetails
 
 import alesk.com.masterhelper.R
+import alesk.com.masterhelper.application.applicationComponent
 import alesk.com.masterhelper.databinding.FragmentContractDetailsBinding
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
@@ -28,7 +29,7 @@ class ContractDetailsFragment:
         presenter.onStart()
         binding.presenter = presenter
         binding.contract = presenter.projectModel.contract
-        binding.dateFormat = presenter.dateFormat
+        binding.dateFormat = applicationComponent.getSimpleDateFormat()
     }
 
     override fun inject() {

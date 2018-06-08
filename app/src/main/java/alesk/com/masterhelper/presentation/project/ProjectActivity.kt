@@ -2,6 +2,7 @@ package alesk.com.masterhelper.presentation.project
 
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.application.utils.showAskingDialog
+import alesk.com.masterhelper.application.utils.showMessageDialog
 import alesk.com.masterhelper.application.utils.showTextFieldDialog
 import alesk.com.masterhelper.databinding.ActivityProjectBinding
 import alesk.com.masterhelper.presentation.common.BaseActivity
@@ -14,6 +15,7 @@ import alesk.com.masterhelper.presentation.project.jobs.JobsActivity
 import alesk.com.masterhelper.presentation.project.materials.MaterialsActivity
 import alesk.com.masterhelper.presentation.project.objects.projectObject.ObjectActivity
 import alesk.com.masterhelper.presentation.project.prices.PricesActivity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -24,11 +26,13 @@ import java.io.Serializable
 import javax.inject.Inject
 import kotlin.reflect.KClass
 
+@Suppress("DEPRECATION")
 class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
 
     @Inject
     lateinit var presenter: ProjectPresenter
     lateinit var binding: ActivityProjectBinding
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +72,7 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
         when(item?.itemId){
             R.id.edit_item -> presenter.onEditProjectName()
             R.id.delete_item -> askForDeleting()
+            R.id.print_item -> presenter.printPrices()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -129,6 +134,25 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
                          getString(R.string.sureForDeletingProject),
                          getString(R.string.delete),
                          { presenter.onDeleteProject() })
+    }
+
+    override fun showProgressBar() {
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle(getString(R.string.loading))
+        progressDialog.setMessage(getString(R.string.pleaseWait))
+        progressDialog.show()
+    }
+
+    override fun hideProgressBar() {
+        progressDialog.hide()
+    }
+
+    override fun showDocumentGeneratedDialog(generatedFilePath: String) {
+        showMessageDialog(this, getString(R.string.done),
+                            String.format(getString(R.string.fileSaved), generatedFilePath),
+                            getString(R.string.done),
+                            getString(R.string.open),
+                            {  })
     }
 
 }
