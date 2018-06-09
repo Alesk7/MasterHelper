@@ -38,8 +38,8 @@ fun showMessageDialog(context: Context, title: String, message: String, negative
             .show()
 }
 
-fun showCustomViewDialog(context: Context, view: View, title: String,
-                         onOk: (DialogInterface, Int) -> Unit): AlertDialog.Builder {
+fun buildCustomViewDialog(context: Context, view: View, title: String,
+                          onOk: (DialogInterface, Int) -> Unit): AlertDialog.Builder {
     val builder = AlertDialog.Builder(context)
     builder.setTitle(title)
     builder.setView(view)
@@ -48,7 +48,7 @@ fun showCustomViewDialog(context: Context, view: View, title: String,
     return builder
 }
 
-fun showCustomViewDialogWithoutButtons(context: Context, view: View, title: String): AlertDialog.Builder {
+fun buildCustomViewDialogWithoutButtons(context: Context, view: View, title: String): AlertDialog.Builder {
     val builder = AlertDialog.Builder(context)
     builder.setTitle(title)
     builder.setView(view)

@@ -1,8 +1,8 @@
 package alesk.com.masterhelper.presentation.project.objects.projectObject.materials
 
 import alesk.com.masterhelper.R
-import alesk.com.masterhelper.application.utils.showCustomViewDialog
-import alesk.com.masterhelper.application.utils.showCustomViewDialogWithoutButtons
+import alesk.com.masterhelper.application.utils.buildCustomViewDialog
+import alesk.com.masterhelper.application.utils.buildCustomViewDialogWithoutButtons
 import alesk.com.masterhelper.data.entities.Material
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
@@ -44,7 +44,7 @@ class ObjectMaterialsFragment
 
     override fun showCreateMaterialDialog(onCreate: (String, Double?, String) -> Unit) {
         val view = initMaterialDialogView()
-        showCustomViewDialog(context!!, view, getString(R.string.addMaterial), { d, i ->
+        buildCustomViewDialog(context!!, view, getString(R.string.addMaterial), { d, i ->
             onCreate(view.name.text.toString(),
                     view.quantity.text.toString().toDoubleOrNull(),
                     view.unit.selectedItem.toString())
@@ -53,7 +53,7 @@ class ObjectMaterialsFragment
 
     override fun showAddMaterialBindingDialog(materialList: List<Material>) {
         val view = initMaterialBindingDialogView(materialList)
-        dialog = showCustomViewDialogWithoutButtons(context!!, view, getString(R.string.addMaterial)).show()
+        dialog = buildCustomViewDialogWithoutButtons(context!!, view, getString(R.string.addMaterial)).show()
     }
 
     @SuppressLint("InflateParams")

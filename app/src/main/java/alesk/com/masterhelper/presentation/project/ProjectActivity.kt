@@ -1,6 +1,8 @@
 package alesk.com.masterhelper.presentation.project
 
 import alesk.com.masterhelper.R
+import alesk.com.masterhelper.application.providers.DocsFileProvider
+import alesk.com.masterhelper.application.utils.buildCustomViewDialogWithoutButtons
 import alesk.com.masterhelper.application.utils.showAskingDialog
 import alesk.com.masterhelper.application.utils.showMessageDialog
 import alesk.com.masterhelper.application.utils.showTextFieldDialog
@@ -15,13 +17,18 @@ import alesk.com.masterhelper.presentation.project.jobs.JobsActivity
 import alesk.com.masterhelper.presentation.project.materials.MaterialsActivity
 import alesk.com.masterhelper.presentation.project.objects.projectObject.ObjectActivity
 import alesk.com.masterhelper.presentation.project.prices.PricesActivity
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v4.content.FileProvider
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_project.*
+import kotlinx.android.synthetic.main.dialog_print.view.*
+import java.io.File
 import java.io.Serializable
 import javax.inject.Inject
 import kotlin.reflect.KClass
@@ -72,7 +79,7 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
         when(item?.itemId){
             R.id.edit_item -> presenter.onEditProjectName()
             R.id.delete_item -> askForDeleting()
-            R.id.print_item -> presenter.printPrices()
+            R.id.print_item -> showPrintDialog()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -136,6 +143,21 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
                          { presenter.onDeleteProject() })
     }
 
+    override fun showPrintDialog() {
+        val view = initPrintDialogView()
+        val dialog = buildCustomViewDialogWithoutButtons(this, view, getString(R.string.print)).show()
+        view.closeButton.setOnClickListener { dialog.cancel() }
+    }
+
+    @SuppressLint("InflateParams")
+    private fun initPrintDialogView(): View {
+        val view = layoutInflater.inflate(R.layout.dialog_print, null)
+        view.estimateButton.setOnClickListener{ presenter.printEstimate() }
+        view.contractButton.setOnClickListener{  }
+        view.actButton.setOnClickListener{  }
+        return view
+    }
+
     override fun showProgressBar() {
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle(getString(R.string.loading))
@@ -152,7 +174,15 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
                             String.format(getString(R.string.fileSaved), generatedFilePath),
                             getString(R.string.done),
                             getString(R.string.open),
-                            {  })
+                            { tryOpenDocFile(generatedFilePath) })
+    }
+
+    fun tryOpenDocFile(filePath: String) {
+        val uri = FileProvider.getUriForFile(this, DocsFileProvider::class.java.name, File(filePath))
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(uri, "application/msword")
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        startActivity(intent)
     }
 
 }

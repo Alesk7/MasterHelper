@@ -8,7 +8,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "alesk.com.masterhelper"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -27,12 +27,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation group: 'org.apache.poi', name: 'poi', version: '3.17'
-    implementation group: 'org.apache.poi', name: 'poi-scratchpad', version: '3.17'
-    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'org.apache.poi:poi-ooxml:3.17'
     implementation 'com.fasterxml:aalto-xml:1.0.0'
-
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'

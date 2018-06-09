@@ -1,8 +1,8 @@
 package alesk.com.masterhelper.presentation.project.objects.projectObject.jobs
 
 import alesk.com.masterhelper.R
-import alesk.com.masterhelper.application.utils.showCustomViewDialog
-import alesk.com.masterhelper.application.utils.showCustomViewDialogWithoutButtons
+import alesk.com.masterhelper.application.utils.buildCustomViewDialog
+import alesk.com.masterhelper.application.utils.buildCustomViewDialogWithoutButtons
 import alesk.com.masterhelper.data.entities.Job
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
@@ -43,7 +43,7 @@ class ObjectJobsFragment: BaseFragment<ObjectJobsPresenter, ObjectJobsView, Obje
 
     override fun showCreateJobDialog(onCreate: (String, Double?, String) -> Unit) {
         val view = initJobDialogView()
-        showCustomViewDialog(context!!, view, getString(R.string.addJob), { d, i ->
+        buildCustomViewDialog(context!!, view, getString(R.string.addJob), { d, i ->
             onCreate(view.name.text.toString(),
                      view.quantity.text.toString().toDoubleOrNull(),
                      view.unit.selectedItem.toString())
@@ -52,7 +52,7 @@ class ObjectJobsFragment: BaseFragment<ObjectJobsPresenter, ObjectJobsView, Obje
 
     override fun showAddJobBindingDialog(jobList: List<Job>) {
         val view = initJobBindingDialogView(jobList)
-        dialog = showCustomViewDialogWithoutButtons(context!!, view, getString(R.string.addJob)).show()
+        dialog = buildCustomViewDialogWithoutButtons(context!!, view, getString(R.string.addJob)).show()
     }
 
     @SuppressLint("InflateParams")

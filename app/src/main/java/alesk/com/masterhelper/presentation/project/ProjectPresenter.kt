@@ -5,6 +5,8 @@ import alesk.com.masterhelper.domain.interactor.ProjectsInteractor
 import alesk.com.masterhelper.presentation.common.BasePresenter
 import alesk.com.masterhelper.presentation.models.ProjectModel
 import alesk.com.masterhelper.presentation.models.mappers.ProjectModelMapper
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ProjectPresenter @Inject constructor(
@@ -43,11 +45,14 @@ class ProjectPresenter @Inject constructor(
         router?.close()
     }
 
-    fun printPrices(){
-        //view?.showProgressBar()
-        val generatedDocPath = documentsInteractor.printPrices(projectModel.id)
-        //view?.hideProgressBar()
-        view?.showDocumentGeneratedDialog(generatedDocPath)
+    fun printEstimate() {
+        documentsInteractor.printPrices(projectModel.id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { view?.showProgressBar() }
+                .doAfterTerminate { view?.hideProgressBar() }
+                .doAfterSuccess { view?.showDocumentGeneratedDialog(it) }
+                .subscribe()
     }
 
 }

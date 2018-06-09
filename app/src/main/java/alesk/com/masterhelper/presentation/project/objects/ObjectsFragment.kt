@@ -1,7 +1,7 @@
 package alesk.com.masterhelper.presentation.project.objects
 
 import alesk.com.masterhelper.R
-import alesk.com.masterhelper.application.utils.showCustomViewDialog
+import alesk.com.masterhelper.application.utils.buildCustomViewDialog
 import alesk.com.masterhelper.databinding.FragmentObjectsBinding
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
@@ -40,7 +40,7 @@ class ObjectsFragment : BaseFragment<ObjectsPresenter, ObjectsView, ProjectRoute
 
     override fun showAddObjectDialog(objectsList: List<ObjectModel>, onOk: (String, ObjectModel) -> Unit) {
         val view = initObjectDialogView(objectsList)
-        showCustomViewDialog(context!!, view, getString(R.string.addObject), { di, v ->
+        buildCustomViewDialog(context!!, view, getString(R.string.addObject), { di, v ->
             onOk(view.name.text.toString(), view.parentObjectSpinner.selectedItem as ObjectModel)
         }).show()
     }

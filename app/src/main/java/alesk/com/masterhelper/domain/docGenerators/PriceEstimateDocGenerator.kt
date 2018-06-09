@@ -35,7 +35,7 @@ class PriceEstimateGenerator(
     }
 
     fun generateWithoutMaterials(): XWPFDocument {
-        val doc = getEstimateDocument()
+        doc = getEstimateDocument()
         fillFields()
         fillJobsTable(doc.tables[1])
         return doc

@@ -1,7 +1,7 @@
 package alesk.com.masterhelper.presentation.project.materials
 
 import alesk.com.masterhelper.R
-import alesk.com.masterhelper.application.utils.showCustomViewDialog
+import alesk.com.masterhelper.application.utils.buildCustomViewDialog
 import alesk.com.masterhelper.data.entities.Material
 import alesk.com.masterhelper.databinding.ActivityMaterialsBinding
 import alesk.com.masterhelper.presentation.common.BaseActivity
@@ -49,7 +49,7 @@ class MaterialsActivity : BaseActivity(), MaterialsView, MaterialsRouter {
 
     override fun showAddMaterialDialog(onOk: (String, Double?, String) -> Unit) {
         val view = initMaterialDialogView()
-        showCustomViewDialog(this, view, getString(R.string.addMaterial), { d, i ->
+        buildCustomViewDialog(this, view, getString(R.string.addMaterial), { d, i ->
             onOk(view.name.text.toString(),
                     view.quantity.text.toString().toDoubleOrNull(),
                     view.unit.selectedItem.toString())
@@ -62,7 +62,7 @@ class MaterialsActivity : BaseActivity(), MaterialsView, MaterialsRouter {
         view.name.setText(name)
         view.quantity.setText(quantity.toString())
         view.unit.setSelection((view.unit.adapter as ArrayAdapter<String>).getPosition(unit))
-        showCustomViewDialog(this, view, getString(R.string.editMaterial), { d, i ->
+        buildCustomViewDialog(this, view, getString(R.string.editMaterial), { d, i ->
             onOk(view.name.text.toString(),
                     view.quantity.text.toString().toDoubleOrNull(),
                     view.unit.selectedItem.toString())

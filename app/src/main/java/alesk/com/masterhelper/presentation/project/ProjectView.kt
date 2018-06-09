@@ -9,4 +9,5 @@ interface ProjectView {
     fun showProgressBar()
     fun hideProgressBar()
     fun showDocumentGeneratedDialog(generatedFilePath: String)
+    fun showPrintDialog()
 }

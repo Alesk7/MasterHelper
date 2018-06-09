@@ -2,7 +2,7 @@ package alesk.com.masterhelper.presentation.project.objects.projectObject.object
 
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.application.utils.showAskingDialog
-import alesk.com.masterhelper.application.utils.showCustomViewDialogWithoutButtons
+import alesk.com.masterhelper.application.utils.buildCustomViewDialogWithoutButtons
 import alesk.com.masterhelper.application.utils.showTextFieldDialog
 import alesk.com.masterhelper.data.entities.ProjectObject
 import alesk.com.masterhelper.databinding.FragmentBindedObjectsBinding
@@ -58,7 +58,7 @@ class BindedObjectsFragment:
 
     override fun showChangeParentObjectDialog(objects: List<ProjectObject>) {
         val view = initChangeParentObjectDialogView(objects)
-        changeParentObjectDialog = showCustomViewDialogWithoutButtons(
+        changeParentObjectDialog = buildCustomViewDialogWithoutButtons(
                 context!!, view, getString(R.string.parentObjectIs)).show()
     }
 

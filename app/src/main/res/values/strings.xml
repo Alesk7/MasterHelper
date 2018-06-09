@@ -16,7 +16,8 @@
     <string name="newProject">Новый проект</string>
     <string name="calculator">Калькулятор</string>
     <string name="contract">Договор</string>
-    <string name="estimate">Смета</string>
+    <string name="estimate">Ценовая смета</string>
+    <string name="actPrint">Акт сдачи работ\n(завершение проекта)</string>
     <string name="jobs">Работы</string>
     <string name="prices">Цены</string>
     <string name="cart">Список покупок</string>
@@ -35,6 +36,7 @@
     <string name="pleaseWait">Пожалуйста, подождите</string>
     <string name="fileSaved">Файл сохранен в %s</string>
     <string name="open">Открыть</string>
+    <string name="close">Закрыть</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="ok">Ок</string>

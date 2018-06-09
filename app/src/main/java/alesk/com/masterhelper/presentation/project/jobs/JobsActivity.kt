@@ -1,7 +1,7 @@
 package alesk.com.masterhelper.presentation.project.jobs
 
 import alesk.com.masterhelper.R
-import alesk.com.masterhelper.application.utils.showCustomViewDialog
+import alesk.com.masterhelper.application.utils.buildCustomViewDialog
 import alesk.com.masterhelper.data.entities.Job
 import alesk.com.masterhelper.databinding.ActivityJobsBinding
 import alesk.com.masterhelper.presentation.common.BaseActivity
@@ -49,7 +49,7 @@ class JobsActivity : BaseActivity(), JobsView, JobsRouter {
 
     override fun showAddJobDialog(onOk: (String, Double?, String) -> Unit) {
         val view = initJobDialogView()
-        showCustomViewDialog(this, view, getString(R.string.addJob), { d, i ->
+        buildCustomViewDialog(this, view, getString(R.string.addJob), { d, i ->
             onOk(view.name.text.toString(),
                   view.quantity.text.toString().toDoubleOrNull(),
                   view.unit.selectedItem.toString())
@@ -62,7 +62,7 @@ class JobsActivity : BaseActivity(), JobsView, JobsRouter {
         view.name.setText(name)
         view.quantity.setText(quantity.toString())
         view.unit.setSelection((view.unit.adapter as ArrayAdapter<String>).getPosition(unit))
-        showCustomViewDialog(this, view, getString(R.string.editJob), { d, i ->
+        buildCustomViewDialog(this, view, getString(R.string.editJob), { d, i ->
              onOk(view.name.text.toString(),
                     view.quantity.text.toString().toDoubleOrNull(),
                     view.unit.selectedItem.toString())

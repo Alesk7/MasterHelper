@@ -46,6 +46,10 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="ButtonNoCapsTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textAllCaps">false</item>
+    </style>
+
     <style name="CheckBoxTheme" parent="Widget.AppCompat.CompoundButton.CheckBox">
         <item name="android:colorControlActivated" tools:targetApi="lollipop">
             @android:color/holo_green_dark
