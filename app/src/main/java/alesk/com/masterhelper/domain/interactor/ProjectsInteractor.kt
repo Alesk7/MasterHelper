@@ -6,8 +6,12 @@ import javax.inject.Inject
 
 class ProjectsInteractor @Inject constructor(val projectsRepository: ProjectsRepository) {
 
-    fun getProjects(): List<Project> {
-        return projectsRepository.getAllProjects().asReversed()
+    fun getNotCompletedProjects(): List<Project> {
+        return projectsRepository.getNotCompletedProjects().asReversed()
+    }
+
+    fun getCompletedProjects(): List<Project> {
+        return projectsRepository.getCompletedProjects().asReversed()
     }
 
     fun getProject(id: Long): Project {

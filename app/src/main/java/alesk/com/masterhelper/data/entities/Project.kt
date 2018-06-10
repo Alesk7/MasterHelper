@@ -12,7 +12,8 @@ data class Project(
         @Embedded(prefix = "client_")
         var client: Client = Client(),
         @Embedded(prefix = "contract_")
-        var contract: Contract = Contract()
+        var contract: Contract = Contract(),
+        var isComplete: Boolean = false
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0

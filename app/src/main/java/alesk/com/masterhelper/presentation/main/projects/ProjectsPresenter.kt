@@ -13,7 +13,7 @@ class ProjectsPresenter @Inject constructor(
     lateinit var projectsList: List<Project>
 
     override fun onStart() {
-        projectsList = interactor.getProjects()
+        projectsList = interactor.getNotCompletedProjects()
         view?.setProjectsList(projectsList)
     }
 
@@ -27,6 +27,10 @@ class ProjectsPresenter @Inject constructor(
 
     fun onShowMasterInfo(){
         router?.showMasterInfo()
+    }
+
+    fun onShowCompletedProjects(){
+        router?.showCompletedProjectsList()
     }
 
     fun onShowHelp() {

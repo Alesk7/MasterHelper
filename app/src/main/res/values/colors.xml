@@ -5,6 +5,9 @@
     <color name="colorAccent">#0277bd</color>
     <color name="colorAccentSecondary">#005b9f</color>
 
+    <color name="colorCompletedProjectsPrimary">#757575</color>
+    <color name="colorCompletedProjectsPrimaryDark">#494949</color>
+
     <color name="colorBackground">#eeeeee</color>
 
     <color name="tabTextInactive">#d7ffffff</color>

@@ -4,6 +4,8 @@ import alesk.com.masterhelper.data.entities.Project
 
 interface ProjectsRepository {
     fun getAllProjects(): List<Project>
+    fun getNotCompletedProjects(): List<Project>
+    fun getCompletedProjects(): List<Project>
     fun getProject(id: Long): Project?
     fun createProject(project: Project)
     fun updateProject(project: Project)

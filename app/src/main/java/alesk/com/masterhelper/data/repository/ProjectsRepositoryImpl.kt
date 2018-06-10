@@ -13,6 +13,14 @@ class ProjectsRepositoryImpl @Inject constructor(
         return projectDAO.getAllProjects()
     }
 
+    override fun getNotCompletedProjects(): List<Project> {
+        return projectDAO.getNotCompletedProjects()
+    }
+
+    override fun getCompletedProjects(): List<Project> {
+        return projectDAO.getCompletedProjects()
+    }
+
     override fun createProject(project: Project) {
         projectDAO.createProject(project)
     }

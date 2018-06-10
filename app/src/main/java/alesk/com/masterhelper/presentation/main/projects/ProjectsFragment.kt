@@ -5,6 +5,7 @@ import alesk.com.masterhelper.data.entities.Project
 import alesk.com.masterhelper.databinding.FragmentProjectsBinding
 import alesk.com.masterhelper.presentation.common.BaseFragment
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
+import alesk.com.masterhelper.presentation.main.MainActivity
 import alesk.com.masterhelper.presentation.main.MainRouter
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -19,6 +20,8 @@ class ProjectsFragment : BaseFragment<ProjectsPresenter, ProjectsView, MainRoute
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_projects, container, false)
         setActionBarTitle(getString(R.string.projects))
+        (activity as MainActivity).updateActionBarColor(resources.getColor(R.color.colorPrimary))
+        (activity as MainActivity).updateStatusBarColor(resources.getColor(R.color.colorPrimaryDark))
         setHasOptionsMenu(true)
         adapter = ProjectsAdapter(context, { presenter.onProjectSelected(it) } )
         return binding.root
@@ -32,7 +35,7 @@ class ProjectsFragment : BaseFragment<ProjectsPresenter, ProjectsView, MainRoute
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId){
             R.id.masterDetails_item -> { presenter.onShowMasterInfo() }
-            R.id.archived_item -> {}
+            R.id.archived_item -> { presenter.onShowCompletedProjects() }
             R.id.help_item -> { presenter.onShowHelp() }
         }
         return false

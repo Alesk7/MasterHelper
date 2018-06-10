@@ -7,12 +7,15 @@ import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.main.help.HelpActivity
 import alesk.com.masterhelper.presentation.main.newProject.NewProjectFragment
 import alesk.com.masterhelper.presentation.main.projects.ProjectsFragment
+import alesk.com.masterhelper.presentation.main.projects.completedProjects.CompletedProjectsFragment
 import alesk.com.masterhelper.presentation.masterInfo.MasterInfoFragment
 import alesk.com.masterhelper.presentation.masterInfo.MasterInfoRouter
 import alesk.com.masterhelper.presentation.project.ProjectActivity
 import alesk.com.masterhelper.presentation.welcome.WelcomeActivity
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
@@ -42,6 +45,15 @@ class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
         }
     }
 
+    fun updateStatusBarColor(color: Int){
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = color
+    }
+
+    fun updateActionBarColor(color: Int){
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(color))
+    }
+
     override fun showCreateNewProject() {
         supportFragmentManager.inTransaction(true) {
             replace(R.id.frameLayout, NewProjectFragment())
@@ -51,6 +63,12 @@ class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
     override fun showProjectsList() {
         supportFragmentManager.inTransaction(false) {
             replace(R.id.frameLayout, ProjectsFragment())
+        }
+    }
+
+    override fun showCompletedProjectsList() {
+        supportFragmentManager.inTransaction(true) {
+            replace(R.id.frameLayout, CompletedProjectsFragment())
         }
     }
 

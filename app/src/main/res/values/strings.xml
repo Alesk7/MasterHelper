@@ -12,6 +12,7 @@
     <string name="clientDetails">Данные о заказчике</string>
     <string name="project">Проект</string>
     <string name="projects">Проекты</string>
+    <string name="completedProjects">Проекты в архиве</string>
     <string name="description">Описание</string>
     <string name="newProject">Новый проект</string>
     <string name="calculator">Калькулятор</string>

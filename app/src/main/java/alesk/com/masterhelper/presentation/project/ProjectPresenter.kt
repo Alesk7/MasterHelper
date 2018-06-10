@@ -56,6 +56,8 @@ class ProjectPresenter @Inject constructor(
 
     fun printAct() {
         subscribe(documentsInteractor.printAct(projectModel.id))
+        projectModel.isComplete = true
+        projectsInteractor.updateProject(projectModelMapper.transform(projectModel))
     }
 
     private fun subscribe(single: Single<String>) = single.subscribeOn(Schedulers.io())

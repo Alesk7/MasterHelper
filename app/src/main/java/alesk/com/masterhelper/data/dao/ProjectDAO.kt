@@ -21,6 +21,12 @@ interface ProjectDAO {
     @Query("SELECT * FROM Project")
     fun getAllProjects(): List<Project>
 
+    @Query("SELECT * FROM Project WHERE isComplete = 1")
+    fun getCompletedProjects(): List<Project>
+
+    @Query("SELECT * FROM Project WHERE isComplete = 0")
+    fun getNotCompletedProjects(): List<Project>
+
     @Query("DELETE FROM Project WHERE id = :id")
     fun deleteProject(id: Long)
 

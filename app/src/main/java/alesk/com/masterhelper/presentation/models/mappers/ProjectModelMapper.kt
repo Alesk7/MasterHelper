@@ -13,7 +13,8 @@ class ProjectModelMapper @Inject constructor(
         val project = Project(
                 projectModel.name,
                 projectModel.address,
-                projectModel.jobsDescription
+                projectModel.jobsDescription,
+                isComplete = projectModel.isComplete
         )
         project.id = projectModel.id
         project.client = clientModelMapper.transform(projectModel.client)
@@ -28,7 +29,8 @@ class ProjectModelMapper @Inject constructor(
                 project.address,
                 project.jobsDescription,
                 clientModelMapper.transform(project.client),
-                contractModelMapper.transform(project.contract)
+                contractModelMapper.transform(project.contract),
+                project.isComplete
         )
     }
 

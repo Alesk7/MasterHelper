@@ -18,12 +18,15 @@ import alesk.com.masterhelper.presentation.project.jobs.JobsActivity
 import alesk.com.masterhelper.presentation.project.materials.MaterialsActivity
 import alesk.com.masterhelper.presentation.project.objects.projectObject.ObjectActivity
 import alesk.com.masterhelper.presentation.project.prices.PricesActivity
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.databinding.DataBindingUtil
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v4.content.FileProvider
 import android.view.Menu
 import android.view.MenuItem
@@ -81,7 +84,10 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
         when(item?.itemId){
             R.id.edit_item -> presenter.onEditProjectName()
             R.id.delete_item -> askForDeleting()
-            R.id.print_item -> showPrintDialog()
+            R.id.print_item -> {
+                if(isWriteExternalStoragePermissionGranted()) showPrintDialog()
+                else requestWriteExternalStoragePermission()
+            }
             R.id.open_folder_item -> openDocFolder()
         }
         return super.onOptionsItemSelected(item)
@@ -89,6 +95,16 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
 
     override fun close() {
         finish()
+    }
+
+    private fun requestWriteExternalStoragePermission() {
+        ActivityCompat.requestPermissions(this,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 0)
+    }
+
+    private fun isWriteExternalStoragePermissionGranted(): Boolean {
+        val permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        return permission == PackageManager.PERMISSION_GRANTED
     }
 
     override fun showClientInfo(projectModel: ProjectModel) {
