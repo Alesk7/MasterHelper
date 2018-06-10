@@ -54,6 +54,10 @@ class ProjectPresenter @Inject constructor(
         subscribe(documentsInteractor.printContract(projectModel.id))
     }
 
+    fun printAct() {
+        subscribe(documentsInteractor.printAct(projectModel.id))
+    }
+
     private fun subscribe(single: Single<String>) = single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { view?.showProgressBar() }

@@ -7,7 +7,6 @@ import alesk.com.masterhelper.data.entities.Material
 import alesk.com.masterhelper.data.entities.Project
 import alesk.com.masterhelper.domain.calculateEstimateSum
 import alesk.com.masterhelper.domain.calculateJobsSum
-import alesk.com.masterhelper.domain.calculateMaterialsSum
 import alesk.com.masterhelper.domain.docGenerators.helpers.EMPTY_ROW_POSITION
 import alesk.com.masterhelper.domain.docGenerators.helpers.createItemRow
 import alesk.com.masterhelper.domain.docGenerators.helpers.replaceText
@@ -16,39 +15,53 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument
 import org.apache.poi.xwpf.usermodel.XWPFTable
 import java.util.*
 
-class PriceEstimateDocGenerator(
-        val masterInfo: MasterInfo,
+class ActDocGenerator(
         val project: Project,
+        val masterInfo: MasterInfo,
         val jobs: List<Job>,
         val materials: List<Material>
 ) {
 
     private val doc: XWPFDocument
 
-    init { doc = getEstimateDocument() }
+    init { doc = getActDocument() }
 
     fun generate(): XWPFDocument {
-        fillFields()
-        fillJobsTable(doc.tables[1])
-        fillMaterialsTable(doc.tables[2])
-        return doc
-    }
-
-    fun generateWithoutMaterials(): XWPFDocument {
         fillFields()
         fillJobsTable(doc.tables[1])
         return doc
     }
 
     private fun fillFields() {
-        replaceText(doc, "ContractNumber", project.contract.number.toString())
-        replaceText(doc, "ContractDate",
-                applicationComponent.getSimpleDateFormat().format(Date(project.contract.contractDate)))
+        fillContractDetails()
+        fillActors()
         replaceText(doc, "City", project.address)
+        replaceText(doc, "ActDate", applicationComponent.getSimpleDateFormat().format(Date()))
+        fillEstimateSum()
+    }
+
+    private fun fillContractDetails(){
+        repeat(3, { replaceText(doc, "ContractNumber", project.contract.number.toString()) })
+        repeat(3 ,{ replaceText(doc, "ContractDate",
+                    applicationComponent.getSimpleDateFormat().format(Date(project.contract.contractDate))
+        ) })
+    }
+
+    private fun fillActors() {
+        replaceText(doc, "ClientName", project.client.name)
         replaceText(doc, "ClientName", project.client.name)
         replaceText(doc, "MasterName", masterInfo.name)
-        replaceText(doc, "EstimateSum", String.format("%.2f", calculateEstimateSum(jobs, materials)))
-        replaceText(doc, "EstimateDate", applicationComponent.getSimpleDateFormat().format(Date()))
+        replaceText(doc, "MasterName", masterInfo.name)
+        replaceText(doc, "MasterAddress", masterInfo.address)
+        replaceText(doc, "ClientAddress", project.client.address)
+    }
+
+    private fun fillEstimateSum(){
+        var sum = if(project.contract.isMasterMaterialsSupplier)
+            calculateEstimateSum(jobs, materials) else calculateJobsSum(jobs)
+        sum -= project.contract.prepayment
+        replaceText(doc, "EstimateSum", String.format("%.2f", sum))
+        replaceText(doc, "EstimateSum", String.format("%.2f", sum))
     }
 
     private fun fillJobsTable(table: XWPFTable) {
@@ -66,24 +79,9 @@ class PriceEstimateDocGenerator(
         table.removeRow(EMPTY_ROW_POSITION)
     }
 
-    private fun fillMaterialsTable(table: XWPFTable) {
-        for(i in materials.indices) {
-            val newRow = createItemRow(table)
-            setCellText(newRow, 0, (i + 1).toString())
-            setCellText(newRow, 1, materials[i].name)
-            setCellText(newRow, 2, materials[i].unit)
-            setCellText(newRow, 3, materials[i].quantity.toString())
-            setCellText(newRow, 4, String.format("%.2f", materials[i].unitPrice))
-            setCellText(newRow, 5, String.format("%.2f", materials[i].priceSum))
-            table.addRow(newRow, EMPTY_ROW_POSITION + 1 + i)
-        }
-        setCellText(table.rows[table.rows.size - 1], 1, String.format("%.2f", calculateMaterialsSum(materials)))
-        table.removeRow(EMPTY_ROW_POSITION)
-    }
-
-    private fun getEstimateDocument(): XWPFDocument {
-        val estimateFile = applicationComponent.getAssets().open("prices.docx")
-        return XWPFDocument(estimateFile)
+    private fun getActDocument(): XWPFDocument {
+        val contractFile = applicationComponent.getAssets().open("act.docx")
+        return XWPFDocument(contractFile)
     }
 
 }

@@ -2,6 +2,7 @@ package alesk.com.masterhelper.domain.interactor
 
 import alesk.com.masterhelper.application.applicationComponent
 import alesk.com.masterhelper.data.entities.Project
+import alesk.com.masterhelper.domain.docGenerators.ActDocGenerator
 import alesk.com.masterhelper.domain.docGenerators.ContractDocGenerator
 import alesk.com.masterhelper.domain.docGenerators.PriceEstimateDocGenerator
 import alesk.com.masterhelper.domain.repository.JobRepository
@@ -23,6 +24,7 @@ class DocumentsInteractor @Inject constructor(
 
     val ESTIMATE_PATH_PATTERN = "%sСмета_%s №%d.docx"
     val CONTRACT_PATH_PATTERN = "%sДоговор_%s №%d.docx"
+    val ACT_PATH_PATTERN = "%sАкт_%s №%d.docx"
 
     init{
         System.setProperty("javax.xml.stream.XMLInputFactory", "com.fasterxml.aalto.stax.InputFactoryImpl")
@@ -36,7 +38,6 @@ class DocumentsInteractor @Inject constructor(
         val materials = materialRepository.getMaterialsByProjectId(projectId)
         val masterInfo = masterInfoRepository.getMasterInfo()
         val priceEstimateDocGenerator = PriceEstimateDocGenerator(masterInfo!!, project!!, jobs, materials)
-
         return if(project.contract.isMasterMaterialsSupplier)
             Single.defer { Single.just(
                     saveDoc(priceEstimateDocGenerator.generate(), ESTIMATE_PATH_PATTERN, project)) }
@@ -50,16 +51,25 @@ class DocumentsInteractor @Inject constructor(
         val masterInfo = masterInfoRepository.getMasterInfo()
         val contractDocGenerator = ContractDocGenerator(project!!, masterInfo!!)
         return Single.defer {
-            Single.just(saveDoc(contractDocGenerator.generate(), CONTRACT_PATH_PATTERN, project))
-        }
+            Single.just(saveDoc(contractDocGenerator.generate(), CONTRACT_PATH_PATTERN, project)) }
+    }
+
+    fun printAct(projectId: Long): Single<String> {
+        val project = projectsRepository.getProject(projectId)
+        val jobs = jobRepository.getJobsByProjectId(projectId)
+        val materials = materialRepository.getMaterialsByProjectId(projectId)
+        val masterInfo = masterInfoRepository.getMasterInfo()
+        val actDocGenerator = ActDocGenerator(project!!, masterInfo!!, jobs, materials)
+        return Single.defer {
+            Single.just(saveDoc(actDocGenerator.generate(), ACT_PATH_PATTERN, project)) }
     }
 
     private fun saveDoc(doc: XWPFDocument, pathPattern: String, project: Project): String {
         val path = String.format(pathPattern,
                 applicationComponent.getDocumentsPath(), project.name, project.contract.number)
+        val out = FileOutputStream(path)
         createDocumentsDirIfNotExists()
         File(path).createNewFile()
-        val out = FileOutputStream(path)
         doc.write(out)
         out.close(); doc.close()
         return path

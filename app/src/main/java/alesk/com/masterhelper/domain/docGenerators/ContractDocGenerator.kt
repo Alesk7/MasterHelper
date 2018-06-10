@@ -14,10 +14,11 @@ class ContractDocGenerator(
         val masterInfo: MasterInfo
 ) {
 
-    private lateinit var doc: XWPFDocument
+    private val doc: XWPFDocument
+
+    init{ doc = getContractDocument() }
 
     fun generate(): XWPFDocument {
-        doc = getContractDocument()
         fillFields()
         return doc
     }

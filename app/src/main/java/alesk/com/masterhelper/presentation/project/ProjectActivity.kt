@@ -157,7 +157,7 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
         val view = layoutInflater.inflate(R.layout.dialog_print, null)
         view.estimateButton.setOnClickListener{ presenter.printEstimate() }
         view.contractButton.setOnClickListener{ presenter.printContract() }
-        view.actButton.setOnClickListener{  }
+        view.actButton.setOnClickListener{ presenter.printAct() }
         return view
     }
 
