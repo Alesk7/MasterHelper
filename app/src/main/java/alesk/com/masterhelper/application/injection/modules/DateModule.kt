@@ -11,7 +11,7 @@ class DateModule {
 
     @Provides
     fun provideSimpleDateFormat(): SimpleDateFormat{
-        return SimpleDateFormat("dd/MM/yyyy")
+        return SimpleDateFormat("dd.MM.yyyy")
     }
 
 }

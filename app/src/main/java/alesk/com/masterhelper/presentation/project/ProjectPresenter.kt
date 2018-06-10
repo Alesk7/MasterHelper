@@ -5,6 +5,7 @@ import alesk.com.masterhelper.domain.interactor.ProjectsInteractor
 import alesk.com.masterhelper.presentation.common.BasePresenter
 import alesk.com.masterhelper.presentation.models.ProjectModel
 import alesk.com.masterhelper.presentation.models.mappers.ProjectModelMapper
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -46,13 +47,18 @@ class ProjectPresenter @Inject constructor(
     }
 
     fun printEstimate() {
-        documentsInteractor.printPrices(projectModel.id)
-                .subscribeOn(Schedulers.io())
+        subscribe(documentsInteractor.printPrices(projectModel.id))
+    }
+
+    fun printContract() {
+        subscribe(documentsInteractor.printContract(projectModel.id))
+    }
+
+    private fun subscribe(single: Single<String>) = single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { view?.showProgressBar() }
                 .doAfterTerminate { view?.hideProgressBar() }
                 .doAfterSuccess { view?.showDocumentGeneratedDialog(it) }
                 .subscribe()
-    }
 
 }

@@ -8,22 +8,21 @@ import alesk.com.masterhelper.data.entities.Project
 import alesk.com.masterhelper.domain.calculateEstimateSum
 import alesk.com.masterhelper.domain.calculateJobsSum
 import alesk.com.masterhelper.domain.calculateMaterialsSum
+import alesk.com.masterhelper.domain.docGenerators.helpers.replaceText
 import org.apache.poi.xwpf.usermodel.XWPFDocument
-import org.apache.poi.xwpf.usermodel.XWPFRun
 import org.apache.poi.xwpf.usermodel.XWPFTable
 import org.apache.poi.xwpf.usermodel.XWPFTableRow
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTRow
 import java.util.*
 
-const val EMPTY_ROW_POSITION = 1
-
-class PriceEstimateGenerator(
+class PriceEstimateDocGenerator(
         val masterInfo: MasterInfo,
         val project: Project,
         val jobs: List<Job>,
         val materials: List<Material>
 ) {
 
+    val EMPTY_ROW_POSITION = 1
     private lateinit var doc: XWPFDocument
 
     fun generate(): XWPFDocument {
@@ -42,14 +41,14 @@ class PriceEstimateGenerator(
     }
 
     private fun fillFields() {
-        replaceText("ContractNumber", project.contract.number.toString())
-        replaceText("ContractDate",
+        replaceText(doc, "ContractNumber", project.contract.number.toString())
+        replaceText(doc, "ContractDate",
                 applicationComponent.getSimpleDateFormat().format(Date(project.contract.contractDate)))
-        replaceText("City", project.address)
-        replaceText("ClientName", project.client.name)
-        replaceText("MasterName", masterInfo.name)
-        replaceText("EstimateSum", calculateEstimateSum(jobs, materials).toString())
-        replaceText("EstimateDate", applicationComponent.getSimpleDateFormat().format(Date()))
+        replaceText(doc, "City", project.address)
+        replaceText(doc, "ClientName", project.client.name)
+        replaceText(doc, "MasterName", masterInfo.name)
+        replaceText(doc, "EstimateSum", calculateEstimateSum(jobs, materials).toString())
+        replaceText(doc, "EstimateDate", applicationComponent.getSimpleDateFormat().format(Date()))
     }
 
     private fun fillJobsTable(table: XWPFTable) {
@@ -80,50 +79,6 @@ class PriceEstimateGenerator(
         }
         setCellText(table.rows[table.rows.size - 1], 1, String.format("%.2f", calculateMaterialsSum(materials)))
         table.removeRow(EMPTY_ROW_POSITION)
-    }
-
-    private fun replaceText(s: String, replacement: String) {
-        val matches = searchMatchesJustInParagraphs(s)
-        matches.forEach {
-            it.setText(it.getText(0).replace(s, replacement), 0)
-        }
-
-        if(matches.isEmpty()) {
-            searchMatchesInTables(s).forEach {
-                it.setText(it.getText(0).replace(s, replacement), 0)
-            }
-        }
-    }
-
-    private fun searchMatchesJustInParagraphs(s: String): List<XWPFRun> {
-        val matches = ArrayList<XWPFRun>()
-        doc.paragraphs.forEach { paragraph ->
-            val runs = paragraph.runs
-            runs.forEach {
-                val text = it.getText(0)
-                if (text != null && text.contains(s))
-                    matches.add(it)
-            }
-        }
-        return matches
-    }
-
-    private fun searchMatchesInTables(s: String): List<XWPFRun> {
-        val matches = ArrayList<XWPFRun>()
-        doc.tables.forEach { table ->
-            table.rows.forEach { row ->
-                row.tableCells.forEach { cell ->
-                    cell.paragraphs.forEach {
-                        it.runs.forEach {
-                            val text = it.getText(0)
-                            if (text != null && text.contains(s))
-                                matches.add(it)
-                        }
-                    }
-                }
-            }
-        }
-        return matches
     }
 
     private fun setCellText(row: XWPFTableRow, pos: Int, string: String) {

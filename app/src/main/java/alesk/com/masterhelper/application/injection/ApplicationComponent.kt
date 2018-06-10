@@ -17,4 +17,5 @@ interface ApplicationComponent {
     fun getContext(): Context
     fun getAssets(): AssetManager
     fun getSimpleDateFormat(): SimpleDateFormat
+    fun getDocumentsPath(): String
 }

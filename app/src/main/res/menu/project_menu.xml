@@ -6,11 +6,11 @@
         android:id="@+id/print_item"
         android:icon="@mipmap/ic_printer"
         android:title="@string/print"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
     <item
-        android:id="@+id/finish_item"
-        android:icon="@mipmap/ic_clipboard_check"
-        android:title="@string/finishProject" />
+        android:id="@+id/open_folder_item"
+        android:icon="@mipmap/ic_folder"
+        android:title="@string/openDocFolder" />
     <item
         android:id="@+id/edit_item"
         android:title="@string/changeName" />

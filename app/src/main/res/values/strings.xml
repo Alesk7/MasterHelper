@@ -36,6 +36,7 @@
     <string name="pleaseWait">Пожалуйста, подождите</string>
     <string name="fileSaved">Файл сохранен в %s</string>
     <string name="open">Открыть</string>
+    <string name="openDocFolder">Перейти к документам</string>
     <string name="close">Закрыть</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
