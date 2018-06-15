@@ -6,7 +6,7 @@ import alesk.com.masterhelper.domain.repository.MasterInfoRepository
 import javax.inject.Inject
 
 class MasterInfoRepositoryImpl @Inject constructor(
-        val masterInfoDAO: MasterInfoDAO
+        private val masterInfoDAO: MasterInfoDAO
 ): MasterInfoRepository {
 
     override fun saveMasterInfo(masterInfo: MasterInfo) {

@@ -6,10 +6,9 @@ import alesk.com.masterhelper.presentation.models.ProjectModel
 import alesk.com.masterhelper.presentation.models.mappers.ProjectModelMapper
 import javax.inject.Inject
 
-@Suppress("DEPRECATION")
 class ContractPresenter @Inject constructor(
-        val projectsInteractor: ProjectsInteractor,
-        val projectModelMapper: ProjectModelMapper
+        private val projectsInteractor: ProjectsInteractor,
+        private val projectModelMapper: ProjectModelMapper
 ) : BasePresenter<ContractView, ContractRouter>() {
 
     lateinit var projectModel: ProjectModel

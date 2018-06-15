@@ -6,7 +6,7 @@ import alesk.com.masterhelper.presentation.common.BasePresenter
 import javax.inject.Inject
 
 class JobsPresenter @Inject constructor(
-        val jobsInteractor: JobsInteractor
+        private val jobsInteractor: JobsInteractor
 ): BasePresenter<JobsView, JobsRouter>() {
 
     lateinit var jobsList: List<Job>
@@ -16,24 +16,24 @@ class JobsPresenter @Inject constructor(
     }
 
     fun onAddJob(){
-        view?.showAddJobDialog({ name, quantity, unit ->
+        view?.showAddJobDialog { name, quantity, unit ->
             if(name.isBlank()) return@showAddJobDialog
             val job = Job(name, quantity ?: 1.0, 0.0, unit, 0.0, false)
             job.projectId = view!!.getProjectId()
             jobsInteractor.addJob(job)
             updateViewJobsList()
             view?.updateViewBindings()
-        })
+        }
     }
 
     fun onEditJob(job: Job, position: Int){
-        view?.showEditJobDialog(job.name, job.quantity, job.unit, { name, quantity, unit ->
+        view?.showEditJobDialog(job.name, job.quantity, job.unit) { name, quantity, unit ->
             job.name = name
             job.quantity = quantity ?: 1.0
             job.unit = unit
             jobsInteractor.editJob(job)
             view?.notifyItemChanged(position)
-        })
+        }
     }
 
     fun onJobStatusChanged(isChecked: Boolean, job: Job){

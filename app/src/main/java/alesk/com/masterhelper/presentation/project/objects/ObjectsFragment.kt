@@ -23,7 +23,7 @@ class ObjectsFragment : BaseFragment<ObjectsPresenter, ObjectsView, ProjectRoute
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_objects, container, false)
-        adapter = ObjectsAdapter(context!!, { presenter.onObjectClicked(it) })
+        adapter = ObjectsAdapter(context!!) { presenter.onObjectClicked(it) }
         return binding.root
     }
 
@@ -40,9 +40,9 @@ class ObjectsFragment : BaseFragment<ObjectsPresenter, ObjectsView, ProjectRoute
 
     override fun showAddObjectDialog(objectsList: List<ObjectModel>, onOk: (String, ObjectModel) -> Unit) {
         val view = initObjectDialogView(objectsList)
-        buildCustomViewDialog(context!!, view, getString(R.string.addObject), { di, v ->
+        buildCustomViewDialog(context!!, view, getString(R.string.addObject)) { _, _ ->
             onOk(view.name.text.toString(), view.parentObjectSpinner.selectedItem as ObjectModel)
-        }).show()
+        }.show()
     }
 
     @SuppressLint("InflateParams")
@@ -59,7 +59,7 @@ class ObjectsFragment : BaseFragment<ObjectsPresenter, ObjectsView, ProjectRoute
     }
 
     override fun getProjectId(): Long {
-        return activity!!.intent!!.getLongExtra(getString(R.string.keyIdProject), 0)
+        return activity!!.intent.getLongExtra(getString(R.string.keyIdProject), 0)
     }
 
     override fun updateViewBindings() = binding.invalidateAll()

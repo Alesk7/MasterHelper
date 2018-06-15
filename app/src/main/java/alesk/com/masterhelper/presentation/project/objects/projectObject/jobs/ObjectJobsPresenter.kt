@@ -7,7 +7,7 @@ import alesk.com.masterhelper.presentation.project.objects.projectObject.ObjectR
 import javax.inject.Inject
 
 class ObjectJobsPresenter @Inject constructor(
-        val jobsInteractor: JobsInteractor
+        private val jobsInteractor: JobsInteractor
 ): BasePresenter<ObjectJobsView, ObjectRouter>() {
 
     lateinit var jobsList: List<Job>
@@ -18,12 +18,12 @@ class ObjectJobsPresenter @Inject constructor(
         updateViewJobList()
     }
 
-    fun updateViewJobList(){
+    private fun updateViewJobList(){
         jobsList = jobsInteractor.getJobsByObjectId(objectId)
         view?.setJobsList(jobsList)
     }
 
-    fun onAddJobBinding(){
+    fun onAddJobBinding() {
         val availableJobs = jobsInteractor
                 .getJobsByProjectId(view!!.getProjectId()).filter { it.objectId != objectId }
         view?.showAddJobBindingDialog(availableJobs)
@@ -32,7 +32,7 @@ class ObjectJobsPresenter @Inject constructor(
     fun onJobClicked(job: Job) {
     }
 
-    fun onAddJobClicked(job: Job){
+    fun onAddJobClicked(job: Job) {
         job.objectId = objectId
         jobsInteractor.editJob(job)
         updateViewJobList()
@@ -40,8 +40,8 @@ class ObjectJobsPresenter @Inject constructor(
         view?.hideAddJobBindingDialog()
     }
 
-    fun onCreateJobClicked(){
-        view?.showCreateJobDialog({ name, quantity, unit ->
+    fun onCreateJobClicked() {
+        view?.showCreateJobDialog { name, quantity, unit ->
             val job = Job(name = name, quantity = quantity ?: 0.0, unit = unit)
             job.projectId = view!!.getProjectId()
             job.objectId = objectId
@@ -49,7 +49,7 @@ class ObjectJobsPresenter @Inject constructor(
             updateViewJobList()
             view?.notifyDataSetChanged()
             view?.hideAddJobBindingDialog()
-        })
+        }
     }
 
 }

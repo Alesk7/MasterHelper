@@ -6,7 +6,7 @@ import alesk.com.masterhelper.domain.repository.ProjectObjectRepository
 import javax.inject.Inject
 
 class ProjectObjectRepositoryImpl @Inject constructor(
-        val projectObjectDAO: ProjectObjectDAO
+        private val projectObjectDAO: ProjectObjectDAO
 ): ProjectObjectRepository {
 
     override fun getProjectObject(id: Long): ProjectObject? {
@@ -32,4 +32,5 @@ class ProjectObjectRepositoryImpl @Inject constructor(
     override fun deleteProjectObject(id: Long) {
         projectObjectDAO.deleteProjectObject(id)
     }
+
 }

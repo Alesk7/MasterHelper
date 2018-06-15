@@ -27,8 +27,8 @@ class ObjectMaterialsFragment
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_object_bindings, container, false)
         view.addButton.text = getString(R.string.addMaterial)
-        view.addButton.setOnClickListener{ presenter.onAddMaterialBinding() }
-        adapter = ObjectMaterialsAdapter(context, { presenter.onMaterialClicked(it) })
+        view.addButton.setOnClickListener { presenter.onAddMaterialBinding() }
+        adapter = ObjectMaterialsAdapter(context) { presenter.onMaterialClicked(it) }
         view.list.adapter = adapter
         return view
     }
@@ -44,11 +44,11 @@ class ObjectMaterialsFragment
 
     override fun showCreateMaterialDialog(onCreate: (String, Double?, String) -> Unit) {
         val view = initMaterialDialogView()
-        buildCustomViewDialog(context!!, view, getString(R.string.addMaterial), { d, i ->
+        buildCustomViewDialog(context!!, view, getString(R.string.addMaterial)) { _, _ ->
             onCreate(view.name.text.toString(),
                     view.quantity.text.toString().toDoubleOrNull(),
                     view.unit.selectedItem.toString())
-        }).show()
+        }.show()
     }
 
     override fun showAddMaterialBindingDialog(materialList: List<Material>) {
@@ -67,11 +67,11 @@ class ObjectMaterialsFragment
     @SuppressLint("InflateParams")
     private fun initMaterialBindingDialogView(materialList: List<Material>): View {
         val view = layoutInflater.inflate(R.layout.dialog_add_object_binding, null)
-        val adapter = ObjectMaterialsAdapter(context, { presenter.onAddMaterialClicked(it) })
+        val adapter = ObjectMaterialsAdapter(context) { presenter.onAddMaterialClicked(it) }
         adapter.items = materialList
         view.bindingsList.adapter = adapter
         view.createButton.text = getString(R.string.createMaterial)
-        view.createButton.setOnClickListener{ presenter.onCreateMaterialClicked() }
+        view.createButton.setOnClickListener { presenter.onCreateMaterialClicked() }
         return view
     }
 

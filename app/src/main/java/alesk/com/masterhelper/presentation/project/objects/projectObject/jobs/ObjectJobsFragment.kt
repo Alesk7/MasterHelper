@@ -26,8 +26,8 @@ class ObjectJobsFragment: BaseFragment<ObjectJobsPresenter, ObjectJobsView, Obje
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_object_bindings, container, false)
         view.addButton.text = getString(R.string.addJob)
-        view.addButton.setOnClickListener{ presenter.onAddJobBinding() }
-        adapter = ObjectJobsAdapter(context, { presenter.onJobClicked(it) })
+        view.addButton.setOnClickListener { presenter.onAddJobBinding() }
+        adapter = ObjectJobsAdapter(context) { presenter.onJobClicked(it) }
         view.list.adapter = adapter
         return view
     }
@@ -43,11 +43,11 @@ class ObjectJobsFragment: BaseFragment<ObjectJobsPresenter, ObjectJobsView, Obje
 
     override fun showCreateJobDialog(onCreate: (String, Double?, String) -> Unit) {
         val view = initJobDialogView()
-        buildCustomViewDialog(context!!, view, getString(R.string.addJob), { d, i ->
+        buildCustomViewDialog(context!!, view, getString(R.string.addJob)) { _, _ ->
             onCreate(view.name.text.toString(),
-                     view.quantity.text.toString().toDoubleOrNull(),
-                     view.unit.selectedItem.toString())
-        }).show()
+                    view.quantity.text.toString().toDoubleOrNull(),
+                    view.unit.selectedItem.toString())
+        }.show()
     }
 
     override fun showAddJobBindingDialog(jobList: List<Job>) {
@@ -66,11 +66,11 @@ class ObjectJobsFragment: BaseFragment<ObjectJobsPresenter, ObjectJobsView, Obje
     @SuppressLint("InflateParams")
     private fun initJobBindingDialogView(jobList: List<Job>): View {
         val view = layoutInflater.inflate(R.layout.dialog_add_object_binding, null)
-        val adapter = ObjectJobsAdapter(context, { presenter.onAddJobClicked(it) })
+        val adapter = ObjectJobsAdapter(context) { presenter.onAddJobClicked(it) }
         adapter.items = jobList
         view.bindingsList.adapter = adapter
         view.createButton.text = getString(R.string.createJob)
-        view.createButton.setOnClickListener{ presenter.onCreateJobClicked() }
+        view.createButton.setOnClickListener { presenter.onCreateJobClicked() }
         return view
     }
 

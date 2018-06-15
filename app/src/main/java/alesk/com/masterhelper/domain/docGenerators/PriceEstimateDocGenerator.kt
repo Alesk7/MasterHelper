@@ -1,6 +1,7 @@
 package alesk.com.masterhelper.domain.docGenerators
 
 import alesk.com.masterhelper.application.applicationComponent
+import alesk.com.masterhelper.application.utils.defaultDateFormat
 import alesk.com.masterhelper.data.entities.Job
 import alesk.com.masterhelper.data.entities.MasterInfo
 import alesk.com.masterhelper.data.entities.Material
@@ -8,6 +9,7 @@ import alesk.com.masterhelper.data.entities.Project
 import alesk.com.masterhelper.domain.calculateEstimateSum
 import alesk.com.masterhelper.domain.calculateJobsSum
 import alesk.com.masterhelper.domain.calculateMaterialsSum
+import alesk.com.masterhelper.domain.docGenerators.consts.*
 import alesk.com.masterhelper.domain.docGenerators.helpers.EMPTY_ROW_POSITION
 import alesk.com.masterhelper.domain.docGenerators.helpers.createItemRow
 import alesk.com.masterhelper.domain.docGenerators.helpers.replaceText
@@ -17,10 +19,10 @@ import org.apache.poi.xwpf.usermodel.XWPFTable
 import java.util.*
 
 class PriceEstimateDocGenerator(
-        val masterInfo: MasterInfo,
-        val project: Project,
-        val jobs: List<Job>,
-        val materials: List<Material>
+        private val masterInfo: MasterInfo,
+        private val project: Project,
+        private val jobs: List<Job>,
+        private val materials: List<Material>
 ) {
 
     private val doc: XWPFDocument
@@ -41,14 +43,13 @@ class PriceEstimateDocGenerator(
     }
 
     private fun fillFields() {
-        replaceText(doc, "ContractNumber", project.contract.number.toString())
-        replaceText(doc, "ContractDate",
-                applicationComponent.getSimpleDateFormat().format(Date(project.contract.contractDate)))
-        replaceText(doc, "City", project.address)
-        replaceText(doc, "ClientName", project.client.name)
-        replaceText(doc, "MasterName", masterInfo.name)
-        replaceText(doc, "EstimateSum", String.format("%.2f", calculateEstimateSum(jobs, materials)))
-        replaceText(doc, "EstimateDate", applicationComponent.getSimpleDateFormat().format(Date()))
+        replaceText(doc, contractNumber, project.contract.number.toString())
+        replaceText(doc, contractDate, defaultDateFormat.format(Date(project.contract.contractDate)))
+        replaceText(doc, city, project.address)
+        replaceText(doc, clientName, project.client.name)
+        replaceText(doc, masterName, masterInfo.name)
+        replaceText(doc, estimateSum, String.format("%.2f", calculateEstimateSum(jobs, materials)))
+        replaceText(doc, estimateDate, defaultDateFormat.format(Date()))
     }
 
     private fun fillJobsTable(table: XWPFTable) {
@@ -82,7 +83,7 @@ class PriceEstimateDocGenerator(
     }
 
     private fun getEstimateDocument(): XWPFDocument {
-        val estimateFile = applicationComponent.getAssets().open("prices.docx")
+        val estimateFile = applicationComponent.getAssets().open(estimateFileName)
         return XWPFDocument(estimateFile)
     }
 

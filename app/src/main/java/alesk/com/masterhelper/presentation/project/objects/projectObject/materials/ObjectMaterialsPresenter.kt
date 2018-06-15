@@ -7,7 +7,7 @@ import alesk.com.masterhelper.presentation.project.objects.projectObject.ObjectR
 import javax.inject.Inject
 
 class ObjectMaterialsPresenter @Inject constructor(
-        val materialsInteractor: MaterialsInteractor
+        private val materialsInteractor: MaterialsInteractor
 ): BasePresenter<ObjectMaterialsView, ObjectRouter>() {
 
     lateinit var materialsList: List<Material>
@@ -18,7 +18,7 @@ class ObjectMaterialsPresenter @Inject constructor(
         updateViewMaterialList()
     }
 
-    fun updateViewMaterialList(){
+    private fun updateViewMaterialList(){
         materialsList = materialsInteractor.getMaterialsByObjectId(objectId)
         view?.setMaterialsList(materialsList)
     }
@@ -41,7 +41,7 @@ class ObjectMaterialsPresenter @Inject constructor(
     }
 
     fun onCreateMaterialClicked(){
-        view?.showCreateMaterialDialog({ name, quantity, unit ->
+        view?.showCreateMaterialDialog { name, quantity, unit ->
             val material = Material(name = name, quantity = quantity ?: 0.0, unit = unit)
             material.projectId = view!!.getProjectId()
             material.objectId = objectId
@@ -49,7 +49,7 @@ class ObjectMaterialsPresenter @Inject constructor(
             updateViewMaterialList()
             view?.notifyDataSetChanged()
             view?.hideAddMaterialBindingDialog()
-        })
+        }
     }
 
 }

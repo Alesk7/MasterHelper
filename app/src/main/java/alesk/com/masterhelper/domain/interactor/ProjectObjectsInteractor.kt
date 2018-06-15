@@ -5,7 +5,7 @@ import alesk.com.masterhelper.domain.repository.ProjectObjectRepository
 import javax.inject.Inject
 
 class ProjectObjectsInteractor
-@Inject constructor (val projectObjectsRepository: ProjectObjectRepository) {
+@Inject constructor (private val projectObjectsRepository: ProjectObjectRepository) {
 
     fun addProjectObject(obj: ProjectObject) {
         projectObjectsRepository.addProjectObject(obj)

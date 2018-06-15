@@ -8,8 +8,8 @@ import alesk.com.masterhelper.presentation.project.ProjectRouter
 import javax.inject.Inject
 
 class ProjectInfoPresenter @Inject constructor(
-        val projectsInteractor: ProjectsInteractor,
-        val projectModelMapper: ProjectModelMapper
+        private val projectsInteractor: ProjectsInteractor,
+        private val projectModelMapper: ProjectModelMapper
 ) : BasePresenter<ProjectInfoView, ProjectRouter>() {
 
     lateinit var projectModel: ProjectModel
@@ -20,19 +20,19 @@ class ProjectInfoPresenter @Inject constructor(
     }
 
     fun onEditProjectDescription(){
-        view?.showEditDialog(view!!.getProjectDescriptionString(), projectModel.jobsDescription, {
+        view?.showEditDialog(view!!.getProjectDescriptionString(), projectModel.jobsDescription) {
             projectModel.jobsDescription = it
             view?.updateViewBindings()
             projectsInteractor.updateProject(projectModelMapper.transform(projectModel))
-        } )
+        }
     }
 
     fun onEditProjectAddress(){
-        view?.showEditDialog(view!!.getProjectAddressString(), projectModel.address, {
+        view?.showEditDialog(view!!.getProjectAddressString(), projectModel.address) {
             projectModel.address = it
             view?.updateViewBindings()
             projectsInteractor.updateProject(projectModelMapper.transform(projectModel))
-        } )
+        }
     }
 
     fun onEditClientInfo(){
@@ -45,10 +45,6 @@ class ProjectInfoPresenter @Inject constructor(
 
     fun onContractDetailsClicked(){
         router?.showContractDetails(projectModel)
-    }
-
-    fun onPricesClicked(){
-        router?.showPrices(projectModel.id)
     }
 
 }

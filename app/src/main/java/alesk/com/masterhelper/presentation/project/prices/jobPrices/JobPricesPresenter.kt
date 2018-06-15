@@ -8,8 +8,8 @@ import alesk.com.masterhelper.presentation.project.prices.PricesRouter
 import javax.inject.Inject
 
 class JobPricesPresenter @Inject constructor(
-        val jobsInteractor: JobsInteractor,
-        val jobModelMapper: JobModelMapper
+        private val jobsInteractor: JobsInteractor,
+        private val jobModelMapper: JobModelMapper
 ): BasePresenter<JobPricesView, PricesRouter>() {
 
     lateinit var jobsList: List<JobModel>

@@ -49,11 +49,11 @@ class MaterialsActivity : BaseActivity(), MaterialsView, MaterialsRouter {
 
     override fun showAddMaterialDialog(onOk: (String, Double?, String) -> Unit) {
         val view = initMaterialDialogView()
-        buildCustomViewDialog(this, view, getString(R.string.addMaterial), { d, i ->
+        buildCustomViewDialog(this, view, getString(R.string.addMaterial)) { _, _ ->
             onOk(view.name.text.toString(),
                     view.quantity.text.toString().toDoubleOrNull(),
                     view.unit.selectedItem.toString())
-        }).show()
+        }.show()
     }
 
     override fun showEditMaterialDialog(name: String, quantity: Double, unit: String,
@@ -62,11 +62,11 @@ class MaterialsActivity : BaseActivity(), MaterialsView, MaterialsRouter {
         view.name.setText(name)
         view.quantity.setText(quantity.toString())
         view.unit.setSelection((view.unit.adapter as ArrayAdapter<String>).getPosition(unit))
-        buildCustomViewDialog(this, view, getString(R.string.editMaterial), { d, i ->
+        buildCustomViewDialog(this, view, getString(R.string.editMaterial)) { _, _ ->
             onOk(view.name.text.toString(),
                     view.quantity.text.toString().toDoubleOrNull(),
                     view.unit.selectedItem.toString())
-        }).show()
+        }.show()
     }
 
     @SuppressLint("InflateParams")

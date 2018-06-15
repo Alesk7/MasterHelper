@@ -4,7 +4,7 @@ import alesk.com.masterhelper.data.entities.Job
 import alesk.com.masterhelper.domain.repository.JobRepository
 import javax.inject.Inject
 
-class JobsInteractor @Inject constructor(val jobRepository: JobRepository) {
+class JobsInteractor @Inject constructor(private val jobRepository: JobRepository) {
 
     fun getJobsByProjectId(projectId: Long): List<Job> {
         return jobRepository.getJobsByProjectId(projectId).asReversed()

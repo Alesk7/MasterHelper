@@ -13,8 +13,8 @@ import android.widget.EditText
 import kotlinx.android.synthetic.main.list_item_price.view.*
 
 class MaterialPricesAdapter(
-        val context: Context?,
-        val onPriceChanged: (MaterialModel) -> Unit
+        private val context: Context?,
+        private val onPriceChanged: (MaterialModel) -> Unit
 ): RecyclerView.Adapter<MaterialPricesAdapter.ViewHolder>() {
 
     lateinit var items: List<MaterialModel>
@@ -39,25 +39,29 @@ class MaterialPricesAdapter(
 
         init {
             unitPrice.onChange {
-                if(isPreventUpdate) return@onChange
-                isPreventUpdate = true
+                if(unitPrice.hasFocus()) {
+                    if (isPreventUpdate) return@onChange
+                    isPreventUpdate = true
 
-                items[itemPosition].unitPrice = it.toDoubleOrNull() ?: 0.0
-                items[itemPosition].priceSum = items[itemPosition].unitPrice * items[itemPosition].quantity
-                onPriceChanged(items[itemPosition])
-                sum.setText(String.format("%.2f", items[itemPosition].priceSum))
-                isPreventUpdate = false
+                    items[itemPosition].unitPrice = it.toDoubleOrNull() ?: 0.0
+                    items[itemPosition].priceSum = items[itemPosition].unitPrice * items[itemPosition].quantity
+                    onPriceChanged(items[itemPosition])
+                    sum.setText(String.format("%.2f", items[itemPosition].priceSum))
+                    isPreventUpdate = false
+                }
             }
 
             sum.onChange {
-                if(isPreventUpdate) return@onChange
-                isPreventUpdate = true
+                if(sum.hasFocus()) {
+                    if (isPreventUpdate) return@onChange
+                    isPreventUpdate = true
 
-                items[itemPosition].priceSum = it.toDoubleOrNull() ?: 0.0
-                items[itemPosition].unitPrice = items[itemPosition].priceSum / items[itemPosition].quantity
-                onPriceChanged(items[itemPosition])
-                unitPrice.setText(String.format("%.2f", items[itemPosition].unitPrice))
-                isPreventUpdate = false
+                    items[itemPosition].priceSum = it.toDoubleOrNull() ?: 0.0
+                    items[itemPosition].unitPrice = items[itemPosition].priceSum / items[itemPosition].quantity
+                    onPriceChanged(items[itemPosition])
+                    unitPrice.setText(String.format("%.2f", items[itemPosition].unitPrice))
+                    isPreventUpdate = false
+                }
             }
         }
 

@@ -2,7 +2,7 @@ package alesk.com.masterhelper.presentation.main
 
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.application.applicationComponent
-import alesk.com.masterhelper.application.utils.SharedPreferencesHelper
+import alesk.com.masterhelper.application.utils.SharedPreferencesUtils
 import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.main.help.HelpActivity
 import alesk.com.masterhelper.presentation.main.newProject.NewProjectFragment
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
 
-    lateinit var sPrefHelper: SharedPreferencesHelper
+    lateinit var sPrefUtils: SharedPreferencesUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -28,11 +28,11 @@ class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
         setContentView(R.layout.activity_main)
         initBottomNavigation()
         showProjectsList()
-        sPrefHelper = applicationComponent.getSharedPreferencesHelper()
+        sPrefUtils = applicationComponent.getSharedPreferencesHelper()
 
         if(isFirstStart()) {
             startActivity(Intent(this, WelcomeActivity::class.java))
-            sPrefHelper.putBoolean(getString(R.string.isFirstStartKey), false)
+            sPrefUtils.putBoolean(getString(R.string.isFirstStartKey), false)
         }
     }
 
@@ -92,7 +92,7 @@ class MainActivity : BaseActivity(), MainRouter, MasterInfoRouter {
         supportFragmentManager.popBackStack()
     }
 
-    private fun isFirstStart() = sPrefHelper
+    private fun isFirstStart() = sPrefUtils
             .getBoolean(getString(R.string.isFirstStartKey), true)
 
 }

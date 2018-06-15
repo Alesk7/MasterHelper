@@ -4,7 +4,7 @@ import alesk.com.masterhelper.data.entities.MasterInfo
 import alesk.com.masterhelper.domain.repository.MasterInfoRepository
 import javax.inject.Inject
 
-class MasterInfoInteractor @Inject constructor(val masterInfoRepository: MasterInfoRepository) {
+class MasterInfoInteractor @Inject constructor(private val masterInfoRepository: MasterInfoRepository) {
 
     fun getMasterInfo(): MasterInfo {
         return masterInfoRepository.getMasterInfo() ?: MasterInfo()

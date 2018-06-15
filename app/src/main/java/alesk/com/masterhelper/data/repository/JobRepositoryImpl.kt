@@ -6,7 +6,7 @@ import alesk.com.masterhelper.domain.repository.JobRepository
 import javax.inject.Inject
 
 class JobRepositoryImpl @Inject constructor(
-        val jobDAO: JobDAO
+        private val jobDAO: JobDAO
 ): JobRepository {
 
     override fun getJob(id: Long): Job? {
@@ -28,4 +28,5 @@ class JobRepositoryImpl @Inject constructor(
     override fun editJob(job: Job) {
         jobDAO.editJob(job)
     }
+
 }

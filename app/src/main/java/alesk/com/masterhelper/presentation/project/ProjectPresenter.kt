@@ -11,9 +11,9 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ProjectPresenter @Inject constructor(
-        val projectsInteractor: ProjectsInteractor,
-        val documentsInteractor: DocumentsInteractor,
-        val projectModelMapper: ProjectModelMapper
+        private val projectsInteractor: ProjectsInteractor,
+        private val documentsInteractor: DocumentsInteractor,
+        private val projectModelMapper: ProjectModelMapper
 ) : BasePresenter<ProjectView, ProjectRouter>() {
 
     lateinit var projectModel: ProjectModel
@@ -24,8 +24,21 @@ class ProjectPresenter @Inject constructor(
         view?.setProjectName(projectModel.name)
     }
 
+    fun checkIfProjectInArchive() {
+        if(projectModel.isComplete) {
+            view?.setArchivedColor()
+            view?.setUnarchiveMenuItem()
+        } else {
+            view?.setArchiveMenuItem()
+        }
+    }
+
     fun onJobsClicked(){
         router?.showJobs(projectModel.id)
+    }
+
+    fun onPricesClicked(){
+        router?.showPrices(projectModel.id)
     }
 
     fun onMaterialsClicked(){
@@ -33,15 +46,27 @@ class ProjectPresenter @Inject constructor(
     }
 
     fun onEditProjectName(){
-        view?.showEditDialog(view!!.getProjectNameString(), projectModel.name, {
+        view?.showEditDialog(view!!.getProjectNameString(), projectModel.name) {
             if(it.isBlank()) return@showEditDialog
             projectModel.name = it
             view?.setProjectName(projectModel.name)
             projectsInteractor.updateProject(projectModelMapper.transform(projectModel))
-        } )
+        }
     }
 
-    fun onDeleteProject(){
+    fun onDeleteProject() {
+        view?.askForDeleting()
+    }
+
+    fun onPrintClicked() {
+        view?.showPrintDialog()
+    }
+
+    fun onOpenFolderClicked() {
+        view?.openDocFolder()
+    }
+
+    fun deleteProject(){
         projectsInteractor.deleteProject(projectModel.id)
         router?.close()
     }
@@ -56,7 +81,19 @@ class ProjectPresenter @Inject constructor(
 
     fun printAct() {
         subscribe(documentsInteractor.printAct(projectModel.id))
-        projectModel.isComplete = true
+        projectsInteractor.updateProject(projectModelMapper.transform(projectModel))
+    }
+
+    fun onSetArchived() {
+        if(!projectModel.isComplete){
+            projectModel.isComplete = true
+            view?.setArchivedColor()
+            view?.setUnarchiveMenuItem()
+        } else {
+            projectModel.isComplete = false
+            view?.setPrimaryColor()
+            view?.setArchiveMenuItem()
+        }
         projectsInteractor.updateProject(projectModelMapper.transform(projectModel))
     }
 

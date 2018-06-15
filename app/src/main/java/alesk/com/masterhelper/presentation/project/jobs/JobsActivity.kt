@@ -49,11 +49,11 @@ class JobsActivity : BaseActivity(), JobsView, JobsRouter {
 
     override fun showAddJobDialog(onOk: (String, Double?, String) -> Unit) {
         val view = initJobDialogView()
-        buildCustomViewDialog(this, view, getString(R.string.addJob), { d, i ->
+        buildCustomViewDialog(this, view, getString(R.string.addJob)) { d, i ->
             onOk(view.name.text.toString(),
-                  view.quantity.text.toString().toDoubleOrNull(),
-                  view.unit.selectedItem.toString())
-        }).show()
+                    view.quantity.text.toString().toDoubleOrNull(),
+                    view.unit.selectedItem.toString())
+        }.show()
     }
 
     override fun showEditJobDialog(name: String, quantity: Double, unit: String,
@@ -62,11 +62,11 @@ class JobsActivity : BaseActivity(), JobsView, JobsRouter {
         view.name.setText(name)
         view.quantity.setText(quantity.toString())
         view.unit.setSelection((view.unit.adapter as ArrayAdapter<String>).getPosition(unit))
-        buildCustomViewDialog(this, view, getString(R.string.editJob), { d, i ->
-             onOk(view.name.text.toString(),
+        buildCustomViewDialog(this, view, getString(R.string.editJob)) { d, i ->
+            onOk(view.name.text.toString(),
                     view.quantity.text.toString().toDoubleOrNull(),
                     view.unit.selectedItem.toString())
-        }).show()
+        }.show()
     }
 
     @SuppressLint("InflateParams")

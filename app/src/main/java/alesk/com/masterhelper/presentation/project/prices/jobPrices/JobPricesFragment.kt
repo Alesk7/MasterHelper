@@ -19,7 +19,7 @@ class JobPricesFragment: BaseFragment<JobPricesPresenter, JobPricesView, PricesR
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_prices, container, false)
-        adapter = JobPricesAdapter(context, { presenter.onPriceChanged(it) })
+        adapter = JobPricesAdapter(context) { presenter.onPriceChanged(it) }
         return binding.root
     }
 

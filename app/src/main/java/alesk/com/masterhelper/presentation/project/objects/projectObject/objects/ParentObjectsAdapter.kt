@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_parent_object.view.*
 
 class ParentObjectsAdapter(
-        val context: Context?,
-        val onItemClick: (ProjectObject) -> Unit
+        private val context: Context?,
+        private val onItemClick: (ProjectObject) -> Unit
 ): RecyclerView.Adapter<ParentObjectsAdapter.ViewHolder>() {
 
     lateinit var items: List<ProjectObject>
@@ -23,14 +23,12 @@ class ParentObjectsAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-            holder.bind(items[position], onItemClick)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
 
-    inner class ViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name = itemView.objectName
 
-        fun bind(item: ProjectObject, onItemClick: (ProjectObject) -> Unit) {
+        fun bind(item: ProjectObject) {
             name.text = item.name
             itemView.setOnClickListener { onItemClick(item) }
         }

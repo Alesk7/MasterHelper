@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_object_binding.view.*
 
 class ObjectJobsAdapter(
-        val context: Context?,
-        val onItemClick: (Job) -> Unit
+        private val context: Context?,
+        private val onItemClick: (Job) -> Unit
 ): RecyclerView.Adapter<ObjectJobsAdapter.ViewHolder>() {
 
     lateinit var items: List<Job>

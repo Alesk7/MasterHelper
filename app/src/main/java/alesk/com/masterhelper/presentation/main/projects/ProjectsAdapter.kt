@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_project.view.*
 
-class ProjectsAdapter(val context: Context?, val listener: (Project) -> Unit)
-    : RecyclerView.Adapter<ProjectsAdapter.ViewHolder>() {
+class ProjectsAdapter(
+        private val context: Context?,
+        private val listener: (Project) -> Unit
+) : RecyclerView.Adapter<ProjectsAdapter.ViewHolder>() {
 
     lateinit var items: List<Project>
 
@@ -21,7 +23,7 @@ class ProjectsAdapter(val context: Context?, val listener: (Project) -> Unit)
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-            holder.bind(items[position], listener)
+            holder.bind(items[position])
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val projectName = itemView.projectName
@@ -30,7 +32,7 @@ class ProjectsAdapter(val context: Context?, val listener: (Project) -> Unit)
         val address = itemView.address
         val jobsDescription = itemView.jobsDescription
 
-        fun bind(item: Project, listener: (Project) -> Unit) {
+        fun bind(item: Project) {
             projectName.text = item.name
             client.text = item.client.name
             clientPhone.text = item.client.phoneNumber

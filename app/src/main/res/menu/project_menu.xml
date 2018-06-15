@@ -12,6 +12,9 @@
         android:icon="@mipmap/ic_folder"
         android:title="@string/openDocFolder" />
     <item
+        android:id="@+id/archive_item"
+        android:title="@string/archiveProject" />
+    <item
         android:id="@+id/edit_item"
         android:title="@string/changeName" />
 

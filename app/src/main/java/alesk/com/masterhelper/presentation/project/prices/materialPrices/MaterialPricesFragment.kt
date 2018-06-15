@@ -20,7 +20,7 @@ class MaterialPricesFragment: BaseFragment<MaterialPricesPresenter, MaterialPric
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_material_prices, container, false)
-        adapter = MaterialPricesAdapter(context, { presenter.onPriceChanged(it) })
+        adapter = MaterialPricesAdapter(context) { presenter.onPriceChanged(it) }
         return binding.root
     }
 

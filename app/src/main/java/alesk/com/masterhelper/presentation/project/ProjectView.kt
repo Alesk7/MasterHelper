@@ -10,4 +10,9 @@ interface ProjectView {
     fun hideProgressBar()
     fun showDocumentGeneratedDialog(generatedFilePath: String)
     fun showPrintDialog()
+    fun setArchivedColor()
+    fun setPrimaryColor()
+    fun setArchiveMenuItem()
+    fun setUnarchiveMenuItem()
+    fun openDocFolder()
 }

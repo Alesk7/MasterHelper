@@ -34,7 +34,12 @@
                     android:id="@+id/commonInfoCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
+                    android:background="@android:color/background_light"
+                    app:cardCornerRadius="0dp"
+                    app:cardElevation="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -187,40 +192,6 @@
 
                     </android.support.constraint.ConstraintLayout>
                 </android.support.v7.widget.CardView>
-
-                <Button
-                    android:id="@+id/pricesButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/lightGrey"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:drawableLeft="@mipmap/ic_currency_rub"
-                    android:drawablePadding="16dp"
-                    android:paddingLeft="16dp"
-                    android:text="@string/prices"
-                    android:textAlignment="textStart"
-                    android:onClick="@{(view) -> presenter.onPricesClicked()}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/commonInfoCard" />
-
-                <Button
-                    android:id="@+id/cartButton"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:background="@color/darkGrey"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:drawableLeft="@mipmap/ic_cart"
-                    android:drawablePadding="16dp"
-                    android:paddingLeft="16dp"
-                    android:text="@string/cart"
-                    android:textAlignment="textStart"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/pricesButton" />
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>

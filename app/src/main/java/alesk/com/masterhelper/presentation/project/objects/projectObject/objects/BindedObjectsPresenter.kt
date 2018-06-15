@@ -9,8 +9,8 @@ import alesk.com.masterhelper.presentation.project.objects.projectObject.ObjectR
 import javax.inject.Inject
 
 class BindedObjectsPresenter @Inject constructor(
-        val projectObjectsInteractor: ProjectObjectsInteractor,
-        val objectModelMapper: ObjectModelMapper
+        private val projectObjectsInteractor: ProjectObjectsInteractor,
+        private val objectModelMapper: ObjectModelMapper
 ): BasePresenter<BindedObjectsView, ObjectRouter>() {
 
     lateinit var objectModel: ObjectModel
@@ -80,7 +80,6 @@ class BindedObjectsPresenter @Inject constructor(
     private fun obtainParentObjects(parentId: Long) {
         val parentObject = projectObjectsInteractor.getProjectObject(parentId)
         parentObjects.add(parentObject)
-
         if(parentObject.parentObjectId != null)
             obtainParentObjects(parentObject.parentObjectId!!)
     }

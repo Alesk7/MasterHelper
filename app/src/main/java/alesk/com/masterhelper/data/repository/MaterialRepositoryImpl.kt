@@ -6,7 +6,7 @@ import alesk.com.masterhelper.domain.repository.MaterialRepository
 import javax.inject.Inject
 
 class MaterialRepositoryImpl @Inject constructor(
-        val materialDAO: MaterialDAO
+        private val materialDAO: MaterialDAO
 ): MaterialRepository {
 
     override fun getMaterial(id: Long): Material? {

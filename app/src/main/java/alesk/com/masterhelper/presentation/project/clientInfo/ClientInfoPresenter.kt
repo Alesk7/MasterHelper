@@ -7,8 +7,8 @@ import alesk.com.masterhelper.presentation.models.mappers.ProjectModelMapper
 import javax.inject.Inject
 
 class ClientInfoPresenter @Inject constructor(
-        val projectsInteractor: ProjectsInteractor,
-        val projectModelMapper: ProjectModelMapper
+        private val projectsInteractor: ProjectsInteractor,
+        private val projectModelMapper: ProjectModelMapper
 ): BasePresenter<ClientInfoView, ClientInfoRouter>() {
 
     lateinit var projectModel: ProjectModel

@@ -1,12 +1,8 @@
 package alesk.com.masterhelper.presentation.project
 
 import alesk.com.masterhelper.R
-import alesk.com.masterhelper.application.applicationComponent
 import alesk.com.masterhelper.application.providers.DocsFileProvider
-import alesk.com.masterhelper.application.utils.buildCustomViewDialogWithoutButtons
-import alesk.com.masterhelper.application.utils.showAskingDialog
-import alesk.com.masterhelper.application.utils.showMessageDialog
-import alesk.com.masterhelper.application.utils.showTextFieldDialog
+import alesk.com.masterhelper.application.utils.*
 import alesk.com.masterhelper.databinding.ActivityProjectBinding
 import alesk.com.masterhelper.presentation.common.BaseActivity
 import alesk.com.masterhelper.presentation.injection.DaggerPresentationComponent
@@ -24,6 +20,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.databinding.DataBindingUtil
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -31,6 +28,7 @@ import android.support.v4.content.FileProvider
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_project.*
 import kotlinx.android.synthetic.main.dialog_print.view.*
 import java.io.File
@@ -44,6 +42,7 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
     @Inject
     lateinit var presenter: ProjectPresenter
     lateinit var binding: ActivityProjectBinding
+    lateinit var menu: Menu
     private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,10 +53,7 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
         initPresenter()
         viewPager.adapter = ProjectPagerAdapter(supportFragmentManager)
         viewPager.pageMargin = resources.getDimension(R.dimen.viewPagerMargin).toInt()
-        tabLayout.setupWithViewPager(viewPager)
-
-        tabLayout.getTabAt(0)?.text = getString(R.string.projectInfo)
-        tabLayout.getTabAt(1)?.text = getString(R.string.projectObjects)
+        initTabLayout()
     }
 
     override fun onStart() {
@@ -70,9 +66,29 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
         DaggerPresentationComponent.create().inject(this)
     }
 
-    override fun initPresenter(){
+    override fun initPresenter() {
         presenter.view = this
         presenter.router = this
+    }
+
+    private fun initTabLayout(){
+        tabLayout.setupWithViewPager(viewPager)
+        tabLayout.getTabAt(0)?.text = getString(R.string.projectInfo)
+        tabLayout.getTabAt(1)?.text = getString(R.string.projectObjects)
+    }
+
+    override fun setArchiveMenuItem() {
+        menu.findItem(R.id.archive_item).title = getString(R.string.archiveProject)
+    }
+
+    override fun setUnarchiveMenuItem() {
+        menu.findItem(R.id.archive_item).title = getString(R.string.unarchiveProject)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        this.menu = menu!!
+        presenter.checkIfProjectInArchive()
+        return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -83,14 +99,35 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId){
             R.id.edit_item -> presenter.onEditProjectName()
-            R.id.delete_item -> askForDeleting()
+            R.id.delete_item -> presenter.onDeleteProject()
             R.id.print_item -> {
-                if(isWriteExternalStoragePermissionGranted()) showPrintDialog()
+                if(isWriteExternalStoragePermissionGranted()) presenter.onPrintClicked()
                 else requestWriteExternalStoragePermission()
             }
-            R.id.open_folder_item -> openDocFolder()
+            R.id.open_folder_item -> presenter.onOpenFolderClicked()
+            R.id.archive_item -> presenter.onSetArchived()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun setArchivedColor() {
+        setActionAndStatusBarColors(
+                resources.getColor(R.color.colorCompletedProjectsPrimary),
+                resources.getColor(R.color.colorCompletedProjectsPrimaryDark))
+        tabLayout.setBackgroundColor(resources.getColor(R.color.colorCompletedProjectsPrimary))
+    }
+
+    override fun setPrimaryColor() {
+        setActionAndStatusBarColors(
+                resources.getColor(R.color.colorPrimary),
+                resources.getColor(R.color.colorPrimaryDark))
+        tabLayout.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+    }
+
+    private fun setActionAndStatusBarColors(actionBarColor: Int, statusBarColor: Int) {
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(actionBarColor))
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = statusBarColor
     }
 
     override fun close() {
@@ -156,10 +193,9 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
     }
 
     override fun askForDeleting() {
-        showAskingDialog(this,
-                         getString(R.string.sureForDeletingProject),
-                         getString(R.string.delete),
-                         { presenter.onDeleteProject() })
+        showAskingDialog(this, getString(R.string.sureForDeletingProject), getString(R.string.delete)) {
+            presenter.deleteProject()
+        }
     }
 
     override fun showPrintDialog() {
@@ -171,9 +207,9 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
     @SuppressLint("InflateParams")
     private fun initPrintDialogView(): View {
         val view = layoutInflater.inflate(R.layout.dialog_print, null)
-        view.estimateButton.setOnClickListener{ presenter.printEstimate() }
-        view.contractButton.setOnClickListener{ presenter.printContract() }
-        view.actButton.setOnClickListener{ presenter.printAct() }
+        view.estimateButton.setOnClickListener { presenter.printEstimate() }
+        view.contractButton.setOnClickListener { presenter.printContract() }
+        view.actButton.setOnClickListener { presenter.printAct() }
         return view
     }
 
@@ -192,11 +228,11 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
         showMessageDialog(this, getString(R.string.done),
                             String.format(getString(R.string.fileSaved), generatedFilePath),
                             getString(R.string.done),
-                            getString(R.string.open),
-                            { tryOpenDocFile(generatedFilePath) })
+                            getString(R.string.open))
+                            { tryOpenDocFile(generatedFilePath) }
     }
 
-    fun tryOpenDocFile(filePath: String) {
+    private fun tryOpenDocFile(filePath: String) {
         val uri = FileProvider.getUriForFile(this, DocsFileProvider::class.java.name, File(filePath))
         val intent = Intent(Intent.ACTION_VIEW)
         intent.setDataAndType(uri, "application/msword")
@@ -204,8 +240,8 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
         startActivity(intent)
     }
 
-    fun openDocFolder() {
-        val uri = Uri.parse(applicationComponent.getDocumentsPath())
+    override fun openDocFolder() {
+        val uri = Uri.parse(DOCUMENTS_PATH)
         val intent = Intent(Intent.ACTION_VIEW)
         intent.setDataAndType(uri, "*/*")
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)

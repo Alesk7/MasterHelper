@@ -18,7 +18,7 @@
     <string name="calculator">Калькулятор</string>
     <string name="contract">Договор</string>
     <string name="estimate">Ценовая смета</string>
-    <string name="actPrint">Акт сдачи работ\n(завершение проекта)</string>
+    <string name="actPrint">Акт сдачи работ</string>
     <string name="jobs">Работы</string>
     <string name="prices">Цены</string>
     <string name="cart">Список покупок</string>
@@ -27,7 +27,7 @@
     <string name="projectObjects">Объекты</string>
     <string name="client">Заказчик</string>
     <string name="master">Исполнитель</string>
-    <string name="archived">Завершенные проекты</string>
+    <string name="archived">Архивированные проекты</string>
 
     <string name="nameEmptyMessage">Название не должно быть пустым</string>
 
@@ -56,7 +56,8 @@
     <string name="deleteProject">Удалить проект</string>
     <string name="sureForDeletingProject">Удалить проект?</string>
     <string name="sureForDeletingObject">Удалить объект?</string>
-    <string name="finishProject">Завершить проект</string>
+    <string name="archiveProject">Архивировать проект</string>
+    <string name="unarchiveProject">Разархивировать проект</string>
 
     <string name="projectName">Название проекта</string>
     <string name="projectDescription">Краткое описание работ</string>

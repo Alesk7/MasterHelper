@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_object_binding.view.*
 
 class ObjectMaterialsAdapter(
-        val context: Context?,
-        val onItemClick: (Material) -> Unit
+        private val context: Context?,
+        private val onItemClick: (Material) -> Unit
 ): RecyclerView.Adapter<ObjectMaterialsAdapter.ViewHolder>() {
 
     lateinit var items: List<Material>

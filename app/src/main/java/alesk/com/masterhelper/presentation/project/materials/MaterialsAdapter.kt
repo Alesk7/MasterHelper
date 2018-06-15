@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_material.view.*
 
-class MaterialsAdapter(val context: Context?,
-                       val onEdit: (Material, Int) -> Unit,
-                       val onStatusChanged: (Boolean, Material) -> Unit
+class MaterialsAdapter(private val context: Context?,
+                       private val onEdit: (Material, Int) -> Unit,
+                       private val onStatusChanged: (Boolean, Material) -> Unit
 ): RecyclerView.Adapter<MaterialsAdapter.ViewHolder>() {
 
     lateinit var items: List<Material>
@@ -23,7 +23,7 @@ class MaterialsAdapter(val context: Context?,
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-            holder.bind(position, items[position], onEdit, onStatusChanged)
+            holder.bind(position, items[position])
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name = itemView.name
@@ -32,20 +32,19 @@ class MaterialsAdapter(val context: Context?,
         val isPurchased = itemView.isPurchased
         val editButton = itemView.editButton
 
-        fun bind(pos: Int, item: Material, onEdit: (Material, Int) -> Unit,
-                 onStatusChanged: (Boolean, Material) -> Unit) {
+        fun bind(pos: Int, item: Material) {
             name.text = item.name
             quantity.text = item.quantity.toString()
             unit.text = item.unit
             isPurchased.isChecked = item.isPurchased
             if(isPurchased.isChecked) isPurchased.text = context?.getString(R.string.purchased)
 
-            isPurchased.setOnCheckedChangeListener({ button, isChecked ->
-                button.text = if(isChecked) context?.getString(R.string.purchased)
-                else context?.getString(R.string.notPurchased)
+            isPurchased.setOnCheckedChangeListener { button, isChecked ->
+                button.text = if(isChecked) context?.getString(R.string.purchased) else
+                    context?.getString(R.string.notPurchased)
                 onStatusChanged(isChecked, item)
-            })
-            editButton.setOnClickListener({ onEdit(item, pos) })
+            }
+            editButton.setOnClickListener { onEdit(item, pos) }
         }
     }
 

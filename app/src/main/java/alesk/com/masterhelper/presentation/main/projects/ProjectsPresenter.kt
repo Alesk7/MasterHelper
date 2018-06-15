@@ -7,7 +7,7 @@ import alesk.com.masterhelper.presentation.main.MainRouter
 import javax.inject.Inject
 
 class ProjectsPresenter @Inject constructor(
-        val interactor: ProjectsInteractor
+        private val interactor: ProjectsInteractor
 ): BasePresenter<ProjectsView, MainRouter>() {
 
     lateinit var projectsList: List<Project>

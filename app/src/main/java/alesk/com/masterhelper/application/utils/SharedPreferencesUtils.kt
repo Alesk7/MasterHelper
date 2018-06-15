@@ -5,7 +5,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SharedPreferencesHelper @Inject constructor(val sPref: SharedPreferences) {
+class SharedPreferencesUtils @Inject constructor(val sPref: SharedPreferences) {
 
     fun putString(key: String, value: String){
         with(sPref.edit()){

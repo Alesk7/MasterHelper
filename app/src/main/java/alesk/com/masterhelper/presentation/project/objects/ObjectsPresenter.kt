@@ -8,8 +8,8 @@ import alesk.com.masterhelper.presentation.project.ProjectRouter
 import javax.inject.Inject
 
 class ObjectsPresenter @Inject constructor(
-        val projectObjectsInteractor: ProjectObjectsInteractor,
-        val objectModelMapper: ObjectModelMapper
+        private val projectObjectsInteractor: ProjectObjectsInteractor,
+        private val objectModelMapper: ObjectModelMapper
 ): BasePresenter<ObjectsView, ProjectRouter>() {
 
     lateinit var objectsList: List<ObjectModel>
@@ -19,7 +19,7 @@ class ObjectsPresenter @Inject constructor(
     }
 
     fun onAddObject(){
-        view?.showAddObjectDialog(getSpinnerParentObjectsList(), { name, parent ->
+        view?.showAddObjectDialog(getSpinnerParentObjectsList()) { name, parent ->
             if(name.isBlank()) return@showAddObjectDialog
             val obj = ObjectModel(projectId = view!!.getProjectId(), name = name)
             if(parent.id != -1L) {
@@ -29,7 +29,7 @@ class ObjectsPresenter @Inject constructor(
             projectObjectsInteractor.addProjectObject(objectModelMapper.transform(obj))
             updateViewObjectsList()
             view?.updateViewBindings()
-        })
+        }
     }
 
     fun onObjectClicked(objectModel: ObjectModel){

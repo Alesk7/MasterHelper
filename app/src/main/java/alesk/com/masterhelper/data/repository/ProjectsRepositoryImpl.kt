@@ -6,7 +6,7 @@ import alesk.com.masterhelper.domain.repository.ProjectsRepository
 import javax.inject.Inject
 
 class ProjectsRepositoryImpl @Inject constructor(
-        val projectDAO: ProjectDAO
+        private val projectDAO: ProjectDAO
 ): ProjectsRepository {
 
     override fun getAllProjects(): List<Project> {

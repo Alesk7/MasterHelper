@@ -20,11 +20,7 @@ class ObjectActivity : BaseActivity(), ObjectView, ObjectRouter {
         inject()
         initPresenter()
         viewPager.adapter = ObjectPagerAdapter(supportFragmentManager)
-        tabs.setupWithViewPager(viewPager)
-
-        tabs.getTabAt(0)?.text = getString(R.string.projectObjects)
-        tabs.getTabAt(1)?.text = getString(R.string.jobs)
-        tabs.getTabAt(2)?.text = getString(R.string.materials)
+        initTabs()
     }
 
     override fun onStart() {
@@ -39,6 +35,13 @@ class ObjectActivity : BaseActivity(), ObjectView, ObjectRouter {
     override fun initPresenter() {
         presenter.view = this
         presenter.router = this
+    }
+
+    private fun initTabs(){
+        tabs.setupWithViewPager(viewPager)
+        tabs.getTabAt(0)?.text = getString(R.string.projectObjects)
+        tabs.getTabAt(1)?.text = getString(R.string.jobs)
+        tabs.getTabAt(2)?.text = getString(R.string.materials)
     }
 
     override fun setObjectName(name: String) {

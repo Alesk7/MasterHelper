@@ -7,8 +7,8 @@ import alesk.com.masterhelper.presentation.models.mappers.MasterInfoModelMapper
 import javax.inject.Inject
 
 class MasterInfoPresenter @Inject constructor(
-        val interactor: MasterInfoInteractor,
-        val mapper: MasterInfoModelMapper
+        private val interactor: MasterInfoInteractor,
+        private val mapper: MasterInfoModelMapper
 ) : BasePresenter<MasterInfoView, MasterInfoRouter>() {
 
     lateinit var masterInfoModel: MasterInfoModel

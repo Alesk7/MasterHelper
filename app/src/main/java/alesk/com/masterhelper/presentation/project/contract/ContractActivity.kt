@@ -25,10 +25,7 @@ class ContractActivity : BaseActivity(), ContractView, ContractRouter {
         initPresenter()
         viewPager.adapter = ContractPagerAdapter(supportFragmentManager)
         viewPager.pageMargin = resources.getDimension(R.dimen.viewPagerMargin).toInt()
-        tabLayout.setupWithViewPager(viewPager)
-
-        tabLayout.getTabAt(0)?.text = getString(R.string.contractDetails)
-        tabLayout.getTabAt(1)?.text = getString(R.string.terms)
+        initTabLayout()
     }
 
     override fun onStart() {
@@ -44,6 +41,12 @@ class ContractActivity : BaseActivity(), ContractView, ContractRouter {
     override fun initPresenter(){
         presenter.router = this
         presenter.view = this
+    }
+
+    private fun initTabLayout(){
+        tabLayout.setupWithViewPager(viewPager)
+        tabLayout.getTabAt(0)?.text = getString(R.string.contractDetails)
+        tabLayout.getTabAt(1)?.text = getString(R.string.terms)
     }
 
     override fun getProjectModel(): ProjectModel {

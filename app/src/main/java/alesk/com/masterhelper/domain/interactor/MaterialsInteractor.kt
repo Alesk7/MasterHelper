@@ -4,7 +4,7 @@ import alesk.com.masterhelper.data.entities.Material
 import alesk.com.masterhelper.domain.repository.MaterialRepository
 import javax.inject.Inject
 
-class MaterialsInteractor @Inject constructor(val materialRepository: MaterialRepository) {
+class MaterialsInteractor @Inject constructor(private val materialRepository: MaterialRepository) {
 
     fun getMaterialsByProjectId(projectId: Long): List<Material> {
         return materialRepository.getMaterialsByProjectId(projectId).asReversed()

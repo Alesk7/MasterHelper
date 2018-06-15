@@ -1,6 +1,6 @@
 package alesk.com.masterhelper.domain.interactor
 
-import alesk.com.masterhelper.application.applicationComponent
+import alesk.com.masterhelper.application.utils.DOCUMENTS_PATH
 import alesk.com.masterhelper.data.entities.Project
 import alesk.com.masterhelper.domain.docGenerators.ActDocGenerator
 import alesk.com.masterhelper.domain.docGenerators.ContractDocGenerator
@@ -16,15 +16,15 @@ import java.io.FileOutputStream
 import javax.inject.Inject
 
 class DocumentsInteractor @Inject constructor(
-        val jobRepository: JobRepository,
-        val materialRepository: MaterialRepository,
-        val projectsRepository: ProjectsRepository,
-        val masterInfoRepository: MasterInfoRepository
+        private val jobRepository: JobRepository,
+        private val materialRepository: MaterialRepository,
+        private val projectsRepository: ProjectsRepository,
+        private val masterInfoRepository: MasterInfoRepository
 ) {
 
-    val ESTIMATE_PATH_PATTERN = "%sСмета_%s №%d.docx"
-    val CONTRACT_PATH_PATTERN = "%sДоговор_%s №%d.docx"
-    val ACT_PATH_PATTERN = "%sАкт_%s №%d.docx"
+    private val estimatePathPattern = "%sСмета_%s №%d.docx"
+    private val contractPathPattern = "%sДоговор_%s №%d.docx"
+    private val actPathPattern = "%sАкт_%s №%d.docx"
 
     init{
         System.setProperty("javax.xml.stream.XMLInputFactory", "com.fasterxml.aalto.stax.InputFactoryImpl")
@@ -40,10 +40,10 @@ class DocumentsInteractor @Inject constructor(
         val priceEstimateDocGenerator = PriceEstimateDocGenerator(masterInfo!!, project!!, jobs, materials)
         return if(project.contract.isMasterMaterialsSupplier)
             Single.defer { Single.just(
-                    saveDoc(priceEstimateDocGenerator.generate(), ESTIMATE_PATH_PATTERN, project)) }
+                    saveDoc(priceEstimateDocGenerator.generate(), estimatePathPattern, project)) }
         else
             Single.defer { Single.just(
-                    saveDoc(priceEstimateDocGenerator.generateWithoutMaterials(), ESTIMATE_PATH_PATTERN, project)) }
+                    saveDoc(priceEstimateDocGenerator.generateWithoutMaterials(), estimatePathPattern, project)) }
     }
 
     fun printContract(projectId: Long): Single<String> {
@@ -51,7 +51,7 @@ class DocumentsInteractor @Inject constructor(
         val masterInfo = masterInfoRepository.getMasterInfo()
         val contractDocGenerator = ContractDocGenerator(project!!, masterInfo!!)
         return Single.defer {
-            Single.just(saveDoc(contractDocGenerator.generate(), CONTRACT_PATH_PATTERN, project)) }
+            Single.just(saveDoc(contractDocGenerator.generate(), contractPathPattern, project)) }
     }
 
     fun printAct(projectId: Long): Single<String> {
@@ -61,12 +61,11 @@ class DocumentsInteractor @Inject constructor(
         val masterInfo = masterInfoRepository.getMasterInfo()
         val actDocGenerator = ActDocGenerator(project!!, masterInfo!!, jobs, materials)
         return Single.defer {
-            Single.just(saveDoc(actDocGenerator.generate(), ACT_PATH_PATTERN, project)) }
+            Single.just(saveDoc(actDocGenerator.generate(), actPathPattern, project)) }
     }
 
     private fun saveDoc(doc: XWPFDocument, pathPattern: String, project: Project): String {
-        val path = String.format(pathPattern,
-                applicationComponent.getDocumentsPath(), project.name, project.contract.number)
+        val path = String.format(pathPattern, DOCUMENTS_PATH, project.name, project.contract.number)
         val out = FileOutputStream(path)
         createDocumentsDirIfNotExists()
         File(path).createNewFile()
@@ -76,7 +75,7 @@ class DocumentsInteractor @Inject constructor(
     }
 
     private fun createDocumentsDirIfNotExists() {
-        val docDir = File(applicationComponent.getDocumentsPath())
+        val docDir = File(DOCUMENTS_PATH)
         if(!docDir.exists()) docDir.mkdir()
     }
 

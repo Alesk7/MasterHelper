@@ -8,8 +8,8 @@ import alesk.com.masterhelper.presentation.project.prices.PricesRouter
 import javax.inject.Inject
 
 class MaterialPricesPresenter @Inject constructor(
-        val materialsInteractor: MaterialsInteractor,
-        val materialModelMapper: MaterialModelMapper
+        private val materialsInteractor: MaterialsInteractor,
+        private val materialModelMapper: MaterialModelMapper
 ): BasePresenter<MaterialPricesView, PricesRouter>() {
 
     lateinit var materialsList: List<MaterialModel>

@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_job.view.*
 
-class JobsAdapter(val context: Context?,
-                  val onEdit: (Job, Int) -> Unit,
-                  val onStatusChanged: (Boolean, Job) -> Unit
+class JobsAdapter(private val context: Context?,
+                  private val onEdit: (Job, Int) -> Unit,
+                  private val onStatusChanged: (Boolean, Job) -> Unit
 ): RecyclerView.Adapter<JobsAdapter.ViewHolder>() {
 
     lateinit var items: List<Job>
@@ -23,7 +23,7 @@ class JobsAdapter(val context: Context?,
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-            holder.bind(position, items[position], onEdit, onStatusChanged)
+            holder.bind(position, items[position])
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name = itemView.name
@@ -32,19 +32,19 @@ class JobsAdapter(val context: Context?,
         val isComplete = itemView.isComplete
         val editButton = itemView.editButton
 
-        fun bind(pos: Int, item: Job, onEdit: (Job, Int) -> Unit, onStatusChanged: (Boolean, Job) -> Unit) {
+        fun bind(pos: Int, item: Job) {
             name.text = item.name
             quantity.text = item.quantity.toString()
             unit.text = item.unit
             isComplete.isChecked = item.isComplete
             if(isComplete.isChecked) isComplete.text = context?.getString(R.string.complete)
 
-            isComplete.setOnCheckedChangeListener({ button, isChecked ->
-                button.text = if(isChecked) context?.getString(R.string.complete)
-                              else context?.getString(R.string.notComplete)
+            isComplete.setOnCheckedChangeListener { button, isChecked ->
+                button.text = if(isChecked) context?.getString(R.string.complete) else
+                    context?.getString(R.string.notComplete)
                 onStatusChanged(isChecked, item)
-            })
-            editButton.setOnClickListener({ onEdit(item, pos) })
+            }
+            editButton.setOnClickListener { onEdit(item, pos) }
         }
     }
 

@@ -22,7 +22,7 @@ class ParentObjectsSpinnerAdapter(
     override fun getView(position: Int, v: View?, parent: ViewGroup): View {
         val view = LayoutInflater.from(context).inflate(R.layout.spinner_item, parent, false)
         val item = getItem(position).name
-        if(item.equals(context.getString(R.string.no))) view.item.typeface = Typeface.DEFAULT
+        if(item == context.getString(R.string.no)) view.item.typeface = Typeface.DEFAULT
         view.item.text = item
         return view
     }
