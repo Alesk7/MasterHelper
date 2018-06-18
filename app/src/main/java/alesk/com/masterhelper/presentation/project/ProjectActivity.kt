@@ -237,7 +237,9 @@ class ProjectActivity : BaseActivity(), ProjectView, ProjectRouter {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.setDataAndType(uri, "application/msword")
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        startActivity(intent)
+        if(packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null)
+            startActivity(intent)
+        else showLongToast(this, getString(R.string.appNotFound))
     }
 
     override fun openDocFolder() {

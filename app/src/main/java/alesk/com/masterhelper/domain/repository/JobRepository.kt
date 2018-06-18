@@ -8,4 +8,5 @@ interface JobRepository {
     fun getJobsByObjectId(objectId: Long): List<Job>
     fun addJob(job: Job)
     fun editJob(job: Job)
+    fun deleteJob(job: Job)
 }

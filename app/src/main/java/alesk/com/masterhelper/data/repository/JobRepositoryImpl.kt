@@ -29,4 +29,7 @@ class JobRepositoryImpl @Inject constructor(
         jobDAO.editJob(job)
     }
 
+    override fun deleteJob(job: Job) {
+        jobDAO.deleteJob(job)
+    }
 }

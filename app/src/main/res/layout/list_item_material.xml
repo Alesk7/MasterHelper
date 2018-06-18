@@ -11,14 +11,15 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/editButton"
-            android:layout_width="50dp"
+            android:id="@+id/deleteButton"
+            android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@android:color/transparent"
-            android:drawableTop="@mipmap/ic_pencil"
+            android:drawableTop="@mipmap/ic_delete"
             android:foreground="?attr/selectableItemBackground"
-            android:paddingEnd="2dp"
             android:paddingTop="8dp"
+            android:scaleX="0.85"
+            android:scaleY="0.85"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +35,7 @@
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/editButton"
+            app:layout_constraintEnd_toStartOf="@+id/deleteButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

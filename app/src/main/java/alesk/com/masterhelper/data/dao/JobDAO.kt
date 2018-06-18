@@ -1,10 +1,7 @@
 package alesk.com.masterhelper.data.dao
 
 import alesk.com.masterhelper.data.entities.Job
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
-import android.arch.persistence.room.Update
+import android.arch.persistence.room.*
 
 @Dao
 interface JobDAO {
@@ -14,6 +11,9 @@ interface JobDAO {
 
     @Update
     fun editJob(job: Job)
+
+    @Delete
+    fun deleteJob(job: Job)
 
     @Query("SELECT * FROM Job WHERE id = :id")
     fun getJob(id: Long): Job

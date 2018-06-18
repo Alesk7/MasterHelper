@@ -66,8 +66,8 @@ class DocumentsInteractor @Inject constructor(
 
     private fun saveDoc(doc: XWPFDocument, pathPattern: String, project: Project): String {
         val path = String.format(pathPattern, DOCUMENTS_PATH, project.name, project.contract.number)
-        val out = FileOutputStream(path)
         createDocumentsDirIfNotExists()
+        val out = FileOutputStream(path)
         File(path).createNewFile()
         doc.write(out)
         out.close(); doc.close()

@@ -2,6 +2,7 @@ package alesk.com.masterhelper.presentation.project.jobs
 
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.application.utils.buildCustomViewDialog
+import alesk.com.masterhelper.application.utils.showAskingDialog
 import alesk.com.masterhelper.data.entities.Job
 import alesk.com.masterhelper.databinding.ActivityJobsBinding
 import alesk.com.masterhelper.presentation.common.BaseActivity
@@ -27,7 +28,7 @@ class JobsActivity : BaseActivity(), JobsView, JobsRouter {
         inject()
         initPresenter()
         supportActionBar?.title = getString(R.string.jobs)
-        adapter = JobsAdapter(this, { it, pos -> presenter.onEditJob(it, pos) },
+        adapter = JobsAdapter(this, { it, pos -> presenter.onDeleteJob(it, pos) },
                                             { isChecked, it -> presenter.onJobStatusChanged(isChecked, it) })
     }
 
@@ -56,25 +57,18 @@ class JobsActivity : BaseActivity(), JobsView, JobsRouter {
         }.show()
     }
 
-    override fun showEditJobDialog(name: String, quantity: Double, unit: String,
-                                   onOk: (String, Double?, String) -> Unit) {
-        val view = initJobDialogView()
-        view.name.setText(name)
-        view.quantity.setText(quantity.toString())
-        view.unit.setSelection((view.unit.adapter as ArrayAdapter<String>).getPosition(unit))
-        buildCustomViewDialog(this, view, getString(R.string.editJob)) { d, i ->
-            onOk(view.name.text.toString(),
-                    view.quantity.text.toString().toDoubleOrNull(),
-                    view.unit.selectedItem.toString())
-        }.show()
-    }
-
     @SuppressLint("InflateParams")
     private fun initJobDialogView(): View {
         val view = layoutInflater.inflate(R.layout.dialog_job, null)
         view.unit.adapter = ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,
                 resources.getStringArray(R.array.jobUnits))
         return view
+    }
+
+    override fun askForDeleting(job: Job, position: Int) {
+        showAskingDialog(this, getString(R.string.sureForDeletingJob), getString(R.string.delete)){
+            presenter.deleteJob(job, position)
+        }
     }
 
     override fun setJobsList(jobs: List<Job>) {
@@ -87,6 +81,6 @@ class JobsActivity : BaseActivity(), JobsView, JobsRouter {
 
     override fun updateViewBindings() = binding.invalidateAll()
 
-    override fun notifyItemChanged(pos: Int) = adapter.notifyItemChanged(pos)
+    override fun notifyItemRemoved(pos: Int) = adapter.notifyItemRemoved(pos)
 
 }

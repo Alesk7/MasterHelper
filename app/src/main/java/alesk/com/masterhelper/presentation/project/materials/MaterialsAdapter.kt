@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_material.view.*
 
 class MaterialsAdapter(private val context: Context?,
-                       private val onEdit: (Material, Int) -> Unit,
+                       private val onDelete: (Material, Int) -> Unit,
                        private val onStatusChanged: (Boolean, Material) -> Unit
 ): RecyclerView.Adapter<MaterialsAdapter.ViewHolder>() {
 
@@ -30,7 +30,7 @@ class MaterialsAdapter(private val context: Context?,
         val quantity = itemView.quantity
         val unit = itemView.unit
         val isPurchased = itemView.isPurchased
-        val editButton = itemView.editButton
+        val deleteButton = itemView.deleteButton
 
         fun bind(pos: Int, item: Material) {
             name.text = item.name
@@ -44,7 +44,7 @@ class MaterialsAdapter(private val context: Context?,
                     context?.getString(R.string.notPurchased)
                 onStatusChanged(isChecked, item)
             }
-            editButton.setOnClickListener { onEdit(item, pos) }
+            deleteButton.setOnClickListener { onDelete(item, pos) }
         }
     }
 

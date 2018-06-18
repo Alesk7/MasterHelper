@@ -33,4 +33,7 @@ class MaterialRepositoryImpl @Inject constructor(
         return materialDAO.getMaterialsByJobId(jobId)
     }
 
+    override fun deleteMaterial(material: Material) {
+        materialDAO.deleteMaterial(material)
+    }
 }

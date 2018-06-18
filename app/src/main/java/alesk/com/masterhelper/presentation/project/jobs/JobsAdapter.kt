@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item_job.view.*
 
 class JobsAdapter(private val context: Context?,
-                  private val onEdit: (Job, Int) -> Unit,
+                  private val onDelete: (Job, Int) -> Unit,
                   private val onStatusChanged: (Boolean, Job) -> Unit
 ): RecyclerView.Adapter<JobsAdapter.ViewHolder>() {
 
@@ -30,7 +30,7 @@ class JobsAdapter(private val context: Context?,
         val quantity = itemView.quantity
         val unit = itemView.unit
         val isComplete = itemView.isComplete
-        val editButton = itemView.editButton
+        val deleteButton = itemView.deleteButton
 
         fun bind(pos: Int, item: Job) {
             name.text = item.name
@@ -44,7 +44,7 @@ class JobsAdapter(private val context: Context?,
                     context?.getString(R.string.notComplete)
                 onStatusChanged(isChecked, item)
             }
-            editButton.setOnClickListener { onEdit(item, pos) }
+            deleteButton.setOnClickListener { onDelete(item, pos) }
         }
     }
 

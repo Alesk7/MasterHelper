@@ -26,14 +26,14 @@ class JobsPresenter @Inject constructor(
         }
     }
 
-    fun onEditJob(job: Job, position: Int){
-        view?.showEditJobDialog(job.name, job.quantity, job.unit) { name, quantity, unit ->
-            job.name = name
-            job.quantity = quantity ?: 1.0
-            job.unit = unit
-            jobsInteractor.editJob(job)
-            view?.notifyItemChanged(position)
-        }
+    fun onDeleteJob(job: Job, position: Int){
+        view?.askForDeleting(job, position)
+    }
+
+    fun deleteJob(job: Job, position: Int) {
+        jobsInteractor.deleteJob(job)
+        updateViewJobsList()
+        view?.notifyItemRemoved(position)
     }
 
     fun onJobStatusChanged(isChecked: Boolean, job: Job){

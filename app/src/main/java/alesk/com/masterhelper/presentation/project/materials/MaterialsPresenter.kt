@@ -26,15 +26,14 @@ class MaterialsPresenter @Inject constructor(
         }
     }
 
-    fun onEditMaterial(material: Material, position: Int){
-        view?.showEditMaterialDialog(material.name, material.quantity, material.unit)
-        { name, quantity, unit ->
-            material.name = name
-            material.quantity = quantity ?: 1.0
-            material.unit = unit
-            materialsInteractor.editMaterial(material)
-            view?.notifyItemChanged(position)
-        }
+    fun onDeleteMaterial(material: Material, position: Int){
+        view?.askForDeleting(material, position)
+    }
+
+    fun deleteMaterial(material: Material, position: Int){
+        materialsInteractor.deleteMaterial(material)
+        updateViewMaterialsList()
+        view?.notifyItemRemoved(position)
     }
 
     fun onMaterialStatusChanged(isChecked: Boolean, material: Material){

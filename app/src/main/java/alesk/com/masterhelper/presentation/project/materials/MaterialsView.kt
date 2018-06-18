@@ -4,10 +4,9 @@ import alesk.com.masterhelper.data.entities.Material
 
 interface MaterialsView {
     fun showAddMaterialDialog(onOk: (String, Double?, String) -> Unit)
-    fun showEditMaterialDialog(name: String, quantity: Double, unit: String,
-                          onOk: (String, Double?, String) -> Unit)
-    fun notifyItemChanged(pos: Int)
+    fun notifyItemRemoved(pos: Int)
     fun updateViewBindings()
     fun getProjectId(): Long
     fun setMaterialsList(materials: List<Material>)
+    fun askForDeleting(material: Material, position: Int)
 }

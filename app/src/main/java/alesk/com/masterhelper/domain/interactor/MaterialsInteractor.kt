@@ -26,4 +26,8 @@ class MaterialsInteractor @Inject constructor(private val materialRepository: Ma
         return materialRepository.getMaterialsByJobId(jobId).asReversed()
     }
 
+    fun deleteMaterial(material: Material){
+        materialRepository.deleteMaterial(material)
+    }
+
 }

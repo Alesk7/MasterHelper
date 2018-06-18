@@ -2,6 +2,7 @@ package alesk.com.masterhelper.presentation.project.materials
 
 import alesk.com.masterhelper.R
 import alesk.com.masterhelper.application.utils.buildCustomViewDialog
+import alesk.com.masterhelper.application.utils.showAskingDialog
 import alesk.com.masterhelper.data.entities.Material
 import alesk.com.masterhelper.databinding.ActivityMaterialsBinding
 import alesk.com.masterhelper.presentation.common.BaseActivity
@@ -27,7 +28,7 @@ class MaterialsActivity : BaseActivity(), MaterialsView, MaterialsRouter {
         inject()
         initPresenter()
         supportActionBar?.title = getString(R.string.materials)
-        adapter = MaterialsAdapter(this, { it, pos -> presenter.onEditMaterial(it, pos) },
+        adapter = MaterialsAdapter(this, { it, pos -> presenter.onDeleteMaterial(it, pos) },
                 { isChecked, it -> presenter.onMaterialStatusChanged(isChecked, it) })
     }
 
@@ -56,19 +57,6 @@ class MaterialsActivity : BaseActivity(), MaterialsView, MaterialsRouter {
         }.show()
     }
 
-    override fun showEditMaterialDialog(name: String, quantity: Double, unit: String,
-                                   onOk: (String, Double?, String) -> Unit) {
-        val view = initMaterialDialogView()
-        view.name.setText(name)
-        view.quantity.setText(quantity.toString())
-        view.unit.setSelection((view.unit.adapter as ArrayAdapter<String>).getPosition(unit))
-        buildCustomViewDialog(this, view, getString(R.string.editMaterial)) { _, _ ->
-            onOk(view.name.text.toString(),
-                    view.quantity.text.toString().toDoubleOrNull(),
-                    view.unit.selectedItem.toString())
-        }.show()
-    }
-
     @SuppressLint("InflateParams")
     private fun initMaterialDialogView(): View {
         val view = layoutInflater.inflate(R.layout.dialog_material, null)
@@ -77,11 +65,17 @@ class MaterialsActivity : BaseActivity(), MaterialsView, MaterialsRouter {
         return view
     }
 
+    override fun askForDeleting(material: Material, position: Int) {
+        showAskingDialog(this, getString(R.string.sureForDeletingMaterial), getString(R.string.delete)){
+            presenter.deleteMaterial(material, position)
+        }
+    }
+
     override fun setMaterialsList(materials: List<Material>) {
         adapter.items = materials
     }
 
-    override fun notifyItemChanged(pos: Int) = adapter.notifyItemChanged(pos)
+    override fun notifyItemRemoved(pos: Int) = adapter.notifyItemRemoved(pos)
 
     override fun getProjectId(): Long {
         return intent.getLongExtra(getString(R.string.keyIdProject), 0)

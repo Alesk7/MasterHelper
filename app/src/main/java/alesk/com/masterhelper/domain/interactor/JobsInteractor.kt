@@ -22,4 +22,8 @@ class JobsInteractor @Inject constructor(private val jobRepository: JobRepositor
         jobRepository.editJob(job)
     }
 
+    fun deleteJob(job: Job) {
+        jobRepository.deleteJob(job)
+    }
+
 }

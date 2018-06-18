@@ -17,6 +17,10 @@ fun showShortCustomToast(context: Context?, view: View, text: String) {
     toast.show()
 }
 
+fun showLongToast(context: Context?, text: String){
+    Toast.makeText(context, text, Toast.LENGTH_LONG).show()
+}
+
 fun buildToast(context: Context?): Toast {
     val toast = Toast(context)
     toast.setGravity(Gravity.BOTTOM, X_OFFSET, Y_OFFSET)

@@ -1,10 +1,7 @@
 package alesk.com.masterhelper.data.dao
 
 import alesk.com.masterhelper.data.entities.Material
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
-import android.arch.persistence.room.Update
+import android.arch.persistence.room.*
 
 @Dao
 interface MaterialDAO {
@@ -14,6 +11,9 @@ interface MaterialDAO {
 
     @Update
     fun editMaterial(material: Material)
+
+    @Delete
+    fun deleteMaterial(material: Material)
 
     @Query("SELECT * FROM Material WHERE id = :id")
     fun getMaterial(id: Long): Material

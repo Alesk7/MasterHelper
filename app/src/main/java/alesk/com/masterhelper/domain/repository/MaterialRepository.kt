@@ -9,4 +9,5 @@ interface MaterialRepository {
     fun getMaterialsByJobId(jobId: Long): List<Material>
     fun addMaterial(material: Material)
     fun editMaterial(material: Material)
+    fun deleteMaterial(material: Material)
 }
